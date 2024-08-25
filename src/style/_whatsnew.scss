@@ -1,0 +1,35 @@
+.whats-new {
+   position: relative;
+   padding: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 50px;
+   // padding-bottom: 50px;
+   // position: relative;
+   font-family: 'Roboto';
+   font-weight: 700;
+   height: fit-content;
+   width: fit-content;
+   // border: 2px solid #fff;
+   border-radius: 16px;
+   background-color: #161616;
+   max-width: 800px;
+   &__title {
+      font-weight: 500;
+      text-align: center;
+      font-size: 32px;
+      color: rebeccapurple;
+   }
+   &__content {
+      font-weight: 300;
+      font-size: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: start;
+      gap: 45px;
+   }
+   &__text {
+      font-size: 18px;
+   }
+}
