@@ -20,7 +20,6 @@
       <link rel="icon" href="./src/assets/icons/favicon.ico" sizes="any" />
    </head>
    <body class="body">
-
       <div class="wrapper">
          <header class="header">
             <nav class="nav">
@@ -156,41 +155,59 @@
       <script type="module" src="./scripts/modal.js"></script>
       <div class="popup popup__whats-new">
          <!-- <div class="opening-animation-heroes-list"> -->
-            <div class="custom-border">
-         <div class="whats-new">
-            <h2 class="whats-new__title">Что нового?</h2>
-            <div class="whats-new__content">
-               <p class="whats-new__text">
-                  Анимация выбора героя: Теперь процесс выбора героя сопровождается эффектной анимацией рулетки, добавляя элемент азарта и ожидания.
-               </p>
-               <p class="whats-new__text">
-                  Удаление из списка выбранных героев: Вы можете исключить выбранных героев из списка, чтобы они больше не выпадали. Это продолжается до тех пор, пока не будут использованы все доступные герои, либо до сброса списка.
-
-
-               </p>
-               <p class="whats-new__text">
-                  Окно «Герои»: Здесь вы можете увидеть полный список героев, узнать, какие из них участвуют в выборе, а также настроить свои предпочтения — выбрать любимых героев или забанить тех, на которых не хотите играть. При желании можно вернуть выбывшего героя обратно в список.
-               </p>
-               <p class="whats-new__text">
-                  Функция «Сброс»: При нажатии на кнопку «Сбросить» весь список героев возвращается к исходному состоянию. В окне «Герои» все герои будут автоматически выбраны, а список последних героев очистится.
-               </p>
-               <p class="whats-new__text">
-                  Выключение музыки: Если вам не нравится музыка, которая играет во время прокрутки рулетки, вы можете легко отключить её, нажав на иконку в шапке сайта.
-               </p>
-               <p class="whats-new__text">
-                  Надеюсь, что тебе понравится новый рандомайзер. Я старался сделать его приятным как в использовании, так и в визуальном плане, уделяя большое внимание даже самым мелким деталям.
-               </p>
-               <button class="button close__button" type="button">
-                  <div class="close__button-cross"></div>
-               </button>
+         <div class="custom-border">
+            <button class="button close__button" type="button">
+               <div class="close__button-cross"></div>
+            </button>
+            <div class="whats-new">
+               <h2 class="whats-new__title">Что нового?</h2>
+               <div class="whats-new__content">
+                  <p class="whats-new__text">
+                     Анимация выбора героя: Теперь процесс выбора героя
+                     сопровождается эффектной анимацией рулетки, добавляя
+                     элемент азарта и ожидания.
+                  </p>
+                  <p class="whats-new__text">
+                     Удаление из списка выбранных героев: Вы можете исключить
+                     выбранных героев из списка, чтобы они больше не выпадали.
+                     Это продолжается до тех пор, пока не будут использованы все
+                     доступные герои, либо до сброса списка.
+                  </p>
+                  <p class="whats-new__text">
+                     Окно «Герои»: Здесь вы можете увидеть полный список героев,
+                     узнать, какие из них участвуют в выборе, а также настроить
+                     свои предпочтения — выбрать любимых героев или забанить
+                     тех, на которых не хотите играть. При желании можно вернуть
+                     выбывшего героя обратно в список.
+                  </p>
+                  <p class="whats-new__text">
+                     Функция «Сброс»: При нажатии на кнопку «Сбросить» весь
+                     список героев возвращается к исходному состоянию. В окне
+                     «Герои» все герои будут автоматически выбраны, а список
+                     последних героев очистится.
+                  </p>
+                  <p class="whats-new__text">
+                     Выключение музыки: Если вам не нравится музыка, которая
+                     играет во время прокрутки рулетки, вы можете легко
+                     отключить её, нажав на иконку в шапке сайта.
+                  </p>
+                  <p class="whats-new__text">
+                     Надеюсь, что тебе понравится новый рандомайзер. Я старался
+                     сделать его приятным как в использовании, так и в
+                     визуальном плане, уделяя большое внимание даже самым мелким
+                     деталям.
+                  </p>
+                  
+               </div>
             </div>
+            <!-- </div> -->
          </div>
-         <!-- </div> -->
-      </div>
       </div>
       <div class="popup popup__heroes-list">
-         <!-- <div class="opening-animation-heroes-list"> -->
          <div class="custom-border">
+            <button class="button close__button" type="button">
+               <div class="close__button-cross"></div>
+            </button>
             <div class="heroes-list">
                <div class="buttons-bar">
                   <button type="button" class="button select-all">
@@ -201,20 +218,63 @@
                   </button>
                </div>
                <div class="heroes-list__box">
-                  <ul id="heroes-strength" class="heroes-list__group"></ul>
-                  <ul id="heroes-agility" class="heroes-list__group"></ul>
-                  <ul id="heroes-intelligence" class="heroes-list__group"></ul>
-                  <ul id="heroes-universal" class="heroes-list__group"></ul>
+                  <div class="heroes-list__attribute">
+                     <h3 class="heroes-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_strength.png"
+                           alt=""
+                           class="heroes-list__title__image"
+                        />Сила
+                     </h3>
+                     <ul id="heroes-strength" class="heroes-list__group"></ul>
+                  </div>
+
+                  <div class="heroes-list__attribute">
+                     <h3 class="heroes-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_agility.png"
+                           alt=""
+                           class="heroes-list__title__image"
+                        />Ловкость
+                     </h3>
+                     <ul id="heroes-agility" class="heroes-list__group"></ul>
+                  </div>
+
+                  <div class="heroes-list__attribute">
+                     <h3 class="heroes-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_intelligence.png"
+                           alt=""
+                           class="heroes-list__title__image"
+                        />Интеллект
+                     </h3>
+                     <ul
+                        id="heroes-intelligence"
+                        class="heroes-list__group"
+                     ></ul>
+                  </div>
+
+                  <div class="heroes-list__attribute">
+                     <h3 class="heroes-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_universal.png"
+                           alt=""
+                           class="heroes-list__title__image"
+                        />Универсальные
+                     </h3>
+                     <ul id="heroes-universal" class="heroes-list__group"></ul>
+                  </div>
                </div>
-               <button class="button close__button" type="button">
-                  <div class="close__button-cross"></div>
-               </button>
+               
             </div>
             <!-- </div> -->
          </div>
       </div>
       <div class="popup popup__show-hero">
          <div class="custom-border">
+            <button class="button close__button" type="button">
+               <div class="close__button-cross"></div>
+            </button>
             <!-- <div class="custom-border opening-animation-show-heroes"> -->
             <div class="show-hero">
                <p class="show-hero__hello">Your hero is</p>
@@ -243,10 +303,7 @@
                   <button class="button button-accept">ПРИНЯТЬ</button>
                   <button class="button button-retry">ЕЩЕ РАЗ</button>
                </div>
-               <!-- <button class="button close__button" type="button">Закрыть</button> -->
-               <button class="button close__button" type="button">
-                  <div class="close__button-cross"></div>
-               </button>
+               
             </div>
          </div>
       </div>

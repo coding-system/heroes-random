@@ -595,6 +595,13 @@ export const initialHeroes = [
       selected: true,
    },
    {
+      name: "Ringmaster",
+      image: "ringmaster.jpg",
+      id: 125,
+      attribute: "intelligence",
+      selected: true,
+   },
+   {
       name: "Rubick",
       image: "rubick.jpg",
       id: 86,

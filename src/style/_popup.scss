@@ -50,6 +50,33 @@
          transform-origin: center; /* Определяем точку трансформации */
       }
    }
+   & .show-hero {
+      & .buttons-bar {
+         transition: 1s ease;
+         transition-delay: 2s;
+         transform: translateY(0);
+         opacity: 1;
+      }
+      & .show-hero__title {
+         transition: 0.8s ease;
+         transition-delay: 1s;
+         transform: scale(1);
+         opacity: 1;
+      }
+      & .show-hero__hello {
+         transition: 0.8s ease;
+         transition-delay: 0.5s;
+         transform: translateY(0);
+         opacity: 1;
+      }
+      & .show-hero__video {
+         transform-origin: center;
+         transform: rotate(0) scale(1);
+         transition: 1s ease-in;
+         transition-delay: 1s;
+         opacity: 1;
+      }
+   }
 }
 
 .popup_is-animated {

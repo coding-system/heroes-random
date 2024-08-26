@@ -1,6 +1,6 @@
 .show-hero {
    // padding: 10px;
-   position: relative;
+   overflow: hidden;
    width: fit-content;
    height: fit-content;
    max-width: 550px;
@@ -24,6 +24,8 @@
    justify-content: center;
    gap: 0;
    &__hello {
+      opacity: 0;
+      transform: translateY(-100px);
       color: #fff;
       mix-blend-mode: difference;
       user-select: none;
@@ -32,6 +34,9 @@
       font-size: 26px;
    }
    &__title {
+      margin-top: 20px;
+      opacity: 0;
+      transform: scale(1.2);
       padding: 0 5px;
       mix-blend-mode: difference;
       // mask-image: linear-gradient(to top, transparent 0%, black 90%);
@@ -48,6 +53,8 @@
       font-size: 75px;
    }
    &__video {
+      transform: rotate(135deg) scale(0);
+      opacity: 0;
       filter: drop-shadow(15px 10px 15px #000000);
       // margin-bottom: 1em;
       user-select: none;
@@ -56,14 +63,25 @@
       max-width: 100%;
       user-select: none;
       pointer-events: none;
+      position: relative;
+      &::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;         
+         width: 100px;
+         height: 100px;
+         background-color: #fff;
+      }
    }
 
    .buttons-bar {
-      transition: all 3s ease;
       width: 100%;
       display: flex;
       justify-content: space-between;
       gap: 0;
+      opacity: 0;
+      transform: translateY(50px);
 
       .button {
          cursor: pointer;
