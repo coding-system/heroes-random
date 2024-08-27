@@ -71,7 +71,7 @@
       }
       & .show-hero__video {
          transform-origin: center;
-         transform: rotate(0) scale(1);
+         transform: scale(1);
          transition: 1s ease-in;
          transition-delay: 1s;
          opacity: 1;

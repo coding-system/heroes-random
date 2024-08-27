@@ -601,7 +601,7 @@ ol {
 }
 .popup_is-opened .show-hero .show-hero__video {
   transform-origin: center;
-  transform: rotate(0) scale(1);
+  transform: scale(1);
   transition: 1s ease-in;
   transition-delay: 1s;
   opacity: 1;
@@ -789,7 +789,7 @@ ol {
   font-size: 75px;
 }
 .show-hero__video {
-  transform: rotate(135deg) scale(0);
+  transform: scale(1.2);
   opacity: 0;
   filter: drop-shadow(15px 10px 15px #000000);
   -webkit-user-select: none;
