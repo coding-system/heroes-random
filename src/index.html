@@ -24,11 +24,11 @@
          <header class="header">
             <nav class="nav">
                <ul class="nav__list">
-                  <li class="nav__item heroes-list-button">Герои</li>
-                  <li class="nav__item show-hero-button">Popup с героем</li>
-                  <li class="nav__item">Режимы</li>
-                  <li class="nav__item">Умный рандом</li>
+                  <!-- <li class="nav__item heroes-list-button">Герои</li> -->
+                  <li class="nav__item show-hero-button">Последний герой</li>
+                  <li class="nav__item portraits-list-button">Герои</li>
                   <li class="nav__item whats-new-button">Что нового</li>
+                  <li class="nav__item go-last-button">GO LAST</li>
                   <label class="container">
                      <input
                         class="song-changer-checkbox"
@@ -67,11 +67,24 @@
                <source src="./assets/sounds/rolling.mp3" type="audio/mpeg" />
                Your browser does not support the audio element.
             </audio>
+            <!-- <div class="dance">
+               <img src="./assets/images/twist.gif" alt="" class="twist-dance">
+               <audio id="myAudio" class="wsong" controls>
+                  <source src="./assets/sounds/letstwistagain.mp3" type="audio/mpeg" />
+                  Your browser does not support the audio element.
+               </audio>
+            </div> -->
             <div class="help">
                <div class="remove-heroes">
-                  <p class="question">
-                     Удалять выбранных героев из списка или оставлять их?
-                  </p>
+                  <div class="remove-heroes__info">
+                     <p class="remove-heroes__answer">
+                        Герой будет удаляться из списка после каждого нажатия
+                     </p>
+                     <p class="remove-heroes__question">
+                        Удалять выбранных героев из списка или оставлять их?
+                     </p>
+                  </div>
+
                   <div class="checkbox-wrapper-10">
                      <input
                         type="checkbox"
@@ -149,61 +162,97 @@
       </div>
       <script type="module" src="./index.js"></script>
       <script type="module" src="./scripts/random.js"></script>
-      <script type="module" src="./scripts/dialog.js"></script>
+      <!-- <script type="module" src="./scripts/dialog.js"></script> -->
       <script type="module" src="./scripts/showhero.js"></script>
       <script type="module" src="./scripts/confirm.js"></script>
       <script type="module" src="./scripts/modal.js"></script>
+      <!-- POPUP WHATS NEW -->
       <div class="popup popup__whats-new">
-         <!-- <div class="opening-animation-heroes-list"> -->
          <div class="custom-border">
             <button class="button close__button" type="button">
                <div class="close__button-cross"></div>
             </button>
             <div class="whats-new">
-               <h2 class="whats-new__title">Что нового?</h2>
+               <h2 class="whats-new__main-title">Что нового?</h2>
                <div class="whats-new__content">
-                  <p class="whats-new__text">
-                     Анимация выбора героя: Теперь процесс выбора героя
-                     сопровождается эффектной анимацией рулетки, добавляя
-                     элемент азарта и ожидания.
-                  </p>
-                  <p class="whats-new__text">
-                     Удаление из списка выбранных героев: Вы можете исключить
-                     выбранных героев из списка, чтобы они больше не выпадали.
-                     Это продолжается до тех пор, пока не будут использованы все
-                     доступные герои, либо до сброса списка.
-                  </p>
-                  <p class="whats-new__text">
-                     Окно «Герои»: Здесь вы можете увидеть полный список героев,
-                     узнать, какие из них участвуют в выборе, а также настроить
-                     свои предпочтения — выбрать любимых героев или забанить
-                     тех, на которых не хотите играть. При желании можно вернуть
-                     выбывшего героя обратно в список.
-                  </p>
-                  <p class="whats-new__text">
-                     Функция «Сброс»: При нажатии на кнопку «Сбросить» весь
-                     список героев возвращается к исходному состоянию. В окне
-                     «Герои» все герои будут автоматически выбраны, а список
-                     последних героев очистится.
-                  </p>
-                  <p class="whats-new__text">
-                     Выключение музыки: Если вам не нравится музыка, которая
-                     играет во время прокрутки рулетки, вы можете легко
-                     отключить её, нажав на иконку в шапке сайта.
-                  </p>
-                  <p class="whats-new__text">
-                     Надеюсь, что тебе понравится новый рандомайзер. Я старался
-                     сделать его приятным как в использовании, так и в
-                     визуальном плане, уделяя большое внимание даже самым мелким
-                     деталям.
-                  </p>
-                  
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">Анимация выбора героя</h3>
+                     <p class="whats-new__text">
+                        Вы только посмотрите, с какой сочной анимацией
+                        выбирается герой. Красиво, правда? Теперь процесс выбора
+                        героя сопровождается эффектом рулетки, добавляя элемент
+                        азарта и ожидания.
+                     </p>
+                  </div>
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">Список героев</h3>
+                     <p class="whats-new__text">
+                        Нажав на кнопку
+                        <span class="whats-new__text-heroes">Герои</span> в
+                        шапке сайта Вы можете увидеть полный список героев,
+                        узнать, какие из них участвуют в выборе, а также
+                        настроить свои предпочтения — выбрать любимых героев или
+                        забанить тех, на которых не хотите играть. При желании
+                        можно вернуть выбывшего из смписка героя обратно.
+                     </p>
+                  </div>
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">
+                        Удаление из списка выбранных героев
+                     </h3>
+                     <p class="whats-new__text">
+                        Вы можете исключить выбранных героев из списка, чтобы
+                        они больше не выпадали. Это продолжается до тех пор,
+                        пока не будут использованы все доступные герои, либо
+                        пока список героев не будет сброшен Вами.
+                     </p>
+                  </div>
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">Функция «Сброс»</h3>
+                     <p class="whats-new__text">
+                        При нажатии на кнопку
+                        <span class="whats-new__text-reset">Сбросить</span>,
+                        список героев возвращается к исходному состоянию: в окне
+                        <span class="whats-new__text-heroes">Герои</span> все
+                        варианты будут автоматически выбраны, а список последних
+                        героев очистится.
+                     </p>
+                  </div>
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">GO LAST?</h3>
+                     <p class="whats-new__text">
+                        Если работяги просят ласт, а Вы сидите обосраный, нажав
+                        на кнопку
+                        <span class="whats-new__text-heroes">GO LAST</span>
+                        можно поручить случайности решить, играть или нет. Кроме
+                        того Вы сами можете задать соотношение шансов "ЗА" или
+                        "ПРОТИВ"
+                     </p>
+                  </div>
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">Выключение музыки</h3>
+                     <p class="whats-new__text">
+                        Если вам не нравится музыка, которая играет во время
+                        прокрутки рулетки, вы можете легко отключить её, нажав
+                        на иконку в шапке сайта.
+                     </p>
+                  </div>
+                  <div class="whats-new__item">
+                     <h3 class="whats-new__title">Заключение</h3>
+                     <p class="whats-new__text">
+                        Надеюсь, что тебе понравится новый рандомайзер. Я
+                        старался сделать его приятным как в использовании, так и
+                        в визуальном плане, уделяя большое внимание даже самым
+                        мелким деталям.
+                     </p>
+                  </div>
                </div>
             </div>
             <!-- </div> -->
          </div>
       </div>
-      <div class="popup popup__heroes-list">
+      <!-- POPUP HEROES LIST -->
+      <!-- <div class="popup popup__heroes-list">
          <div class="custom-border">
             <button class="button close__button" type="button">
                <div class="close__button-cross"></div>
@@ -265,11 +314,100 @@
                      <ul id="heroes-universal" class="heroes-list__group"></ul>
                   </div>
                </div>
-               
+            </div>
+         </div>
+      </div> -->
+      <!-- POPUP PORTRAITS LIST -->
+      <div class="popup popup__portraits-list">
+         <div class="custom-border">
+            <button class="button close__button" type="button">
+               <div class="close__button-cross"></div>
+            </button>
+            <div class="portraits-list">
+               <div class="light-spark"></div>
+               <div class="buttons-bar">
+                  <div class="buttons-bar__group">
+                     <button type="button" class="button select-all">
+                        Выбрать всех
+                     </button>
+                     <button type="button" class="button ban-all">
+                        Забанить всех
+                     </button>
+                  </div>
+                  <h3 class="portraits-list__main-title">
+                     Выберите Ваших Героев
+                  </h3>
+                  <div class="buttons-bar__group">
+                     <button type="button" class="button save-bans">
+                        Сохранить баны
+                     </button>
+                     <button type="button" class="button load-bans">
+                        Мои баны
+                     </button>
+                  </div>
+               </div>
+               <div class="portraits-list__box">
+                  <div class="portraits-list__attribute">
+                     <h3 class="portraits-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_strength.png"
+                           alt=""
+                           class="portraits-list__title__image"
+                        />Сила
+                     </h3>
+                     <ul
+                        id="portraits-strength"
+                        class="portraits-list__group"
+                     ></ul>
+                  </div>
+
+                  <div class="portraits-list__attribute">
+                     <h3 class="portraits-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_agility.png"
+                           alt=""
+                           class="portraits-list__title__image"
+                        />Ловкость
+                     </h3>
+                     <ul
+                        id="portraits-agility"
+                        class="portraits-list__group"
+                     ></ul>
+                  </div>
+
+                  <div class="portraits-list__attribute">
+                     <h3 class="portraits-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_intelligence.png"
+                           alt=""
+                           class="portraits-list__title__image"
+                        />Интеллект
+                     </h3>
+                     <ul
+                        id="portraits-intelligence"
+                        class="portraits-list__group"
+                     ></ul>
+                  </div>
+
+                  <div class="portraits-list__attribute">
+                     <h3 class="portraits-list__title">
+                        <img
+                           src="../src/assets/icons/attribute/hero_universal.png"
+                           alt=""
+                           class="portraits-list__title__image"
+                        />Универсальные
+                     </h3>
+                     <ul
+                        id="portraits-universal"
+                        class="portraits-list__group"
+                     ></ul>
+                  </div>
+               </div>
             </div>
             <!-- </div> -->
          </div>
       </div>
+      <!-- POPUP SHOW HERO -->
       <div class="popup popup__show-hero">
          <div class="custom-border">
             <button class="button close__button" type="button">
@@ -300,10 +438,9 @@
                   />
                </video>
                <div class="buttons-bar">
-                  <button class="button button-accept">ПРИНЯТЬ</button>
+                  <!-- <button class="button button-accept">ПРИНЯТЬ</button> -->
                   <button class="button button-retry">ЕЩЕ РАЗ</button>
                </div>
-               
             </div>
          </div>
       </div>
@@ -325,12 +462,70 @@
             </div>
          </div>
       </div>
-      <template id="card-hero-template">
+      <div class="popup popup__go-last">
+         <div class="custom-border">
+            <button class="button close__button" type="button">
+               <div class="close__button-cross"></div>
+            </button>
+            <div class="go-last">
+               <form name="go-last" class="go-last__form">
+                  <div class="go-last__range-box">
+                     <input
+                        type="range"
+                        id="rangeInput"
+                        min="0"
+                        max="100"
+                        value="50"
+                        class="go-last__range-slider"
+                     />
+                     <div class="chanses-box">
+                        <div class="chanses-box-item">
+                           <span class="cchanses-box-text">ДА</span>
+                           <span
+                              class="chanses-box-content chanses-box-yes"
+                           ></span>
+                        </div>
+                        <div class="chanses-box-item">
+                           <span class="chanses-box-text">НЕТ</span>
+                           <span
+                              class="chanses-box-content chanses-box-no"
+                           ></span>
+                        </div>
+                     </div>
+                  </div>
+                  <span class="go-last__result">GO</span>
+                  <button class="go-last__button" type="button">GO LAST</button>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- <template id="card-hero-template">
          <li class="card-hero-item">
             <button type="button" class="card-hero-button">
                <div class="banned-overlay"></div>
                <div class="line"></div>
             </button>
+         </li>
+      </template> -->
+      <template id="card-portrait-template">
+         <li class="card-portrait-item">
+            <div class="card-portrait-image-box">
+               <img src="" alt="" class="card-portrait-image-content" />
+            </div>
+            <div class="card-portrait-video-box">
+               <video
+                  class="card-portrait-video-content"
+                  preload="auto"
+                  loop=""
+                  playsinline=""
+                  muted
+               ></video>
+               <span class="card-portrait-video-name"></span>
+               <div class="video-banned-overlay"></div>
+            </div>
+            <div class="overlay"></div>
+            <div class="banned-overlay"></div>
+            <div class="line"></div>
          </li>
       </template>
       <template id="last-heroes-template">

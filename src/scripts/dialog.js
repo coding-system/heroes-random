@@ -3,7 +3,7 @@
 ////////////////////////////////////
 import {
    heroesList,
-   cardHeroTemplate,
+   // cardHeroTemplate,
    // heroesListcloseButton,
    strengthList,
    agilityList,
@@ -45,8 +45,7 @@ function renderHeroes(heroes) {
       cardHeroButton.addEventListener("click", () => {
          hero.selected = !hero.selected;
          updateHeroDisplay(hero, cardBanned, cardLine);
-         console.log(hero.name);
-         console.log(hero.selected);
+         console.log(`${hero.name} => ${hero.selected}`);
       });
 
       switch (hero.attribute) {

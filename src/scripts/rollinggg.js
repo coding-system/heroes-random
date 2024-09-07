@@ -3,7 +3,7 @@
 
 
 
-import { updatedselectableHeroes, chosenIndex } from "./random.js";
+import { currentSelectableHeroes, chosenIndex } from "./random.js";
 import {
    windowList,
    windowHeroTemplate,
@@ -12,9 +12,9 @@ import {
 } from "../index.js";
 import { showHeroBox} from "../index.js";
 export function yo() {
-   console.log(typeof updatedselectableHeroes);
-   console.log(updatedselectableHeroes.length);
-   console.log(updatedselectableHeroes[chosenIndex]);
+   console.log(typeof currentSelectableHeroes);
+   console.log(currentSelectableHeroes.length);
+   console.log(currentSelectableHeroes[chosenIndex]);
 }
 
 const displayedHeroIndex = 15;
@@ -33,16 +33,16 @@ export function showHeroes() {
       // Если текущий индекс равен 15, присваиваем значение chosenIndex
       if (i === displayedHeroIndex) {
          displayedHeroes[displayedHeroIndex] =
-            updatedselectableHeroes[chosenIndex].image;
+            currentSelectableHeroes[chosenIndex].image;
       } else {
-         // Выбираем рандомный индекс из массива updatedselectableHeroes
+         // Выбираем рандомный индекс из массива currentSelectableHeroes
          const randomIndex = Math.floor(
-            Math.random() * updatedselectableHeroes.length
+            Math.random() * currentSelectableHeroes.length
          );
          //   console.log(displayedHeroes);
          // displayedHeroes[i] = i;
-         // Присваиваем значение изображения из updatedselectableHeroes[randomIndex]
-         displayedHeroes[i] = updatedselectableHeroes[randomIndex].image;
+         // Присваиваем значение изображения из currentSelectableHeroes[randomIndex]
+         displayedHeroes[i] = currentSelectableHeroes[randomIndex].image;
       }
    }
 
@@ -108,7 +108,7 @@ export function showHeroes() {
    console.log(
       `Выбранный герой в рулетке - ${displayedHeroes[displayedHeroIndex]}`
    );
-   console.log(`Длина начального массива ${updatedselectableHeroes.length}`);
+   console.log(`Длина начального массива ${currentSelectableHeroes.length}`);
    console.log(`Колво итемов - ${windowItemsLength}`)
    console.log(`Ширина итема - ${windowItemsWidth}`)
    console.log(`Ширина последнего - ${windowItemsLastWidth}`)

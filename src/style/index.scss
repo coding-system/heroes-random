@@ -13,9 +13,13 @@
 @import "logs.scss";
 @import "whatsnew.scss";
 @import "animations.scss";
+@import "portraitslist.scss";
+@import "golast.scss";
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Hanunoo&display=swap');
 
 body {
    // font-size: 10px;
@@ -46,7 +50,7 @@ body {
 }
 
 .header {
-   height: 50px;
+   min-height: 50px;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -211,14 +215,15 @@ body {
    color: $major-text;
    &__list {
       display: flex;
-      gap: 55px;
+      gap: 75px;
    }
    &__item {
+      font-weight: 400;
       font-family: "Roboto";
       letter-spacing: 0.03em;
       font-size: 18px;
       padding: 2px 8px;
-      border-radius: 8px;
+      border-radius: 0.4em;
       border: #2e2e2e 2px solid;
       transition: 0.2s ease;
       &:hover {
@@ -226,6 +231,21 @@ body {
          background-color: #fff;
          color: #2e2e2e;
          box-shadow: 0 0 5px #ffffff85;
+      }
+   }
+   .portraits-list-button {
+      padding: 2px 15px;
+      font-weight: 400;
+      scale: 1.1;
+      color: #353535;
+      background-color: #cecece;
+      border: #8f8f8f 2px solid;
+      &:hover {
+         cursor: pointer;
+         background-color: #ffffff;
+         color: #000000;
+         border: #4d4949 2px solid;
+         box-shadow: 0 0 10px #ffffff94;
       }
    }
 }
@@ -239,6 +259,7 @@ body {
 }
 
 .remove-heroes {
+   position: relative;
    color: $major-text;
    width: 100%;
    align-items: center;
@@ -247,6 +268,32 @@ body {
    gap: 20px;
 }
 
+.remove-heroes__info {
+   user-select: none;
+   // position: relative;
+   &:hover .remove-heroes__question {
+      opacity: 0;
+   }
+   &:hover .remove-heroes__answer {
+      opacity: 1;
+      color: #fff;
+   }
+}
+
+.remove-heroes__question {
+   transition: 0.5s ease;
+   opacity: 1;
+   transform: translateY(-50%);
+   
+}
+
+.remove-heroes__answer {
+   // text-decoration: underline;
+   // text-underline-offset: 5px;
+   transition: 0.5s ease;
+   opacity: 0;
+   transform: translateY(50%);
+}
 .help {
    transition: transform 0.5s ease-in-out;
    transform: translateY(66px);
@@ -357,14 +404,18 @@ body {
    user-select: none;
 }
 
-.song {position: absolute;
+.song {
+   position: absolute;
    bottom: 0;
    right: 0;
    width: 0;
    height: 0;
-   opacity: 0;
+   opacity: 1;
 }
 
+// .twist-dance {
+   
+// }
 // .overlay {
 //    transition: all 3s ease;
 //    width: 100%;

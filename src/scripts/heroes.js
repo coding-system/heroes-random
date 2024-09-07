@@ -535,7 +535,7 @@ export const initialHeroes = [
       name: "Phoenix",
       image: "phoenix.jpg",
       id: 77,
-      attribute: "strength",
+      attribute: "universal",
       selected: true,
    },
    {

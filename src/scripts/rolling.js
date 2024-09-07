@@ -1,14 +1,12 @@
-import { updatedselectableHeroes, chosenIndex } from "./random.js";
+import { currentSelectableHeroes, chosenIndex } from "./random.js";
 import {
    windowList,
    windowHeroTemplate,
    lastHeroesList,
    lastHeroTemplate,
-   startHeroes,
    helpBox
 } from "../index.js";
 import { showHeroBox } from "../index.js";
-import { initialHeroes } from "./heroes.js";
 import { openPopup } from "./modal.js";
 
 // export function defaultList() {
@@ -27,12 +25,12 @@ import { openPopup } from "./modal.js";
 // }
 
 // Функция регистрации информации для отладки
-export function yo(displayedHeroes, updatedselectableHeroes) {
-   console.log(updatedselectableHeroes.length);
-   console.log(updatedselectableHeroes[chosenIndex]);
+export function yo(displayedHeroes, currentSelectableHeroes) {
+   console.log(currentSelectableHeroes.length);
+   console.log(currentSelectableHeroes[chosenIndex]);
    console.log(displayedHeroes);
    console.log(`Выбранный герой в рулетке - ${displayedHeroes[15]}`);
-   console.log(`Длина начального массива - ${updatedselectableHeroes.length}`);
+   console.log(`Длина начального массива - ${currentSelectableHeroes.length}`);
 }
 
 // Функция для вычисления ширины последнего элемента
@@ -41,11 +39,11 @@ function calculateLastItemWidth() {
 }
 
 // Функция для генерации случайного изображения героя
-function getRandomHeroImage(updatedselectableHeroes) {
+function getRandomHeroImage(currentSelectableHeroes) {
    const randomIndex = Math.floor(
-      Math.random() * updatedselectableHeroes.length
+      Math.random() * currentSelectableHeroes.length
    );
-   return updatedselectableHeroes[randomIndex].image;
+   return currentSelectableHeroes[randomIndex].image;
 }
 
 // Функция для создания отображаемого массива героев
@@ -54,7 +52,7 @@ let savedDisplayedHeroes = [];
 function generateDisplayedHeroes(
    totalArrayNumber,
    displayedHeroIndex,
-   updatedselectableHeroes,
+   currentSelectableHeroes,
    chosenIndex
 ) {
    const displayedHeroes = new Array(totalArrayNumber);
@@ -63,9 +61,9 @@ function generateDisplayedHeroes(
    for (let i = 0; i < displayedHeroes.length; i++) {
       if (i === displayedHeroIndex) {
          displayedHeroes[displayedHeroIndex] =
-            updatedselectableHeroes[chosenIndex].image;
+            currentSelectableHeroes[chosenIndex].image;
       } else {
-         displayedHeroes[i] = getRandomHeroImage(updatedselectableHeroes);
+         displayedHeroes[i] = getRandomHeroImage(currentSelectableHeroes);
       }
    }
 
@@ -135,7 +133,7 @@ function renderLastHero(displayedHero) {
    const deletedLabel = document.createElement("div");
    deletedLabel.classList.add("deleted-label");
    deletedLabel.textContent = "DEL";
-   if (updatedselectableHeroes[chosenIndex].selected) return;
+   if (currentSelectableHeroes[chosenIndex].selected) return;
    else {
       lastHeroUl.appendChild(deletedLabel);
    }
@@ -194,7 +192,7 @@ export function showHeroes() {
    const displayedHeroes = generateDisplayedHeroes(
       totalArrayNumber,
       displayedHeroIndex,
-      updatedselectableHeroes,
+      currentSelectableHeroes,
       chosenIndex
    );
 
@@ -219,11 +217,12 @@ export function showHeroes() {
    itemWidth = windowItemsWidth;
 
    showHeroWindow();
-   yo(displayedHeroes, updatedselectableHeroes);
+   yo(displayedHeroes, currentSelectableHeroes);
 }
 
 function showHeroWindow() {
    setTimeout(() => openPopup(showHeroBox), 5750);
+   // setTimeout(() => openPopup(showHeroBox), 6500);
    // setTimeout(() => showHeroBox.classList.remove("popup_is-opened"), 15750);
 }
 

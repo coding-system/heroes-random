@@ -10,9 +10,10 @@ import {
 } from "../index.js";
 import { showHeroes } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
-import { renderHeroes } from "./dialog.js";
+// import { renderHeroes } from "./dialog.js";
+import { renderPortraits } from "./portraits.js";
 
-export let updatedselectableHeroes = []; // Глобальная переменная
+export let currentSelectableHeroes = []; // Глобальная переменная
 export let chosenIndex;
 
 function getRandomElement(heroesArray) {
@@ -50,23 +51,26 @@ function getRandomElement(heroesArray) {
       }
    }
 
-   updatedselectableHeroes = [...selectableHeroes];
-   // console.log("asdasdasd " + updatedselectableHeroes.length);
-   // console.log(updatedselectableHeroes[randomIndex].name);
-   // console.log(updatedselectableHeroes[randomIndex].selected);
+   currentSelectableHeroes = [...selectableHeroes];
+   // console.log("asdasdasd " + currentSelectableHeroes.length);
+   // console.log(currentSelectableHeroes[randomIndex].name);
+   // console.log(currentSelectableHeroes[randomIndex].selected);
 
    chosenIndex = randomIndex;
 
-   renderHeroes(heroesArray);
+   // renderHeroes(heroesArray);
+   setTimeout(() => renderPortraits(heroesArray), 7000);
+   // renderPortraits(heroesArray)
 
    showHeroes();
    addShowHeroData();
+   // setTimeout(() => playAudio(), 1);
    playAudio();
    
 }
 
 function playAudio() {
-   // const audio = document.querySelector(".song");
+   const audio = document.querySelector(".song");
    // Вкл/Выкл музыку при рулетке
    if (songChanger.checked) {
       console.log("Выключено");
@@ -91,7 +95,8 @@ function resetHeroes(heroesArray) {
    heroАlgorithmChanger.checked = false;
    windowList.innerHTML = "";
    lastHeroesList.innerHTML = "";
-   renderHeroes(heroesArray);
+   // renderHeroes(heroesArray);
+   renderPortraits(heroesArray)
    console.log(`———————————————————————————————————————`);
    console.log("Список героев сброшен");
 }
