@@ -1,0 +1,78 @@
+.last-box {
+   min-height: 51px;
+   max-width: 100%;
+   overflow: hidden;
+}
+
+.last-heroes {
+   // overflow: hidden;
+   // background-color: #5a1f1f;
+   display: flex;
+   align-items: center;
+   height: 100%;
+   width: fit-content;
+   &__list {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      // border: 2px solid #fff;
+      transition: transform 0.6s ease;
+      &-animated {
+         transition: transform 0.6s ease;
+         transform: translateX(90px);
+      }
+   }
+   &__item {
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      opacity: 1;
+      // transform: translateX(88px);
+      aspect-ratio: 1.77777;
+      width: 90px;
+      // height: 35px;
+      background-image: url("../assets/heroes/abyssal_underlord.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      object-position: center;
+      &:first-child {
+         border-top-left-radius: 16px;
+         border-bottom-left-radius: 16px;
+      }
+      &:last-child {
+         border-top-right-radius: 16px;
+         border-bottom-right-radius: 16px;
+      }
+      &:nth-child(16) {
+         border-top-right-radius: 16px;
+         border-bottom-right-radius: 16px;
+      }
+      &-animated {
+         opacity: 1;
+         transform: translateX(0);
+      }
+      &-move-right {
+         transform: translateX(88px);
+      }
+   }
+}
+
+.deleted-label {
+   padding: 2px 20px;
+   margin: auto;
+   color: rgb(255, 255, 255);
+   text-align: center;
+   text-transform: uppercase;
+   font-weight: 600;
+   font-size: 11px;
+   position: absolute;
+   top: 0;
+   right: 0;
+   width: fit-content;
+   height: fit-content;
+   background-color: #b32020;
+   transform: rotate(45deg) translateX(15px) translateY(-15px);
+}

@@ -1,0 +1,350 @@
+.portraits-list {
+   padding: 15px;
+   position: relative;
+   width: fit-content;
+   height: fit-content;
+   max-width: 90vw;
+   // max-height: 100vh;
+   border-radius: 16px;
+   // backdrop-filter: blur(5px);
+   flex-direction: column;
+   // padding-bottom: 50px;
+   // position: relative;
+   font-family: "Open Sans";
+   font-weight: 700;
+   box-shadow: inset 0 0 185px #ffffff52;
+   // border: 2px solid #fff;
+   background-color: rgba(94, 94, 94, 0.5);
+   &__main-title {
+      color: #fff;
+      font-family: "Open Sans";
+      font-size: 24px;
+   }
+
+   &__box {
+      padding-top: 10px;
+      height: 100%;
+      width: 100%;
+      display: grid;
+      grid-template-rows: repeat(2, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 40px;
+      column-gap: 35px;
+   }
+   &__attribute {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+   }
+   &__title {
+      // border-radius: 3px;
+      // padding: 4px;
+      // background-color: #0000007c;
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: rgb(255, 255, 255);
+      &__image {
+         user-select: none;
+         pointer-events: none;
+         max-width: 25px;
+      }
+   }
+   &__group {
+      // border-radius: 3px;
+      // padding: 4px;
+      // background-color: #0000007c;
+      // border-radius: 12px;
+      // padding: 6px;
+      height: fit-content;
+      width: fit-content;
+      align-items: center;
+      justify-content: center;
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(11, 1fr);
+      grid-template-rows: repeat(auto, 1fr);
+      // background-color: #464646;
+   }
+   .buttons-bar {
+      box-shadow: inset 0 0 8px #00000079;
+      border-radius: 16px;
+      padding: 10px;
+      background-color: #00000054;
+      width: 100%;
+      // margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      // gap: 30px;
+      &__group {
+         display: flex;
+         gap: 30px;
+      }
+
+      .button {
+         // transform: translateY(-2px);
+         color: #c5c5c5;
+         transition: all 0.1s;
+         font-family: "Open Sans";
+         font-weight: 500;
+         border-radius: 8px;
+         padding: 4px 8px;
+         box-shadow: 0 2px 3px #000000, inset 0 0 5px #000000a8;
+         cursor: pointer;
+         &:hover {
+            color: #ffffff;
+         }
+         &:active {
+            transform: translateY(2px);
+            box-shadow: 0 0px 0px #000000, inset 0 0 5px #000000a8;
+         }
+      }
+      .select-all {
+         background-color: #0084ff56;
+         font-family: "Open Sans";
+         font-weight: 500;
+         &:hover {
+            background-color: #0084ff9a;
+         }
+      }
+
+      .ban-all {
+         background-color: #ff000056;
+         font-family: "Open Sans";
+         font-weight: 500;
+         &:hover {
+            background-color: #ff00009a;
+         }
+      }
+      .save-bans {
+         background-color: #51ff0056;
+         font-family: "Open Sans";
+         font-weight: 500;
+         &:hover {
+            background-color: #51ff009a;
+         }
+      }
+      .load-bans {
+         background-color: #ff660056;
+         font-family: "Open Sans";
+         font-weight: 500;
+         &:hover {
+            background-color: #ff66009a;
+         }
+      }
+   }
+}
+
+.selected {
+   color: inherit;
+   // filter: grayscale(0.2);
+}
+
+.not-selected {
+   color: inherit;
+   border: 2px solid #ff0000;
+   // filter: grayscale(0.8);
+   // filter: contrast(0.7);
+}
+
+// #heroes-strength {
+//    background-color: #ff9393;
+//    border: 2px solid #fff;
+// }
+
+// #heroes-agility {
+//    background-color: #93ffae;
+//    border: 2px solid #fff;
+// }
+
+// #heroes-intelligence {
+//    background-color: #93acff;
+//    border: 2px solid #fff;
+// }
+
+// #heroes-universal {
+//    background-color: #f8ff93;
+//    border: 2px solid #fff;
+// }
+
+//// Template
+.card-portrait-item {
+   // background-color: #fff;
+   border-radius: 3px;
+   position: relative;
+   transform-origin: center;
+   // transition: all 0.01s;
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+   width: 60px;
+   aspect-ratio: 0.588;
+   &:hover .card-portrait-video-box {
+      transition: transform 0.1s ease, opacity 0.1s ease;
+      pointer-events: all;
+      z-index: 3;
+      opacity: 1;
+      transform: scale(1);
+   }
+
+   .overlay {
+      opacity: 0;
+      z-index: 4;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+   }
+   .banned-overlay {
+      opacity: 0;
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.3s ease;
+      // box-shadow: inset 0 0 15px #ff0000;
+      filter: contrast(0.9) grayscale(0.4);
+      // filter: saturate(0);
+   }
+
+   .video-banned-overlay {
+      opacity: 1;
+      z-index: 5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 0, 0, 0.3);
+      box-shadow: inset 0 0 25px #000;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.3s ease;
+      // box-shadow: inset 0 0 15px #ff0000;
+      filter: contrast(0.9) grayscale(0.4);
+      // filter: saturate(0);
+   }
+
+   .line {
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      position: absolute;
+      top: -12px;
+      right: 45%;
+      z-index: 2;
+      height: 120px;
+      background-image: url("../assets/images/redline.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      object-fit: cover;
+      object-position: center;
+      transform: rotate(32deg);
+      pointer-events: none;
+      filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
+   }
+}
+
+.card-portrait-video-box {
+   position: relative;
+   pointer-events: none;
+   transform: scale(0.8);
+   transform-origin: center;
+   transition: 0.2s ease;
+   z-index: 2;
+   opacity: 0;
+   border: 2px solid #000;
+   position: absolute;
+   top: -50%;
+   left: -73%;
+   width: 150px;
+   aspect-ratio: 0.75;
+   background-color: #fff;
+   overflow: hidden;
+}
+
+.card-portrait-video-content {
+   width: 100%;
+   height: 100%;
+   z-index: 0;
+   transform: scaleY(1.34) scaleX(1.02);
+   transition: 0s;
+   object-fit: contain;
+   object-position: center;
+}
+
+.card-portrait-video-name {
+   z-index: 1;
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   background-color: rgba(0, 0, 0, 0.8);
+   // min-height: 10.5px;
+   width: 100%;
+   // min-height: 25px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   letter-spacing: 0.08em;
+   padding: 2px;
+   font-size: 15px;
+   text-transform: uppercase;
+   font-family: "Fira Sans";
+   font-weight: 300;
+   text-align: center;
+}
+
+.card-portrait-image-box {
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   border-radius: inherit;
+}
+.card-portrait-image-content {
+   transform: scaleX(1.33);
+   width: 100%;
+   height: 100%;
+}
+
+.light-spark {
+   opacity: 0;
+   pointer-events: none;
+   display: none;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   // background-color: rgba(0, 255, 0, 0.2);
+   border-radius: inherit;
+   z-index: 3;
+}
+
+.green-light-spark {
+   display: block;
+   background-color: rgba(0, 255, 0, 0.4);
+   animation-name: light-spark;
+   animation-duration: 1s;
+   animation-iteration-count: 1;
+   animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+   animation-direction: normal;
+   transform-origin: center; /* Определяем точку трансформации */
+}
+
+.red-light-spark {
+   display: block;
+   background-color: rgba(255, 0, 0, 0.4);
+   animation-name: light-spark;
+   animation-duration: 1s;
+   animation-iteration-count: 1;
+   animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+   animation-direction: normal;
+   transform-origin: center; /* Определяем точку трансформации */
+}
