@@ -10,6 +10,15 @@ import {
    portraitsuniversalList,
 } from "../index.js";
 
+// document.addEventListener("DOMContentLoaded", function () {
+//    heroesListButton.addEventListener("click", function () {
+//       heroesList.classList.add("popup_is-opened");
+//    });
+
+//    heroesListcloseButton.addEventListener("click", function () {
+//       heroesList.classList.remove("popup_is-opened");
+//    });
+// });
 
 // Функция обновления отображения героя
 function updateHeroDisplay(hero, cardBanned, cardLine, videoBanned) {
