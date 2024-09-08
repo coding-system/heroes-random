@@ -94,9 +94,9 @@ function renderPortraits(heroes) {
 
       const heroName = hero.image.replace(".jpg", "");
 
-      const videoSrc = `./assets/heroes/portraits/npc_dota_hero_${heroName}.webm`;
+      const videoSrc = `../assets/heroes/portraits/npc_dota_hero_${heroName}.webm`;
 
-      cardPortraitImage.src = `./assets/heroes/pictures/npc_dota_hero_${heroName}.jpg`;
+      cardPortraitImage.src = `../assets/heroes/pictures/npc_dota_hero_${heroName}.jpg`;
       cardPortraitHoverVideo.src = videoSrc;
       cardPortraitHoverName.textContent = hero.name;
 
