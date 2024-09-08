@@ -884,16 +884,17 @@ ol {
   color: rgb(0, 0, 0);
 }
 .show-hero .buttons-bar .button-retry {
-  transition: 0.1s ease;
+  transition: 0.3s ease;
   width: 75%;
   border-radius: 16px;
-  border: 3px solid #ffffff;
+  border: 3px solid #000;
   background-color: transparent;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 .show-hero .buttons-bar .button-retry:hover {
-  border-color: #62df77;
-  color: rgba(94, 212, 183, 0.9058823529);
+  border-color: #fff;
+  color: #ffffff;
+  transform: scale(1.1);
   background-color: rgba(0, 0, 0, 0.3843137255);
 }
 
@@ -1334,6 +1335,7 @@ ol {
   background-color: rgba(255, 0, 0, 0.6039215686);
 }
 .portraits-list .buttons-bar .save-bans {
+  display: none;
   background-color: rgba(81, 255, 0, 0.337254902);
   font-family: "Open Sans";
   font-weight: 500;
@@ -1342,6 +1344,7 @@ ol {
   background-color: rgba(81, 255, 0, 0.6039215686);
 }
 .portraits-list .buttons-bar .load-bans {
+  display: none;
   background-color: rgba(255, 102, 0, 0.337254902);
   font-family: "Open Sans";
   font-weight: 500;

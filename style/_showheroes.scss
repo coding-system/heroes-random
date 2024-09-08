@@ -1,0 +1,174 @@
+.show-hero-box {
+   font-size: 10px;
+   background-image: linear-gradient(#34348f, #1c8f97);
+   padding: 1em;
+   width: fit-content;
+   height: fit-content;
+   max-width: 55em;
+   border-radius: 26px;
+   transition: all 0.2s ease;
+   // transform: perspective(50px) rotateX(40deg);
+}
+
+.show-hero {
+   padding: 10px;
+   position: relative;
+   width: 100%;
+   height: 100%;
+   font-family: "Open Sans";
+   height: fit-content;
+   width: fit-content;
+   border-radius: 16px;
+   // background-color: #47545a;
+   background-image: url("../assets/images/herobg.jpg");
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   object-fit: cover;
+   object-position: center;
+   box-shadow: inset 0 50px 150px #000;
+   // border: 12px #ffffff solid;
+   // max-width: 500px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   &__content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+   }
+   &__hello {
+      text-align: center;
+      width: 100%;
+      color: #ffffff;
+      // mix-blend-mode: difference;
+      user-select: none;
+      opacity: 1;
+      margin-top: 40px;
+      font-size: 26px;
+   }
+   &__title {
+      width: 100%;
+      position: absolute;
+      bottom: 60px;
+      mix-blend-mode: difference;
+      // mask-image: linear-gradient(to top, transparent 0%, black 90%);
+      user-select: none;
+      line-height: 1em;
+      text-align: center;
+      color: #ffffff;
+      text-shadow: 4px 2px 2px #bebebe;
+      // background-image: linear-gradient(to top, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+      // color: transparent;
+      // -webkit-background-clip: text;
+      // background-clip: text;
+      white-space: wrap;
+      font-size: 7.5em;
+   }
+   &__video {
+      position: relative;
+      margin-bottom: 130px;
+      height: 100%;
+      width: 100%;
+      // filter: drop-shadow(10px 10px 24px #ff0000);
+      margin-bottom: 1em;
+      user-select: none;
+      pointer-events: none;
+      mask-image: linear-gradient(to top, transparent 10%, black 30%);
+      max-width: 100%;
+      user-select: none;
+      pointer-events: none;
+      &::after {
+         content: "";
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         z-index: -1; /* Помещаем градиент позади текста */
+         background: linear-gradient(
+            45deg,
+            #000000,
+            #ffffff
+         ); /* Градиент от черного к белому */
+         filter: blur(15px); /* Размываем градиент для имитации тени */
+         transform: translate(
+            10px,
+            10px
+         ); /* Смещаем градиент для создания эффекта тени */
+      }
+   }
+
+   .buttons-bar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 0;
+
+      .button {
+         height: 40px;
+         font-size: 2em;
+         &-accept {
+            border-top-left-radius: 9px;
+            border-bottom-left-radius: 9px;
+            width: 50%;
+            border-top: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            border-right: 1px solid #fff;
+            border-left: 2px solid #fff;
+            background-color: #6e6e6e;
+            color: red;
+         }
+         &-retry {
+            border-top-right-radius: 9px;
+            border-bottom-right-radius: 9px;
+            width: 50%;
+            border-top: 2px solid #fff;
+            border-bottom: 2px solid #fff;
+            border-right: 2px solid #fff;
+            border-left: 1px solid #fff;
+            background-color: #3d3d3d;
+            color: red;
+         }
+      }
+   }
+
+   .close__button {
+      font-size: 2em;
+      width: fit-content;
+      position: absolute;
+      background-color: transparent;
+      top: 5px;
+      right: 10px;
+   }
+}
+
+.opening-animation {
+   animation-name: opening;
+   animation-duration: 1s;
+   animation-iteration-count: 1;
+   animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+   animation-direction: normal;
+   transform-origin: bottom; /* Определяем точку трансформации */
+}
+
+@keyframes opening {
+   0% {
+      transform: scale(0) rotate(180deg) translateY(600px) translateX(-600px); /* Начальное плоское положение, поворот на 180 градусов */
+      opacity: 0; /* Элемент полностью невидим */
+   }
+   50% {
+      transform: scale(1.2); /* Чуть больше масштаба и немного поворачиваем */
+      opacity: 1; /* Элемент почти видим */
+   }
+   100% {
+      transform: scale(1) rotate(0deg) translateY(0) translateX(0); /* Нормальный размер и положение */
+      opacity: 1; /* Полная видимость */
+   }
+}
