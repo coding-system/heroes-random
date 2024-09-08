@@ -2,7 +2,7 @@
    padding: 40px 15px;
    width: 450px;
    height: 300px;
-   background-color: #fff;
+   background-color: #ffffff;
    border-radius: 16px;
    &__form {
       width: 100%;
@@ -35,14 +35,14 @@
    &__result {
       overflow: hidden;
       display: flex;
-      // gap: 0;
+      gap: 3px;
       font-size: 80px;
       font-family: "Roboto";
       color: rgb(9, 255, 0);
       & span {
          display: inline-block;
          transition: transform 1s ease, opacity 1s ease;
-         opacity: 0;
+         // opacity: 0;
       }
    }
    &__button {

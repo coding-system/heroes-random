@@ -1309,6 +1309,7 @@ ol {
   grid-template-rows: repeat(auto, 1fr);
 }
 .portraits-list .buttons-bar {
+  font-size: 16px;
   box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4745098039);
   border-radius: 16px;
   padding: 10px;
@@ -1557,7 +1558,7 @@ ol {
   padding: 40px 15px;
   width: 450px;
   height: 300px;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 16px;
 }
 .go-last__form {
@@ -1591,6 +1592,7 @@ ol {
 .go-last__result {
   overflow: hidden;
   display: flex;
+  gap: 3px;
   font-size: 80px;
   font-family: "Roboto";
   color: rgb(9, 255, 0);
@@ -1598,7 +1600,6 @@ ol {
 .go-last__result span {
   display: inline-block;
   transition: transform 1s ease, opacity 1s ease;
-  opacity: 0;
 }
 .go-last__button {
   font-family: "Roboto";
@@ -1704,17 +1705,14 @@ ol {
   position: relative;
 }
 
-body {
+.body {
+  width: 100vw;
+  height: 100vh;
   height: 100vh;
   position: relative;
   background-image: linear-gradient(#2e2e2e, #111111);
   color: #fff;
   font-family: "Roboto";
-}
-
-.body {
-  width: 100vw;
-  height: 100vh;
 }
 
 .wrapper {
