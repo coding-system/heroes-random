@@ -127,7 +127,7 @@ function renderLastHero(displayedHero) {
    const lastHeroItem = lastHeroTemplate.cloneNode(true);
    const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
    lastHeroUl.style.backgroundImage = `url("./assets/heroes/${displayedHero}")`;
-   setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7000);
+   setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
    setTimeout(() => helpBox.style.transform = `translateY(0)`, 7000);
 
    const deletedLabel = document.createElement("div");

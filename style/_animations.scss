@@ -34,3 +34,26 @@
       opacity: 0;
    }
 }
+
+@keyframes pulsating {
+   0% {
+      scale: 1;
+      filter: blur(5px);
+      
+   }
+   100% {
+      scale: 1.05;
+      filter: blur(55px);
+   }
+}
+
+@keyframes scroll-up {
+   0% {
+       transform: translateY(100%);
+       opacity: 0;
+   }
+   100% {
+       transform: translateY(0);
+       opacity: 1;
+   }
+}

@@ -1224,6 +1224,26 @@ ol {
     opacity: 0;
   }
 }
+@keyframes pulsating {
+  0% {
+    scale: 1;
+    filter: blur(5px);
+  }
+  100% {
+    scale: 1.05;
+    filter: blur(55px);
+  }
+}
+@keyframes scroll-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .portraits-list {
   padding: 15px;
   position: relative;
@@ -1569,9 +1589,16 @@ ol {
   color: #000;
 }
 .go-last__result {
+  overflow: hidden;
+  display: flex;
   font-size: 80px;
   font-family: "Roboto";
   color: rgb(9, 255, 0);
+}
+.go-last__result span {
+  display: inline-block;
+  transition: transform 1s ease, opacity 1s ease;
+  opacity: 0;
 }
 .go-last__button {
   font-family: "Roboto";
@@ -1739,13 +1766,19 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   font-family: "Pacifico";
-  font-size: 214px;
+  font-size: 284px;
   white-space: nowrap;
   letter-spacing: -0.009em;
   word-spacing: 0.1em;
   text-align: center;
   filter: blur(5px);
   width: 100%;
+  animation-name: pulsating;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  transform-origin: center; /* Определяем точку трансформации */
 }
 
 .bg {

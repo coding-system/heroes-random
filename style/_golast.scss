@@ -33,9 +33,17 @@
       color: #000;
    }
    &__result {
+      overflow: hidden;
+      display: flex;
+      // gap: 0;
       font-size: 80px;
       font-family: "Roboto";
       color: rgb(9, 255, 0);
+      & span {
+         display: inline-block;
+         transition: transform 1s ease, opacity 1s ease;
+         opacity: 0;
+      }
    }
    &__button {
       font-family: "Roboto";
