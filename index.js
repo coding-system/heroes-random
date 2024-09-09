@@ -1,5 +1,5 @@
 import { getRandomElement, resetHeroes } from "./scripts/random.js";
-// import { initialHeroes } from "./scripts/heroes.js";
+import { initialHeroes } from "./scripts/heroes.js";
 // import { renderHeroes } from "./scripts/dialog.js";
 import { renderPortraits } from "./scripts/portraits.js";
 import { showHeroes, renderDefaultHeroesList } from "./scripts/rolling.js";
@@ -14,8 +14,7 @@ import {updateRange} from './scripts/golast.js'
 
 // Create a deep copy of initialHeroes to work with
 // const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
-export let initialHeroes = []; // Глобальная переменная
-export let startHeroes = []
+let startHeroes;
 
 // Help
 const helpBox = document.querySelector(".help");
@@ -136,7 +135,6 @@ resetCancel.addEventListener("click", () => {
 
 // Render the heroes using startHeroes
 // renderHeroes(startHeroes);
-renderPortraits(startHeroes);
 // Инициализация попапов
 initializePopups(closePopup);
 function preloadImages(imagesArray) {
@@ -173,24 +171,33 @@ function preloadPictures(imagesArray) {
 }
 
 // Запускаем предзагрузку видео при загрузке страницы
-window.onload = () => {
+// window.onload = () => {
+//    preloadAll()
+
+//    // setInterval(() => {
+//    //    preloadVideos(startHeroes);
+//    // }, 15000);
+//    // setInterval(() => {
+//    //    preloadImages(startHeroes);
+//    // }, 15000);
+// };
+
+function preloadAll() {
    preloadImages(startHeroes);
    preloadVideos(startHeroes);
    preloadPictures(startHeroes)
+}
 
-   // setInterval(() => {
-   //    preloadVideos(startHeroes);
-   // }, 15000);
-   // setInterval(() => {
-   //    preloadImages(startHeroes);
-   // }, 15000);
-};
+// preloadAll()
+// renderDefaultHeroesList(startHeroes);
+// renderPortraits(startHeroes);
+updateRange();
 
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Конфигурация для запроса на сервер
+// Конфигурация для запроса на сервер
 const config = {
    baseUrl: "https://api.jsonbin.io/v3/b/66d8d31eacd3cb34a87e901e",
    headers: {
@@ -200,6 +207,7 @@ const config = {
    },
 };
 
+// Функция для обработки ответа от сервера
 function getResponse(res) {
    if (res.ok) {
       return res.json();
@@ -207,6 +215,7 @@ function getResponse(res) {
    return Promise.reject(`Ошибка: ${res.status}`);
 }
 
+// Функция для получения массива defaultHeroes с сервера
 export function getInitialHeroes() {
    return fetch(config.baseUrl, {
       method: "GET",
@@ -214,50 +223,34 @@ export function getInitialHeroes() {
    })
       .then(getResponse)
       .then((data) => {
-         return data.record.initialHeroes;
+         startHeroes = data.record.defaultHeroes; // Извлекаем массив defaultHeroes
+         console.log('Массив defaultHeroes:', startHeroes); // Логируем массив
+         return startHeroes; // Возвращаем массив для дальнейшего использования
       })
       .catch((err) => {
          console.error('Ошибка при получении данных:', err);
       });
 }
 
-export async function deepCopyInitialHeroes() {
-   try {
-      const heroes = await getInitialHeroes(); // Ожидаем результат вызова getInitialHeroes
-      initialHeroes = JSON.parse(JSON.stringify(heroes)); // Глубокое копирование данных
-      console.log('startHeroes после получения и копирования данных с сервера:', startHeroes);
-   } catch (err) {
-      console.error('Ошибка при присвоении данных startHeroes:', err);
-   }
-}
-
 // Массив промисов
 const promises = [
-   getInitialHeroes(), // Промис для получения начальных героев
-   // Можно добавить другие промисы здесь
+   getInitialHeroes() // Промис для загрузки defaultHeroes
 ];
 
+// Используем Promise.all для выполнения действий после загрузки данных
 Promise.all(promises)
-   .then(([heroes]) => {
-      initialHeroes = JSON.parse(JSON.stringify(heroes)); // Глубокое копирование данных
-      console.log('initialHeroes после получения и копирования данных с сервера:', initialHeroes);
-      startHeroes = [...initialHeroes]
-      console.log('startHeroes после получения и копирования данных с сервера:', startHeroes);
-      
-      // Рендер карточек и портретов
-      renderDefaultHeroesList(startHeroes);
-      renderPortraits(startHeroes);
+   .then(([startHeroes]) => {
+      console.log('defaultHeroes из Promise.all:', startHeroes); // Логируем загруженный массив
+
+      // Здесь можно вызвать функции, которые должны выполниться после загрузки данных
+      preloadAll(); // Функция для предварительной загрузки, например
+      renderDefaultHeroesList(startHeroes); // Рендер списка героев
+      renderPortraits(startHeroes); // Рендер портретов героев
       console.log('Рендер героев завершен');
    })
    .catch((err) => {
-      console.error('Ошибка при инициализации:', err);
+      console.error('Ошибка при Promise.all:', err);
    });
-
-// deepCopyInitialHeroes()
-// getInitialHeroes()
-
-// renderDefaultHeroesList(startHeroes);
-updateRange()
 
 export {
    portraitsList,
@@ -287,6 +280,7 @@ export {
    lastHeroTemplate,
    showHeroBox,
    showHeroRertyButton,
+   startHeroes,
    helpBox,
    songChanger,
    rouletteSong,
