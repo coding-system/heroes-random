@@ -185,31 +185,8 @@ window.onload = () => {
 };
 
 
-renderDefaultHeroesList(initialHeroes);
-
-// const rangeInput = document.getElementById('rangeInput');
-
-// function updateRange() {
-//     const value = rangeInput.value;
-//     const percentage = (value - rangeInput.min) / (rangeInput.max - rangeInput.min) * 100;
-    
-//     // Обновляем градиент ползунка
-//     rangeInput.style.background = `linear-gradient(to right, green ${percentage}%, red ${percentage}%)`;
-    
-//     // Обновляем значение, выводимое на ползунке
-//     rangeInput.setAttribute('value', value);
-// }
-
-// rangeInput.addEventListener('input', updateRange);
-
-updateRange();
-
-fetch('https://api.jsonbin.io/v3/b/66d8d31eacd3cb34a87e901e', {
-   method: 'GET',
-   headers: {
-     'X-Master-Key': '$2a$10$ULERd0qF2V8y2h2DmhANEuCz2de4XeN9zc5Rex3EikRqpYQCeVsy6' // Замените на ваш ключ API, если требуется
-   }
- })
+renderDefaultHeroesList(startHeroes);
+updateRange()
 
 export {
    portraitsList,

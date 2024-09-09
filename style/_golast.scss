@@ -33,18 +33,23 @@
       color: #000;
    }
    &__result {
+      text-align: center;
+      transition: 0.1s ease;
       overflow: hidden;
       display: flex;
+      justify-content: center;
+      align-items: center;
       gap: 3px;
       font-size: 80px;
       font-family: "Roboto";
       color: rgb(9, 255, 0);
       & span {
          display: inline-block;
-         transition: transform 1s ease, opacity 1s ease;
+         transition: 1s ease;
          // opacity: 0;
       }
    }
+   
    &__button {
       font-family: "Roboto";
       font-size: 28px;

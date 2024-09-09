@@ -43,19 +43,9 @@ function getRandomElement(heroesArray) {
    currentSelectableHeroes = [...selectableHeroes];
    chosenIndex = randomIndex;
 
-   // Instead of re-rendering everything, just update the specific hero's display
-   const cardPortraitItem = document.querySelector(
-      `[data-hero-name="${randomHero.name}"]`
-   );
-
-   if (cardPortraitItem) {
-      const cardBanned = cardPortraitItem.querySelector(".banned-overlay");
-      const cardLine = cardPortraitItem.querySelector(".line");
-      const videoBanned = cardPortraitItem.querySelector(".video-banned-overlay");
-
-      updateHeroDisplay(randomHero, cardBanned, cardLine, videoBanned);
-   }
-
+   // renderHeroes(heroesArray);
+   setTimeout(() => renderPortraits(heroesArray), 8000);
+   // renderPortraits(heroesArray)
    showHeroes();
    addShowHeroData();
    playAudio();

@@ -1356,7 +1356,6 @@ ol {
   background-color: rgba(255, 0, 0, 0.6039215686);
 }
 .portraits-list .buttons-bar .save-bans {
-  display: none;
   background-color: rgba(81, 255, 0, 0.337254902);
   font-family: "Open Sans";
   font-weight: 500;
@@ -1365,7 +1364,6 @@ ol {
   background-color: rgba(81, 255, 0, 0.6039215686);
 }
 .portraits-list .buttons-bar .load-bans {
-  display: none;
   background-color: rgba(255, 102, 0, 0.337254902);
   font-family: "Open Sans";
   font-weight: 500;
@@ -1590,8 +1588,12 @@ ol {
   color: #000;
 }
 .go-last__result {
+  text-align: center;
+  transition: 0.1s ease;
   overflow: hidden;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 3px;
   font-size: 80px;
   font-family: "Roboto";
@@ -1599,7 +1601,7 @@ ol {
 }
 .go-last__result span {
   display: inline-block;
-  transition: transform 1s ease, opacity 1s ease;
+  transition: 1s ease;
 }
 .go-last__button {
   font-family: "Roboto";
