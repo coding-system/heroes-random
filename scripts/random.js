@@ -1,10 +1,12 @@
-import { initialHeroes } from "./heroes.js";
+// import { initialHeroes } from "./heroes.js";
 import {
    heroАlgorithmChanger,
    windowList,
    lastHeroesList,
    songChanger,
    rouletteSong,
+   startHeroes,
+   initialHeroes
 } from "../index.js";
 import { showHeroes } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
@@ -68,13 +70,15 @@ function stopAudio() {
 
 function resetHeroes(heroesArray) {
    stopAudio();
-   heroesArray.length = 0;
-   heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes)));
+   heroesArray.length = 0; // Очищаем текущий массив
+   heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes))); // Используем startHeroes
    heroАlgorithmChanger.checked = false;
    windowList.innerHTML = "";
    lastHeroesList.innerHTML = "";
    renderPortraits(heroesArray);
    console.log("Список героев сброшен");
+   console.log('heroesArray' + heroesArray);
+   console.log('initialHeroes' + initialHeroes);
 }
 
 export { getRandomElement, resetHeroes };
