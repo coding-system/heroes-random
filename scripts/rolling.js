@@ -4,7 +4,7 @@ import {
    windowHeroTemplate,
    lastHeroesList,
    lastHeroTemplate,
-   helpBox
+   helpBox,
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup } from "./modal.js";
@@ -107,16 +107,16 @@ export function renderHeroesList(displayedHeroes, windowItemsLastWidth) {
 }
 
 export function renderDefaultHeroesList(arr) {
-   const newArr = [...arr]
+   const newArr = [...arr];
    windowList.innerHTML = "";
    windowList.classList.remove("rolling-animation");
    newArr.forEach((hero, index) => {
       const windowHeroItem = windowHeroTemplate.cloneNode(true);
       const windowHeroUl = windowHeroItem.querySelector(".window__item");
-      const rand = Math.floor(Math.random() * newArr.length)
+      const rand = Math.floor(Math.random() * newArr.length);
       windowHeroUl.style.backgroundImage = `url("./assets/heroes/${newArr[rand].image}")`;
       windowList.appendChild(windowHeroItem);
-      windowList.classList.add('default-animation')
+      windowList.classList.add("default-animation");
       // windowList.style.transform = `translatex(-72000px)`
       // windowList.style.transition = `all 700s linear`
 
@@ -130,14 +130,19 @@ function renderLastHero(displayedHero) {
    const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
    lastHeroUl.style.backgroundImage = `url("./assets/heroes/${displayedHero}")`;
    setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
-   setTimeout(() => helpBox.style.transform = `translateY(0)`, 7000);
+   setTimeout(() => (helpBox.style.transform = `translateY(0)`), 7000);
 
    const deletedLabel = document.createElement("div");
+   // const undeletedOverlay = document.createElement("div");
+   // const deletedOverlay = document.createElement("div");
+
    deletedLabel.classList.add("deleted-label");
    deletedLabel.textContent = "DEL";
    if (currentSelectableHeroes[chosenIndex].selected) return;
    else {
       lastHeroUl.appendChild(deletedLabel);
+      // lastHeroUl.appendChild(deletedOverlay);
+      // deletedOverlay.classList.add('deleted-overlay')
    }
 }
 /////////////////////////////////////
@@ -169,7 +174,7 @@ function animateWindowList(
    currentWindowItemsLastWidth,
    previousWindowItemsLastWidth
 ) {
-   windowList.classList.remove('default-animation')
+   windowList.classList.remove("default-animation");
    const wer = 4 * itemWidth + 43 + previousWindowItemsLastWidth;
 
    // Log both values for debugging
@@ -256,4 +261,3 @@ function showHeroWindow() {
 //    // Запускаем новый таймер и сохраняем его идентификатор
 //    showHeroTimeoutId = setTimeout(() => openPopup(showHeroBox), 5750);
 // }
-

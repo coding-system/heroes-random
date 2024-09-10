@@ -1,5 +1,5 @@
 import { getRandomElement, resetHeroes } from "./scripts/random.js";
-import { initialHeroes } from "./scripts/heroes.js";
+// import { initialHeroes } from "./scripts/heroes.js";
 // import { renderHeroes } from "./scripts/dialog.js";
 import { renderPortraits } from "./scripts/portraits.js";
 import { showHeroes, renderDefaultHeroesList } from "./scripts/rolling.js";

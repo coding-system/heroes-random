@@ -1,4 +1,4 @@
-import { initialHeroes } from "./heroes.js";
+// import { initialHeroes } from "./heroes.js";
 import {
    heroАlgorithmChanger,
    windowList,
@@ -86,7 +86,7 @@ function resetHeroes(heroesArray) {
       
       // Рендерим портреты после обновления массива
       renderPortraits(heroesArray);
-      renderDefaultHeroesList(heroesArray)
+      renderDefaultHeroesList(serverHeroes)
       console.log("Список героев сброшен и обновлён данными с сервера");
    }).catch((err) => {
       console.error('Ошибка при сбросе героев:', err);
