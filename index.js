@@ -41,7 +41,8 @@ const windowHeroTemplate = document.querySelector(
    "#window-hero-template"
 ).content;
 const logsTemplate = document.querySelector("#logs-data");
-
+// Popup Loading
+const loadingPopup = document.querySelector('.popup__loading')
 // Heroes list Popup
 const heroesList = document.querySelector(".popup__heroes-list");
 const heroesListBox = document.querySelector(".heroes-list__box");
@@ -217,19 +218,31 @@ function getResponse(res) {
 
 // Функция для получения массива defaultHeroes с сервера
 export function getInitialHeroes() {
+   loadingPopup.classList.add('popup_is-opened');
    return fetch(config.baseUrl, {
       method: "GET",
       headers: config.headers,
    })
       .then(getResponse)
       .then((data) => {
-         startHeroes = data.record.defaultHeroes; // Извлекаем массив defaultHeroes
-         console.log('Массив defaultHeroes:', startHeroes); // Логируем массив
-         return startHeroes; // Возвращаем массив для дальнейшего использования
+         reloadStartHeroes(data.record.defaultHeroes); // Обновляем startHeroes
+         return data.record.defaultHeroes; // Возвращаем массив для дальнейшего использования
+      })
+      .finally(() => {
+         // Убрать лоадер после завершения запроса
+         // loadingPopup.classList.remove('popup_is-opened');
+         setTimeout(() => loadingPopup.classList.remove('popup_is-opened'), 200);
+      
       })
       .catch((err) => {
          console.error('Ошибка при получении данных:', err);
       });
+}
+
+// Функция для обновления массива startHeroes
+export function reloadStartHeroes(serverHeroes) {
+   startHeroes = [...serverHeroes]; // Обновляем startHeroes
+   console.log('startHeroes обновлен:', startHeroes); // Логируем результат
 }
 
 // Массив промисов
@@ -239,18 +252,18 @@ const promises = [
 
 // Используем Promise.all для выполнения действий после загрузки данных
 Promise.all(promises)
-   .then(([startHeroes]) => {
-      console.log('defaultHeroes из Promise.all:', startHeroes); // Логируем загруженный массив
+   .then(([serverHeroes]) => {
+      console.log('defaultHeroes из Promise.all:', serverHeroes); // Логируем загруженный массив
 
-      // Здесь можно вызвать функции, которые должны выполниться после загрузки данных
+      // Выполняем необходимые функции после загрузки данных
       preloadAll(); // Функция для предварительной загрузки, например
-      renderDefaultHeroesList(startHeroes); // Рендер списка героев
-      renderPortraits(startHeroes); // Рендер портретов героев
+      renderDefaultHeroesList(serverHeroes); // Рендер списка героев
+      renderPortraits(serverHeroes); // Рендер портретов героев
       console.log('Рендер героев завершен');
    })
    .catch((err) => {
       console.error('Ошибка при Promise.all:', err);
-   });
+   })
 
 export {
    portraitsList,

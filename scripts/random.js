@@ -5,8 +5,11 @@ import {
    lastHeroesList,
    songChanger,
    rouletteSong,
+   startHeroes,
+   getInitialHeroes,
+   reloadStartHeroes
 } from "../index.js";
-import { showHeroes } from "./rolling.js";
+import { renderHeroesList, showHeroes, renderDefaultHeroesList } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
 import { renderPortraits, updateHeroDisplay } from "./portraits.js"; // Import updateHeroDisplay
 
@@ -49,6 +52,7 @@ function getRandomElement(heroesArray) {
    showHeroes();
    addShowHeroData();
    playAudio();
+   console.log(startHeroes)
 }
 
 function playAudio() {
@@ -68,13 +72,25 @@ function stopAudio() {
 
 function resetHeroes(heroesArray) {
    stopAudio();
-   heroesArray.length = 0;
-   heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes)));
-   heroАlgorithmChanger.checked = false;
-   windowList.innerHTML = "";
-   lastHeroesList.innerHTML = "";
-   renderPortraits(heroesArray);
-   console.log("Список героев сброшен");
+   heroesArray.length = 0; // Очищаем массив
+   
+   // Загружаем данные с сервера и обновляем heroesArray
+   getInitialHeroes().then((serverHeroes) => {
+      heroesArray.push(...serverHeroes); // Добавляем героев из сервера
+      reloadStartHeroes(serverHeroes); // Обновляем startHeroes через отдельную функцию
+      console.log('heroesArray после загрузки с сервера:', heroesArray);
+      
+      heroАlgorithmChanger.checked = false;
+      windowList.innerHTML = "";
+      lastHeroesList.innerHTML = "";
+      
+      // Рендерим портреты после обновления массива
+      renderPortraits(heroesArray);
+      renderDefaultHeroesList(heroesArray)
+      console.log("Список героев сброшен и обновлён данными с сервера");
+   }).catch((err) => {
+      console.error('Ошибка при сбросе героев:', err);
+   });
 }
 
 export { getRandomElement, resetHeroes };

@@ -24,6 +24,8 @@ import { openPopup } from "./modal.js";
 
 // }
 
+export let lastHeroesArray = Array(16).fill({ link: "" }); // Инициализация массива с 16 пустыми объектами
+
 // Функция регистрации информации для отладки
 export function yo(displayedHeroes, currentSelectableHeroes) {
    console.log(currentSelectableHeroes.length);
@@ -85,7 +87,7 @@ function generateDisplayedHeroes(
 }
 
 // Функция для отображения героев в списке окон
-function renderHeroesList(displayedHeroes, windowItemsLastWidth) {
+export function renderHeroesList(displayedHeroes, windowItemsLastWidth) {
    windowList.innerHTML = "";
    // windowList.classList.remove("window__list-animated");
    windowList.classList.remove("rolling-animation");
@@ -138,6 +140,25 @@ function renderLastHero(displayedHero) {
       lastHeroUl.appendChild(deletedLabel);
    }
 }
+/////////////////////////////////////
+///Старая версия без массива, работает
+////////////////////////////////////////
+// Функция для отображения последнего героя в списке lastHeroesList
+// function renderLastHero(displayedHero) {
+//    const lastHeroItem = lastHeroTemplate.cloneNode(true);
+//    const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
+//    lastHeroUl.style.backgroundImage = `url("./assets/heroes/${displayedHero}")`;
+//    setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
+//    setTimeout(() => helpBox.style.transform = `translateY(0)`, 7000);
+
+//    const deletedLabel = document.createElement("div");
+//    deletedLabel.classList.add("deleted-label");
+//    deletedLabel.textContent = "DEL";
+//    if (currentSelectableHeroes[chosenIndex].selected) return;
+//    else {
+//       lastHeroUl.appendChild(deletedLabel);
+//    }
+// }
 
 let previousWindowItemsLastWidth = 0; // Initialize with a default value
 let currentWindowItemsLastWidth = previousWindowItemsLastWidth; // Keep track of the current width during animation
