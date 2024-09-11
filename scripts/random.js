@@ -6,6 +6,7 @@ import {
    songChanger,
    rouletteSong,
    startHeroes,
+   saveChosenIndexToLocalStorage
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -31,6 +32,8 @@ function getRandomElement(heroesArray) {
 
    console.log(`Номер героя — ${randomIndex}`);
    console.log(`Имя героя — ${randomHero.name}`);
+
+   saveChosenIndexToLocalStorage(randomHero.name);
 
    // If heroАlgorithmChanger is checked, set the selected property of the chosen hero to false
    if (heroАlgorithmChanger.checked) {

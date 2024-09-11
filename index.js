@@ -282,6 +282,25 @@ const promises = [
      console.error('Ошибка во время выполнения промисов:', error);
    });
 
+
+// Функция для сохранения выбранного индекса в localStorage
+function saveChosenIndexToLocalStorage(heroName) {
+   localStorage.setItem('chosenHeroName', heroName);
+}
+
+// Функция для загрузки выбранного индекса из localStorage
+function loadChosenIndexFromLocalStorage() {
+   const savedHeroName = localStorage.getItem('chosenHeroName');
+   if (savedHeroName !== null) {
+      console.log(`Последний выбранный герой — ${savedHeroName}`);
+   } else {
+      console.log("Нет сохраненного имени героя.");
+   }
+}
+
+// При загрузке страницы выводим сохраненный индекс героя
+loadChosenIndexFromLocalStorage();
+
 export {
    portraitsList,
    portraitsListBox,
@@ -316,5 +335,6 @@ export {
    rouletteSong,
    roulette,
    box,
-   loadingPopup
+   loadingPopup,
+   saveChosenIndexToLocalStorage
 };
