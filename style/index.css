@@ -966,13 +966,16 @@ ol {
 }
 
 .deleted-label {
-  padding: 2px 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  padding: 0px 20px;
   margin: auto;
   color: rgb(255, 255, 255);
   text-align: center;
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12px;
   position: absolute;
   top: 0;
   right: 0;
@@ -980,8 +983,8 @@ ol {
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: #b32020;
-  transform: rotate(45deg) translateX(15px) translateY(-15px);
+  background-image: linear-gradient(to left, #ff0000, #000000);
+  transform: rotate(45deg) translateX(1.4em) translateY(-1em);
 }
 
 .deleted-overlay {

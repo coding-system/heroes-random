@@ -1,5 +1,5 @@
 import { getRandomElement, resetHeroes } from "./scripts/random.js";
-// import { initialHeroes } from "./scripts/heroes.js";
+import { initialHeroes } from "./scripts/heroes.js";
 // import { renderHeroes } from "./scripts/dialog.js";
 import { renderPortraits } from "./scripts/portraits.js";
 import { showHeroes, renderDefaultHeroesList } from "./scripts/rolling.js";
@@ -13,8 +13,8 @@ import {
 import {updateRange} from './scripts/golast.js'
 
 // Create a deep copy of initialHeroes to work with
-// const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
-let startHeroes;
+const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
+// let startHeroes;
 
 // Help
 const helpBox = document.querySelector(".help");
@@ -189,9 +189,9 @@ function preloadAll() {
    preloadPictures(startHeroes)
 }
 
-// preloadAll()
-// renderDefaultHeroesList(startHeroes);
-// renderPortraits(startHeroes);
+preloadAll()
+renderDefaultHeroesList(startHeroes);
+renderPortraits(startHeroes);
 updateRange();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,71 +199,71 @@ updateRange();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Конфигурация для запроса на сервер
 // Конфигурация для запроса на сервер
-const config = {
-   baseUrl: "https://api.jsonbin.io/v3/b/66d8d31eacd3cb34a87e901e",
-   headers: {
-      "X-Master-Key":
-         "$2a$10$ULERd0qF2V8y2h2DmhANEuCz2de4XeN9zc5Rex3EikRqpYQCeVsy6",
-      "Content-Type": "application/json",
-   },
-};
+// const config = {
+//    baseUrl: "https://api.jsonbin.io/v3/b/66d8d31eacd3cb34a87e901e",
+//    headers: {
+//       "X-Master-Key":
+//          "$2a$10$ULERd0qF2V8y2h2DmhANEuCz2de4XeN9zc5Rex3EikRqpYQCeVsy6",
+//       "Content-Type": "application/json",
+//    },
+// };
 
-// Функция для обработки ответа от сервера
-function getResponse(res) {
-   if (res.ok) {
-      return res.json();
-   }
-   return Promise.reject(`Ошибка: ${res.status}`);
-}
+// // Функция для обработки ответа от сервера
+// function getResponse(res) {
+//    if (res.ok) {
+//       return res.json();
+//    }
+//    return Promise.reject(`Ошибка: ${res.status}`);
+// }
 
-// Функция для получения массива defaultHeroes с сервера
-export function getInitialHeroes() {
-   loadingPopup.classList.add('popup_is-opened');
-   return fetch(config.baseUrl, {
-      method: "GET",
-      headers: config.headers,
-   })
-      .then(getResponse)
-      .then((data) => {
-         reloadStartHeroes(data.record.defaultHeroes); // Обновляем startHeroes
-         return data.record.defaultHeroes; // Возвращаем массив для дальнейшего использования
-      })
-      .finally(() => {
-         // Убрать лоадер после завершения запроса
-         // loadingPopup.classList.remove('popup_is-opened');
-         setTimeout(() => loadingPopup.classList.remove('popup_is-opened'), 200);
+// // Функция для получения массива defaultHeroes с сервера
+// export function getInitialHeroes() {
+//    loadingPopup.classList.add('popup_is-opened');
+//    return fetch(config.baseUrl, {
+//       method: "GET",
+//       headers: config.headers,
+//    })
+//       .then(getResponse)
+//       .then((data) => {
+//          reloadStartHeroes(data.record.defaultHeroes); // Обновляем startHeroes
+//          return data.record.defaultHeroes; // Возвращаем массив для дальнейшего использования
+//       })
+//       .finally(() => {
+//          // Убрать лоадер после завершения запроса
+//          // loadingPopup.classList.remove('popup_is-opened');
+//          setTimeout(() => loadingPopup.classList.remove('popup_is-opened'), 200);
       
-      })
-      .catch((err) => {
-         console.error('Ошибка при получении данных:', err);
-      });
-}
+//       })
+//       .catch((err) => {
+//          console.error('Ошибка при получении данных:', err);
+//       });
+// }
 
-// Функция для обновления массива startHeroes
-export function reloadStartHeroes(serverHeroes) {
-   startHeroes = [...serverHeroes]; // Обновляем startHeroes
-   console.log('startHeroes обновлен:', startHeroes); // Логируем результат
-}
+// // Функция для обновления массива startHeroes
+// export function reloadStartHeroes(serverHeroes) {
+//    startHeroes = [...serverHeroes]; // Обновляем startHeroes
+//    console.log('startHeroes обновлен:', startHeroes); // Логируем результат
+// }
 
-// Массив промисов
-const promises = [
-   getInitialHeroes() // Промис для загрузки defaultHeroes
-];
+// // Массив промисов
+// const promises = [
+//    getInitialHeroes() // Промис для загрузки defaultHeroes
+// ];
 
-// Используем Promise.all для выполнения действий после загрузки данных
-Promise.all(promises)
-   .then(([serverHeroes]) => {
-      console.log('defaultHeroes из Promise.all:', serverHeroes); // Логируем загруженный массив
+// // Используем Promise.all для выполнения действий после загрузки данных
+// Promise.all(promises)
+//    .then(([serverHeroes]) => {
+//       console.log('defaultHeroes из Promise.all:', serverHeroes); // Логируем загруженный массив
 
-      // Выполняем необходимые функции после загрузки данных
-      preloadAll(); // Функция для предварительной загрузки, например
-      renderDefaultHeroesList(serverHeroes); // Рендер списка героев
-      renderPortraits(serverHeroes); // Рендер портретов героев
-      console.log('Рендер героев завершен');
-   })
-   .catch((err) => {
-      console.error('Ошибка при Promise.all:', err);
-   })
+//       // Выполняем необходимые функции после загрузки данных
+//       preloadAll(); // Функция для предварительной загрузки, например
+//       renderDefaultHeroesList(serverHeroes); // Рендер списка героев
+//       renderPortraits(serverHeroes); // Рендер портретов героев
+//       console.log('Рендер героев завершен');
+//    })
+//    .catch((err) => {
+//       console.error('Ошибка при Promise.all:', err);
+//    })
 
 export {
    portraitsList,

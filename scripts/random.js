@@ -1,4 +1,4 @@
-// import { initialHeroes } from "./heroes.js";
+import { initialHeroes } from "./heroes.js";
 import {
    heroАlgorithmChanger,
    windowList,
@@ -6,12 +6,12 @@ import {
    songChanger,
    rouletteSong,
    startHeroes,
-   getInitialHeroes,
-   reloadStartHeroes
+   // getInitialHeroes,
+   // reloadStartHeroes
 } from "../index.js";
-import { renderHeroesList, showHeroes, renderDefaultHeroesList } from "./rolling.js";
+import { showHeroes, renderDefaultHeroesList } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
-import { renderPortraits, updateHeroDisplay } from "./portraits.js"; // Import updateHeroDisplay
+import { renderPortraits } from "./portraits.js"; // Import updateHeroDisplay
 
 export let currentSelectableHeroes = []; // Глобальная переменная
 export let chosenIndex;
@@ -71,26 +71,18 @@ function stopAudio() {
 }
 
 function resetHeroes(heroesArray) {
-   stopAudio();
-   heroesArray.length = 0; // Очищаем массив
-   
-   // Загружаем данные с сервера и обновляем heroesArray
-   getInitialHeroes().then((serverHeroes) => {
-      heroesArray.push(...serverHeroes); // Добавляем героев из сервера
-      reloadStartHeroes(serverHeroes); // Обновляем startHeroes через отдельную функцию
-      console.log('heroesArray после загрузки с сервера:', heroesArray);
-      
-      heroАlgorithmChanger.checked = false;
-      windowList.innerHTML = "";
-      lastHeroesList.innerHTML = "";
-      
-      // Рендерим портреты после обновления массива
-      renderPortraits(heroesArray);
-      renderDefaultHeroesList(serverHeroes)
-      console.log("Список героев сброшен и обновлён данными с сервера");
-   }).catch((err) => {
-      console.error('Ошибка при сбросе героев:', err);
-   });
+   stopAudio()
+   // Сбрасываем массив startHeroes, копируя заново массив initialHeroes
+   heroesArray.length = 0; // Очищаем массив startHeroes
+   heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes))); // Заполняем его копией initialHeroes
+   heroАlgorithmChanger.checked = false;
+   windowList.innerHTML = "";
+   lastHeroesList.innerHTML = "";
+   // renderHeroes(heroesArray);
+   renderDefaultHeroesList(heroesArray)
+   renderPortraits(heroesArray)
+   console.log(`———————————————————————————————————————`);
+   console.log("Список героев сброшен");
 }
 
 export { getRandomElement, resetHeroes };
