@@ -189,9 +189,9 @@ function preloadAll() {
    preloadPictures(startHeroes)
 }
 
-preloadAll()
-renderDefaultHeroesList(startHeroes);
-renderPortraits(startHeroes);
+// preloadAll()
+// renderDefaultHeroesList(startHeroes);
+// renderPortraits(startHeroes);
 updateRange();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -265,6 +265,23 @@ updateRange();
 //       console.error('Ошибка при Promise.all:', err);
 //    })
 
+const promises = [
+   preloadAll(), // Асинхронная функция загрузки
+   renderDefaultHeroesList(startHeroes), // Рендер списка героев
+   renderPortraits(startHeroes) // Рендер портретов героев
+ ];
+ 
+ Promise.all(promises)
+   .then(() => {
+     // Когда все промисы выполнены, убираем стиль загрузки
+     setTimeout(() => {
+       loadingPopup.classList.remove('popup_is-opened');
+     }, 300);
+   })
+   .catch((error) => {
+     console.error('Ошибка во время выполнения промисов:', error);
+   });
+
 export {
    portraitsList,
    portraitsListBox,
@@ -299,4 +316,5 @@ export {
    rouletteSong,
    roulette,
    box,
+   loadingPopup
 };
