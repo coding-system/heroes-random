@@ -1144,7 +1144,6 @@ ol {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
   max-height: 80vh;
   height: -moz-fit-content;
   height: fit-content;
@@ -1167,10 +1166,11 @@ ol {
   border-radius: 20px; /* закругления плашки */
 }
 .whats-new__main-title {
+  padding: 15px 0;
   font-family: "Pacifico";
   font-weight: 700;
   text-align: center;
-  font-size: 38px;
+  font-size: 48px;
   color: rebeccapurple;
 }
 .whats-new__content {
@@ -1187,17 +1187,17 @@ ol {
   flex-direction: column;
 }
 .whats-new__item:nth-child(even) {
-  background-color: #916c6c;
+  background-color: #1b1b1b;
 }
 .whats-new__item:nth-child(odd) {
-  background-color: #615a79;
+  background-color: #242424;
 }
 .whats-new__title {
-  font-size: 18px;
+  font-size: 26px;
   font-weight: 600;
 }
 .whats-new__text {
-  color: #b8b8b8;
+  color: #d4d4d4;
   padding: 0 20px;
   line-height: 28px;
   font-size: 15px;
