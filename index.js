@@ -285,6 +285,30 @@ function renderLastHeroesFromLocalStorage() {
    });
 }
 
+////////////////////////////////////////////////////////////////////////
+/////////////////Показ ЧТО НОВОГО новому пользователю///////////////////
+////////////////////////////////////////////////////////////////////////
+// Функция для проверки, видел ли пользователь попап
+function hasSeenPopup() {
+   return localStorage.getItem('popupSeen') === 'true';
+}
+
+// Функция для установки флага, что пользователь видел попап
+function markPopupAsSeen() {
+   localStorage.setItem('popupSeen', 'true');
+}
+
+// Функция для открытия попапа и проверки, нужно ли его показывать
+function showPopupIfNeeded() {
+   if (!hasSeenPopup()) {
+       openPopup(whatsNewPopup);
+       markPopupAsSeen();
+   }
+}
+
+// Вызов функции при загрузке страницы
+showPopupIfNeeded();
+
 
 // При загрузке страницы выводим сохраненный индекс героя
 loadChosenIndexFromLocalStorage();
