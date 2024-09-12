@@ -15,6 +15,7 @@ import { lastHeroes } from "./scripts/lastheroes.js";
 
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
+const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
 // let startHeroes;
 
 // Help
@@ -225,12 +226,13 @@ function loadChosenIndexFromLocalStorage() {
 }
 
 function saveLastHeroesToLocalStorage() {
-   // Преобразуем массив lastHeroes в строку
-   const lastHeroesString = JSON.stringify(lastHeroes);
+   // Преобразуем массив currentLastHeroes в строку
+   const currentLastHeroesString = JSON.stringify(currentLastHeroes);
    
    // Сохраняем строку в localStorage
-   localStorage.setItem('lastHeroes', lastHeroesString);
+   localStorage.setItem('lastHeroes', currentLastHeroesString);
 }
+
 
 function loadLastHeroesFromLocalStorage() {
    // Получаем строку из localStorage
@@ -241,17 +243,19 @@ function loadLastHeroesFromLocalStorage() {
       // Преобразуем строку обратно в массив
       const loadedHeroes = JSON.parse(lastHeroesString);
       
-      // Очищаем массив и добавляем элементы из загруженного массива
-      lastHeroes.length = 0; // Очищаем массив
-      lastHeroes.push(...loadedHeroes); // Добавляем новые данные
+      // Очищаем массив currentLastHeroes и добавляем элементы из загруженного массива
+      currentLastHeroes.length = 0;
+      currentLastHeroes.push(...loadedHeroes);
       
       // Выводим загруженный массив в консоль
-      console.log("Сохраненные последние герои", lastHeroes);
+      console.log("Сохраненные последние герои", currentLastHeroes);
    } else {
       // Если данных нет, выводим сообщение в консоль
       console.log("Нет сохраненных последних героев");
    }
 }
+
+
 
 
 // При загрузке страницы выводим сохраненный индекс героя
@@ -294,5 +298,6 @@ export {
    box,
    loadingPopup,
    saveChosenIndexToLocalStorage,
-   saveLastHeroesToLocalStorage
+   saveLastHeroesToLocalStorage,
+   currentLastHeroes
 };

@@ -7,7 +7,8 @@ import {
    rouletteSong,
    startHeroes,
    saveChosenIndexToLocalStorage,
-   saveLastHeroesToLocalStorage
+   saveLastHeroesToLocalStorage,
+   currentLastHeroes,
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -57,9 +58,9 @@ function getRandomElement(heroesArray) {
    showHeroes();
    addShowHeroData();
    playAudio();
-   console.log(startHeroes)
-   console.log(lastHeroes)
-   saveLastHeroesToLocalStorage()
+   console.log(startHeroes);
+   console.log(currentLastHeroes);
+   saveLastHeroesToLocalStorage();
 }
 
 function playAudio() {
@@ -81,32 +82,15 @@ function resetHeroes(heroesArray) {
    stopAudio();
 
    // Сбрасываем массив startHeroes, копируя заново массив initialHeroes
-   heroesArray.length = 0; // Очищаем массив startHeroes
-   heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes))); // Заполняем его копией initialHeroes
+   heroesArray.length = 0;
+   heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes)));
 
-   // Сбрасываем массив lastHeroes к начальному состоянию
-   lastHeroes.length = 0; // Очищаем массив lastHeroes
+   // Сбрасываем массив currentLastHeroes к начальному состоянию
+   currentLastHeroes.length = 0;
+   currentLastHeroes.push(...JSON.parse(JSON.stringify(lastHeroes))); // Глубокая копия lastHeroes
 
-   // Заполняем массив lastHeroes начальными пустыми значениями
-   lastHeroes.push(...[
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false },
-      { image: "", deleted: false }
-   ]);
-   saveLastHeroesToLocalStorage()
+   // Сохраняем текущие lastHeroes
+   saveLastHeroesToLocalStorage();
 
    // Сброс интерфейса
    heroАlgorithmChanger.checked = false;

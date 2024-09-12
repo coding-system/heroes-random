@@ -5,6 +5,7 @@ import {
    lastHeroesList,
    lastHeroTemplate,
    helpBox,
+   currentLastHeroes
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup } from "./modal.js";
@@ -134,15 +135,15 @@ function renderLastHero(displayedHero) {
    // Проверяем, был ли герой выбран
    const isDeleted = !currentSelectableHeroes[chosenIndex].selected;
 
-   // Добавляем нового героя в начало массива с параметром deleted
-   lastHeroes.unshift({
+   // Добавляем нового героя в начало массива currentLastHeroes с параметром deleted
+   currentLastHeroes.unshift({
       image: displayedHero,
       deleted: isDeleted
    });
 
    // Если длина массива больше 16, удаляем последнего героя
-   if (lastHeroes.length > 16) {
-      lastHeroes.pop();
+   if (currentLastHeroes.length > 16) {
+      currentLastHeroes.pop();
    }
 
    // Добавляем на страницу нового героя с задержкой
