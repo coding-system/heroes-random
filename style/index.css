@@ -1166,12 +1166,16 @@ ol {
   border-radius: 20px; /* закругления плашки */
 }
 .whats-new__main-title {
-  padding: 15px 0;
+  padding: 10px 0;
   font-family: "Pacifico";
   font-weight: 700;
   text-align: center;
-  font-size: 48px;
+  font-size: 88px;
   color: rebeccapurple;
+  background-image: linear-gradient(#1182df 0%, #000 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 .whats-new__content {
   font-weight: 300;
@@ -1182,9 +1186,10 @@ ol {
   justify-content: start;
 }
 .whats-new__item {
-  padding: 1em;
+  padding: 1.4em;
   display: flex;
   flex-direction: column;
+  gap: 15px;
 }
 .whats-new__item:nth-child(even) {
   background-color: #1b1b1b;
@@ -1193,6 +1198,7 @@ ol {
   background-color: #242424;
 }
 .whats-new__title {
+  color: #fff;
   font-size: 26px;
   font-weight: 600;
 }
