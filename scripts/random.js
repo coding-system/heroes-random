@@ -6,13 +6,15 @@ import {
    songChanger,
    rouletteSong,
    startHeroes,
-   saveChosenIndexToLocalStorage
+   saveChosenIndexToLocalStorage,
+   saveLastHeroesToLocalStorage
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
 import { showHeroes, renderDefaultHeroesList } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
 import { renderPortraits } from "./portraits.js"; // Import updateHeroDisplay
+import { lastHeroes } from "./lastheroes.js";
 
 export let currentSelectableHeroes = []; // Глобальная переменная
 export let chosenIndex;
@@ -56,6 +58,8 @@ function getRandomElement(heroesArray) {
    addShowHeroData();
    playAudio();
    console.log(startHeroes)
+   console.log(lastHeroes)
+   saveLastHeroesToLocalStorage()
 }
 
 function playAudio() {
@@ -74,16 +78,45 @@ function stopAudio() {
 }
 
 function resetHeroes(heroesArray) {
-   stopAudio()
+   stopAudio();
+
    // Сбрасываем массив startHeroes, копируя заново массив initialHeroes
    heroesArray.length = 0; // Очищаем массив startHeroes
    heroesArray.push(...JSON.parse(JSON.stringify(initialHeroes))); // Заполняем его копией initialHeroes
+
+   // Сбрасываем массив lastHeroes к начальному состоянию
+   lastHeroes.length = 0; // Очищаем массив lastHeroes
+
+   // Заполняем массив lastHeroes начальными пустыми значениями
+   lastHeroes.push(...[
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false },
+      { image: "", deleted: false }
+   ]);
+   saveLastHeroesToLocalStorage()
+
+   // Сброс интерфейса
    heroАlgorithmChanger.checked = false;
    windowList.innerHTML = "";
    lastHeroesList.innerHTML = "";
-   // renderHeroes(heroesArray);
-   renderDefaultHeroesList(heroesArray)
-   renderPortraits(heroesArray)
+
+   // Перерендерим героев
+   renderDefaultHeroesList(heroesArray);
+   renderPortraits(heroesArray);
+
    console.log(`———————————————————————————————————————`);
    console.log("Список героев сброшен");
 }

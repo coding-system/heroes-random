@@ -32,21 +32,19 @@ export function getGolastResult() {
    goLastResult.style.color = 'black';
     const yesValue = rangeInput.getAttribute('yesValue');
     const randIndex = Math.floor(Math.random() * rangeInput.max);
-    console.log(`Generated random index: ${randIndex}`); // Для отладки
     showGoLastResult(randIndex, yesValue);
 }
 
 export function showGoLastResult(randIndex, yesValue) {
     // Преобразуем randIndex в строку с тремя символами
     const randIndexStr = randIndex.toString().padStart(3, '0');
-    console.log(`randIndexStr: ${randIndexStr}`); // Лог для отладки
 
     // Функция для анимации цифр, которая будет показывать случайные числа и останавливаться на целевом числе
     function animateDigit(resultElement, targetDigit, delay) {
         let lastDigit = -1; // Переменная для хранения последней цифры
         let currentDigit = 0; // Начальная цифра
         resultElement.textContent = currentDigit; // Устанавливаем стартовую цифру
-        console.log(`Start animating ${resultElement.className} to ${targetDigit}`); // Лог для отладки
+   
 
         const interval = setInterval(() => {
             // Генерируем случайную цифру от 0 до 9, проверяя, что она не совпадает с последней
@@ -62,7 +60,6 @@ export function showGoLastResult(randIndex, yesValue) {
         setTimeout(() => {
             clearInterval(interval); // Останавливаем прокрутку случайных цифр
             resultElement.textContent = targetDigit; // Устанавливаем финальное значение
-            console.log(`Stopped animating ${resultElement.className}, final digit: ${targetDigit}`); // Лог для отладки
         }, delay);
     }
 

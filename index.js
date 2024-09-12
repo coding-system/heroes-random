@@ -11,6 +11,7 @@ import {
 } from "./scripts/modal.js";
 
 import {updateRange} from './scripts/golast.js'
+import { lastHeroes } from "./scripts/lastheroes.js";
 
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
@@ -171,17 +172,6 @@ function preloadPictures(imagesArray) {
    console.timeEnd('preloadImages'); // Конец отсчета времени выполнения и вывод результата в консоль
 }
 
-// Запускаем предзагрузку видео при загрузке страницы
-// window.onload = () => {
-//    preloadAll()
-
-//    // setInterval(() => {
-//    //    preloadVideos(startHeroes);
-//    // }, 15000);
-//    // setInterval(() => {
-//    //    preloadImages(startHeroes);
-//    // }, 15000);
-// };
 
 function preloadAll() {
    preloadImages(startHeroes);
@@ -197,73 +187,6 @@ updateRange();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Конфигурация для запроса на сервер
-// Конфигурация для запроса на сервер
-// const config = {
-//    baseUrl: "https://api.jsonbin.io/v3/b/66d8d31eacd3cb34a87e901e",
-//    headers: {
-//       "X-Master-Key":
-//          "$2a$10$ULERd0qF2V8y2h2DmhANEuCz2de4XeN9zc5Rex3EikRqpYQCeVsy6",
-//       "Content-Type": "application/json",
-//    },
-// };
-
-// // Функция для обработки ответа от сервера
-// function getResponse(res) {
-//    if (res.ok) {
-//       return res.json();
-//    }
-//    return Promise.reject(`Ошибка: ${res.status}`);
-// }
-
-// // Функция для получения массива defaultHeroes с сервера
-// export function getInitialHeroes() {
-//    loadingPopup.classList.add('popup_is-opened');
-//    return fetch(config.baseUrl, {
-//       method: "GET",
-//       headers: config.headers,
-//    })
-//       .then(getResponse)
-//       .then((data) => {
-//          reloadStartHeroes(data.record.defaultHeroes); // Обновляем startHeroes
-//          return data.record.defaultHeroes; // Возвращаем массив для дальнейшего использования
-//       })
-//       .finally(() => {
-//          // Убрать лоадер после завершения запроса
-//          // loadingPopup.classList.remove('popup_is-opened');
-//          setTimeout(() => loadingPopup.classList.remove('popup_is-opened'), 200);
-      
-//       })
-//       .catch((err) => {
-//          console.error('Ошибка при получении данных:', err);
-//       });
-// }
-
-// // Функция для обновления массива startHeroes
-// export function reloadStartHeroes(serverHeroes) {
-//    startHeroes = [...serverHeroes]; // Обновляем startHeroes
-//    console.log('startHeroes обновлен:', startHeroes); // Логируем результат
-// }
-
-// // Массив промисов
-// const promises = [
-//    getInitialHeroes() // Промис для загрузки defaultHeroes
-// ];
-
-// // Используем Promise.all для выполнения действий после загрузки данных
-// Promise.all(promises)
-//    .then(([serverHeroes]) => {
-//       console.log('defaultHeroes из Promise.all:', serverHeroes); // Логируем загруженный массив
-
-//       // Выполняем необходимые функции после загрузки данных
-//       preloadAll(); // Функция для предварительной загрузки, например
-//       renderDefaultHeroesList(serverHeroes); // Рендер списка героев
-//       renderPortraits(serverHeroes); // Рендер портретов героев
-//       console.log('Рендер героев завершен');
-//    })
-//    .catch((err) => {
-//       console.error('Ошибка при Promise.all:', err);
-//    })
 
 const promises = [
    preloadAll(), // Асинхронная функция загрузки
@@ -283,6 +206,9 @@ const promises = [
    });
 
 
+/////////////////////////////////////////////////////////////
+////////////////////  LOCAL STOREGE  ////////////////////////
+/////////////////////////////////////////////////////////////
 // Функция для сохранения выбранного индекса в localStorage
 function saveChosenIndexToLocalStorage(heroName) {
    localStorage.setItem('chosenHeroName', heroName);
@@ -298,8 +224,39 @@ function loadChosenIndexFromLocalStorage() {
    }
 }
 
+function saveLastHeroesToLocalStorage() {
+   // Преобразуем массив lastHeroes в строку
+   const lastHeroesString = JSON.stringify(lastHeroes);
+   
+   // Сохраняем строку в localStorage
+   localStorage.setItem('lastHeroes', lastHeroesString);
+}
+
+function loadLastHeroesFromLocalStorage() {
+   // Получаем строку из localStorage
+   const lastHeroesString = localStorage.getItem('lastHeroes');
+   
+   // Проверяем, есть ли данные в localStorage
+   if (lastHeroesString) {
+      // Преобразуем строку обратно в массив
+      const loadedHeroes = JSON.parse(lastHeroesString);
+      
+      // Очищаем массив и добавляем элементы из загруженного массива
+      lastHeroes.length = 0; // Очищаем массив
+      lastHeroes.push(...loadedHeroes); // Добавляем новые данные
+      
+      // Выводим загруженный массив в консоль
+      console.log("Сохраненные последние герои", lastHeroes);
+   } else {
+      // Если данных нет, выводим сообщение в консоль
+      console.log("Нет сохраненных последних героев");
+   }
+}
+
+
 // При загрузке страницы выводим сохраненный индекс героя
 loadChosenIndexFromLocalStorage();
+loadLastHeroesFromLocalStorage()
 
 export {
    portraitsList,
@@ -336,5 +293,6 @@ export {
    roulette,
    box,
    loadingPopup,
-   saveChosenIndexToLocalStorage
+   saveChosenIndexToLocalStorage,
+   saveLastHeroesToLocalStorage
 };

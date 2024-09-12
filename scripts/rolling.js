@@ -8,6 +8,7 @@ import {
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup } from "./modal.js";
+import { lastHeroes } from "./lastheroes.js";
 
 // export function defaultList() {
 //       const totalArrayNumber = 31;
@@ -129,20 +130,31 @@ function renderLastHero(displayedHero) {
    const lastHeroItem = lastHeroTemplate.cloneNode(true);
    const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
    lastHeroUl.style.backgroundImage = `url("./assets/heroes/${displayedHero}")`;
+
+   // Проверяем, был ли герой выбран
+   const isDeleted = !currentSelectableHeroes[chosenIndex].selected;
+
+   // Добавляем нового героя в начало массива с параметром deleted
+   lastHeroes.unshift({
+      image: displayedHero,
+      deleted: isDeleted
+   });
+
+   // Если длина массива больше 16, удаляем последнего героя
+   if (lastHeroes.length > 16) {
+      lastHeroes.pop();
+   }
+
+   // Добавляем на страницу нового героя с задержкой
    setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
    setTimeout(() => (helpBox.style.transform = `translateY(0)`), 7000);
 
-   const deletedLabel = document.createElement("div");
-   // const undeletedOverlay = document.createElement("div");
-   // const deletedOverlay = document.createElement("div");
-
-   deletedLabel.classList.add("deleted-label");
-   deletedLabel.textContent = "DEL";
-   if (currentSelectableHeroes[chosenIndex].selected) return;
-   else {
+   // Если герой удален (не выбран), добавляем метку "DEL"
+   if (isDeleted) {
+      const deletedLabel = document.createElement("div");
+      deletedLabel.classList.add("deleted-label");
+      deletedLabel.textContent = "DEL";
       lastHeroUl.appendChild(deletedLabel);
-      // lastHeroUl.appendChild(deletedOverlay);
-      // deletedOverlay.classList.add('deleted-overlay')
    }
 }
 /////////////////////////////////////
