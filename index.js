@@ -248,6 +248,7 @@ function loadLastHeroesFromLocalStorage() {
       currentLastHeroes.push(...loadedHeroes);
       
       // Выводим загруженный массив в консоль
+      console.log("Это currentLastHeroes");
       console.log("Сохраненные последние герои", currentLastHeroes);
    } else {
       // Если данных нет, выводим сообщение в консоль
@@ -255,12 +256,40 @@ function loadLastHeroesFromLocalStorage() {
    }
 }
 
+function renderLastHeroesFromLocalStorage() {
+   // Загружаем данные из localStorage
+   loadLastHeroesFromLocalStorage();
 
+   // Очищаем список перед отображением
+   lastHeroesList.innerHTML = "";
+
+   // Перебираем каждый элемент массива currentLastHeroes
+   currentLastHeroes.forEach((hero) => {
+      // Клонируем шаблон
+      const lastHeroItem = lastHeroTemplate.cloneNode(true);
+      const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
+
+      // Устанавливаем изображение для героя
+      lastHeroUl.style.backgroundImage = `url("./assets/heroes/${hero.image}")`;
+
+      // Если герой удален (deleted: true), добавляем метку "DEL"
+      if (hero.deleted) {
+         const deletedLabel = document.createElement("div");
+         deletedLabel.classList.add("deleted-label");
+         deletedLabel.textContent = "DEL";
+         lastHeroUl.appendChild(deletedLabel);
+      }
+
+      // Вставляем героя в список lastHeroesList
+      lastHeroesList.appendChild(lastHeroItem);
+   });
+}
 
 
 // При загрузке страницы выводим сохраненный индекс героя
 loadChosenIndexFromLocalStorage();
-loadLastHeroesFromLocalStorage()
+loadLastHeroesFromLocalStorage();
+renderLastHeroesFromLocalStorage()
 
 export {
    portraitsList,

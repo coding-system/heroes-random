@@ -1,6 +1,6 @@
 .whats-new {
    position: relative;
-   padding: 1rem;
+   // padding: 1rem;
    display: flex;
    flex-direction: column;
    gap: 20px;
@@ -39,12 +39,17 @@
       flex-direction: column;
       align-items: start;
       justify-content: start;
-      gap: 30px;
    }
    &__item {
+      padding: 1em;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      &:nth-child(even) {
+         background-color: #916c6c;
+      }
+      &:nth-child(odd) {
+         background-color: #615a79;
+      }
    }
    &__title {
       font-size: 18px;
@@ -52,9 +57,10 @@
    }
    &__text {
       color: #b8b8b8;
-      padding-left: 20px;
+      padding: 0 20px;
       line-height: 28px;
       font-size: 15px;
+      
       &-heroes {
          font-family: "Roboto";
          letter-spacing: 0.03em;

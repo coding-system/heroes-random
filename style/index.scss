@@ -76,7 +76,8 @@
    align-items: center;
    width: 100%;
    position: fixed;
-   top: 0;
+   top: -3%;
+   // top: 0;
    left: 0;
    &__content {
       // text-shadow: red 0 0 15px;
@@ -93,7 +94,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       font-family: "Pacifico";
-      font-size: 284px;
+      font-size: 264px;
       white-space: nowrap;
       letter-spacing: -0.009em;
       word-spacing: 0.1em;
@@ -303,8 +304,8 @@
    transform: translateY(50%);
 }
 .help {
-   transition: transform 0.5s ease-in-out;
-   transform: translateY(66px);
+   // transition: transform 0.5s ease-in-out;
+   // transform: translateY(66px);
    box-shadow: 0 0 20px #000000, inset 0 0 20px #ffffff17;
    // border: 2px solid #2f2f2f;
    padding: 10px;

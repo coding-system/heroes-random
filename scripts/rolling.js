@@ -11,21 +11,6 @@ import { showHeroBox } from "../index.js";
 import { openPopup } from "./modal.js";
 import { lastHeroes } from "./lastheroes.js";
 
-// export function defaultList() {
-//       const totalArrayNumber = 31;
-
-//       const displayedHeroes = new Array(totalArrayNumber);
-//       for (let i = 0; i < displayedHeroes.length; i++) {
-//          const randomIndex = Math.floor(
-//             Math.random() * showHeroes.length
-//          );
-//             displayedHeroes[i] = startHeroes[randomIndex].image;
-//       }
-//       console.log(displayedHeroes)
-//       return displayedHeroes;
-
-// }
-
 export let lastHeroesArray = Array(16).fill({ link: "" }); // Инициализация массива с 16 пустыми объектами
 
 // Функция регистрации информации для отладки
@@ -136,10 +121,16 @@ function renderLastHero(displayedHero) {
    const isDeleted = !currentSelectableHeroes[chosenIndex].selected;
 
    // Добавляем нового героя в начало массива currentLastHeroes с параметром deleted
-   currentLastHeroes.unshift({
-      image: displayedHero,
-      deleted: isDeleted
-   });
+   // currentLastHeroes.unshift({
+   //    image: displayedHero,
+   //    deleted: isDeleted
+   // });
+   setTimeout(() => {
+      currentLastHeroes.unshift({
+         image: displayedHero,
+         deleted: isDeleted
+      });
+   }, 6000); // 6000 миллисекунд = 6 секунд
 
    // Если длина массива больше 16, удаляем последнего героя
    if (currentLastHeroes.length > 16) {
@@ -148,7 +139,6 @@ function renderLastHero(displayedHero) {
 
    // Добавляем на страницу нового героя с задержкой
    setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
-   setTimeout(() => (helpBox.style.transform = `translateY(0)`), 7000);
 
    // Если герой удален (не выбран), добавляем метку "DEL"
    if (isDeleted) {

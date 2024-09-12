@@ -14,7 +14,7 @@ import {
 } from "../index.js";
 import { showHeroes, renderDefaultHeroesList } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
-import { renderPortraits } from "./portraits.js"; // Import updateHeroDisplay
+import { renderPortraits } from "./portraits.js";
 import { lastHeroes } from "./lastheroes.js";
 
 export let currentSelectableHeroes = []; // Глобальная переменная
@@ -60,7 +60,8 @@ function getRandomElement(heroesArray) {
    playAudio();
    console.log(startHeroes);
    console.log(currentLastHeroes);
-   saveLastHeroesToLocalStorage();
+   // saveLastHeroesToLocalStorage();
+   setTimeout(() => saveLastHeroesToLocalStorage(), 7500);
 }
 
 function playAudio() {
