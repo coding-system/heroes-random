@@ -53,12 +53,12 @@
 }
 
 .header {
-   min-height: 50px;
+   max-height: 5vh;
    display: flex;
    justify-content: center;
    align-items: center;
    background-color: $header-bg;
-   padding: 0 25px;
+   padding: 2.5vh;
 }
 
 .main-logo {

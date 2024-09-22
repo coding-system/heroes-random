@@ -8,6 +8,7 @@ import {
    startHeroes,
    saveChosenIndexToLocalStorage,
    saveLastHeroesToLocalStorage,
+   saveStartHeroesToLocalStorage,
    currentLastHeroes,
    // getInitialHeroes,
    // reloadStartHeroes
@@ -62,6 +63,7 @@ function getRandomElement(heroesArray) {
    console.log(currentLastHeroes);
    // saveLastHeroesToLocalStorage();
    setTimeout(() => saveLastHeroesToLocalStorage(), 7500);
+   setTimeout(() => saveStartHeroesToLocalStorage(), 7500);
 }
 
 function playAudio() {
@@ -92,6 +94,7 @@ function resetHeroes(heroesArray) {
 
    // Сохраняем текущие lastHeroes
    saveLastHeroesToLocalStorage();
+   saveStartHeroesToLocalStorage();
 
    // Сброс интерфейса
    heroАlgorithmChanger.checked = false;

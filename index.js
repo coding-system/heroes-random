@@ -10,9 +10,9 @@ import {
    handleEscKey,
 } from "./scripts/modal.js";
 
-import {updateRange} from './scripts/golast.js'
+import { updateRange } from "./scripts/golast.js";
 import { lastHeroes } from "./scripts/lastheroes.js";
-
+huy()
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
@@ -35,7 +35,9 @@ const lastHeroesList = document.querySelector(".last-heroes__list");
 
 // Templstes
 // const cardHeroTemplate = document.querySelector("#card-hero-template").content;
-const cardPortraitTemplate = document.querySelector("#card-portrait-template").content;
+const cardPortraitTemplate = document.querySelector(
+   "#card-portrait-template"
+).content;
 const lastHeroTemplate = document.querySelector(
    "#last-heroes-template"
 ).content;
@@ -44,7 +46,7 @@ const windowHeroTemplate = document.querySelector(
 ).content;
 const logsTemplate = document.querySelector("#logs-data");
 // Popup Loading
-const loadingPopup = document.querySelector('.popup__loading')
+const loadingPopup = document.querySelector(".popup__loading");
 // Heroes list Popup
 const heroesList = document.querySelector(".popup__heroes-list");
 const heroesListBox = document.querySelector(".heroes-list__box");
@@ -74,9 +76,8 @@ const resetAccept = resetConfirm.querySelector(".confirm__accept");
 const resetCancel = resetConfirm.querySelector(".confirm__cancel");
 
 // Go last Popup
-const goLastPopup = document.querySelector('.popup__go-last')
-const goLastButton = document.querySelector('.go-last-button')
-
+const goLastPopup = document.querySelector(".popup__go-last");
+const goLastButton = document.querySelector(".go-last-button");
 
 // Группы атрибутов
 const strengthList = document.querySelector("#heroes-strength");
@@ -86,7 +87,9 @@ const universalList = document.querySelector("#heroes-universal");
 //
 const portraitsstrengthList = document.querySelector("#portraits-strength");
 const portraitsagilityList = document.querySelector("#portraits-agility");
-const portraitsintelligenceList = document.querySelector("#portraits-intelligence");
+const portraitsintelligenceList = document.querySelector(
+   "#portraits-intelligence"
+);
 const portraitsuniversalList = document.querySelector("#portraits-universal");
 
 // Кнопки
@@ -112,19 +115,19 @@ showHeroRertyButton.addEventListener("click", function () {
 //    openPopup(heroesList);
 // });
 
-portraitsListButton.addEventListener('click', () => {
-   openPopup(portraitsList)
-})
+portraitsListButton.addEventListener("click", () => {
+   openPopup(portraitsList);
+});
 showHeroButton.addEventListener("click", () => {
    openPopup(showHeroBox);
 });
 
-whatsNewButton.addEventListener('click', () => {
-   openPopup(whatsNewPopup)
-})
-goLastButton.addEventListener('click', () => {
-   openPopup(goLastPopup)
-})
+whatsNewButton.addEventListener("click", () => {
+   openPopup(whatsNewPopup);
+});
+goLastButton.addEventListener("click", () => {
+   openPopup(goLastPopup);
+});
 resetButton.addEventListener("click", () => {
    openPopup(resetConfirm);
 });
@@ -141,43 +144,42 @@ resetCancel.addEventListener("click", () => {
 // Инициализация попапов
 initializePopups(closePopup);
 function preloadImages(imagesArray) {
-   console.time('preloadImages'); // Начало отсчета времени выполнения
+   console.time("preloadImages"); // Начало отсчета времени выполнения
    imagesArray.forEach((imageObj) => {
       const img = new Image();
       img.src = `./assets/heroes/${imageObj.image}`;
    });
-   console.log('Картинки героев загружены');
-   console.timeEnd('preloadImages'); // Конец отсчета времени выполнения и вывод результата в консоль
+   console.log("Картинки героев загружены");
+   console.timeEnd("preloadImages"); // Конец отсчета времени выполнения и вывод результата в консоль
 }
 
 function preloadVideos(heroesArray) {
-   console.time('preloadVideos'); // Начало отсчета времени выполнения
+   console.time("preloadVideos"); // Начало отсчета времени выполнения
 
    heroesArray.forEach((heroObj) => {
-      const videoSrc = heroObj.image.replace('.jpg', '.webm');
-      const video = document.createElement('video');
+      const videoSrc = heroObj.image.replace(".jpg", ".webm");
+      const video = document.createElement("video");
       video.src = `./assets/heroes/portraits/npc_dota_hero_${videoSrc}`;
    });
-   console.log('Портреты героев загружены');
-   console.timeEnd('preloadVideos'); // Конец отсчета времени выполнения и вывод результата в консоль
+   console.log("Портреты героев загружены");
+   console.timeEnd("preloadVideos"); // Конец отсчета времени выполнения и вывод результата в консоль
 }
 
 function preloadPictures(imagesArray) {
-   console.time('preloadPictures'); // Начало отсчета времени выполнения
+   console.time("preloadPictures"); // Начало отсчета времени выполнения
    imagesArray.forEach((imageObj) => {
-      const imageSrc = imageObj.image.replace('.jpg', '');
+      const imageSrc = imageObj.image.replace(".jpg", "");
       const img = new Image();
       img.src = `./assets/heroes/pictures/npc_dota_hero_${imageSrc}.jpg`;
    });
-   console.log('Картинки героев загружены');
-   console.timeEnd('preloadImages'); // Конец отсчета времени выполнения и вывод результата в консоль
+   console.log("Картинки героев загружены");
+   console.timeEnd("preloadImages"); // Конец отсчета времени выполнения и вывод результата в консоль
 }
-
 
 function preloadAll() {
    preloadImages(startHeroes);
    preloadVideos(startHeroes);
-   preloadPictures(startHeroes)
+   preloadPictures(startHeroes);
 }
 
 // preloadAll()
@@ -192,32 +194,35 @@ updateRange();
 const promises = [
    preloadAll(), // Асинхронная функция загрузки
    renderDefaultHeroesList(startHeroes), // Рендер списка героев
-   renderPortraits(startHeroes) // Рендер портретов героев
- ];
- 
- Promise.all(promises)
+   loadChosenIndexFromLocalStorage(),
+   loadStartHeroesFromLocalStorage(),
+   loadLastHeroesFromLocalStorage(),
+   renderLastHeroesFromLocalStorage(),
+   renderPortraits(startHeroes),
+];
+
+Promise.all(promises)
    .then(() => {
-     // Когда все промисы выполнены, убираем стиль загрузки
-     setTimeout(() => {
-       loadingPopup.classList.remove('popup_is-opened');
-     }, 300);
+      // Когда все промисы выполнены, убираем стиль загрузки
+      setTimeout(() => {
+         loadingPopup.classList.remove("popup_is-opened");
+      }, 300);
    })
    .catch((error) => {
-     console.error('Ошибка во время выполнения промисов:', error);
+      console.error("Ошибка во время выполнения промисов:", error);
    });
-
 
 /////////////////////////////////////////////////////////////
 ////////////////////  LOCAL STOREGE  ////////////////////////
 /////////////////////////////////////////////////////////////
 // Функция для сохранения выбранного индекса в localStorage
 function saveChosenIndexToLocalStorage(heroName) {
-   localStorage.setItem('chosenHeroName', heroName);
+   localStorage.setItem("chosenHeroName", heroName);
 }
 
 // Функция для загрузки выбранного индекса из localStorage
 function loadChosenIndexFromLocalStorage() {
-   const savedHeroName = localStorage.getItem('chosenHeroName');
+   const savedHeroName = localStorage.getItem("chosenHeroName");
    if (savedHeroName !== null) {
       console.log(`Последний выбранный герой — ${savedHeroName}`);
    } else {
@@ -228,25 +233,24 @@ function loadChosenIndexFromLocalStorage() {
 function saveLastHeroesToLocalStorage() {
    // Преобразуем массив currentLastHeroes в строку
    const currentLastHeroesString = JSON.stringify(currentLastHeroes);
-   
-   // Сохраняем строку в localStorage
-   localStorage.setItem('lastHeroes', currentLastHeroesString);
-}
 
+   // Сохраняем строку в localStorage
+   localStorage.setItem("lastHeroes", currentLastHeroesString);
+}
 
 function loadLastHeroesFromLocalStorage() {
    // Получаем строку из localStorage
-   const lastHeroesString = localStorage.getItem('lastHeroes');
-   
+   const lastHeroesString = localStorage.getItem("lastHeroes");
+
    // Проверяем, есть ли данные в localStorage
    if (lastHeroesString) {
       // Преобразуем строку обратно в массив
       const loadedHeroes = JSON.parse(lastHeroesString);
-      
+
       // Очищаем массив currentLastHeroes и добавляем элементы из загруженного массива
       currentLastHeroes.length = 0;
       currentLastHeroes.push(...loadedHeroes);
-      
+
       // Выводим загруженный массив в консоль
       console.log("Это currentLastHeroes");
       console.log("Сохраненные последние герои", currentLastHeroes);
@@ -285,35 +289,79 @@ function renderLastHeroesFromLocalStorage() {
    });
 }
 
+function saveStartHeroesToLocalStorage() {
+   const startHeroesString = JSON.stringify(startHeroes);
+   localStorage.setItem("startHeroes", startHeroesString);
+   console.log("Массив startHeroes сохранен в localStorage.");
+}
+
+function loadStartHeroesFromLocalStorage() {
+   // Получаем строку из localStorage
+   const startHeroesString = localStorage.getItem("startHeroes");
+
+   // Проверяем, есть ли данные в localStorage
+   if (startHeroesString) {
+      // Преобразуем строку обратно в массив
+      const loadedStartHeroes = JSON.parse(startHeroesString);
+
+      // Очищаем массив startHeroes и добавляем элементы из загруженного массива
+      startHeroes.length = 0;
+      startHeroes.push(...loadedStartHeroes);
+
+      // Выводим загруженный массив в консоль для проверки
+      console.log("Массив startHeroes загружен из localStorage.");
+      console.log(startHeroes);
+   } else {
+      // Если данных нет, выводим сообщение в консоль
+      console.log("Нет сохраненных данных для startHeroes в localStorage.");
+   }
+}
 ////////////////////////////////////////////////////////////////////////
 /////////////////Показ ЧТО НОВОГО новому пользователю///////////////////
 ////////////////////////////////////////////////////////////////////////
 // Функция для проверки, видел ли пользователь попап
 function hasSeenPopup() {
-   return localStorage.getItem('popupSeen') === 'true';
+   return localStorage.getItem("popupSeen") === "true";
 }
 
 // Функция для установки флага, что пользователь видел попап
 function markPopupAsSeen() {
-   localStorage.setItem('popupSeen', 'true');
+   localStorage.setItem("popupSeen", "true");
 }
 
 // Функция для открытия попапа и проверки, нужно ли его показывать
 function showPopupIfNeeded() {
    if (!hasSeenPopup()) {
-       openPopup(whatsNewPopup);
-       markPopupAsSeen();
+      openPopup(whatsNewPopup);
+      markPopupAsSeen();
    }
 }
 
 // Вызов функции при загрузке страницы
 showPopupIfNeeded();
 
+function huy() {
+   console.log('░▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓▓▓▓▓▓░░░░░▓▓▓▓▓▓░')
+   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓░░░░░░░░░▓▓░░░▓▓░')
+   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓▓▓▓▓▓░░░░▓▓░░░▓▓░')
+   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓░░░░░░░░░▓▓░░░▓▓░')
+   console.log('░▓▓░░░▓▓░░░▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓░░▓▓▓▓░░░▓▓░')
+   console.log('░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░')
+   console.log('░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓░░░░░░')
+   console.log('░▓▓░░░▓▓░░░░▓▓▓▓▓░░░░▓▓░░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░░▓▓░░░')
+   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░▓▓░░░░░▓▓░░▓▓░░░░▓▓░░░▓▓░░░')
+   console.log('░▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓░░░░░░▓▓░░░░░░░░▓▓▓▓░░░░░▓▓░▓▓▓▓░░░')
+   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░▓▓░░░░░░░░▓▓░░░░░▓▓▓▓░▓▓░░░')
+   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░░░▓▓▓▓▓░░░░░▓▓░░░▓▓░░░')
+}
+
 
 // При загрузке страницы выводим сохраненный индекс героя
-loadChosenIndexFromLocalStorage();
-loadLastHeroesFromLocalStorage();
-renderLastHeroesFromLocalStorage()
+// loadChosenIndexFromLocalStorage();
+// loadStartHeroesFromLocalStorage();
+// loadLastHeroesFromLocalStorage();
+// renderLastHeroesFromLocalStorage();
+// renderPortraits(startHeroes)
 
 export {
    portraitsList,
@@ -352,5 +400,6 @@ export {
    loadingPopup,
    saveChosenIndexToLocalStorage,
    saveLastHeroesToLocalStorage,
-   currentLastHeroes
+   saveStartHeroesToLocalStorage,
+   currentLastHeroes,
 };

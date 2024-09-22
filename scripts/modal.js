@@ -1,3 +1,5 @@
+import { portraitsList, saveStartHeroesToLocalStorage } from "../index.js";
+
 // Функция для открытия попапа
 function openPopup(popup) {
    popup.classList.add("popup_is-opened");
@@ -8,7 +10,22 @@ function openPopup(popup) {
 function closePopup(popup) {
    popup.classList.remove("popup_is-opened");
    document.removeEventListener("keydown", handleEscKey);
+
+   // Проверяем, если закрываемый попап — это portraitsList
+   if (popup === portraitsList) {
+      saveStartHeroesToLocalStorage(); // Сохраняем массив startHeroes в localStorage
+   }
 }
+
+// function closePopup(popup) {
+//    popup.classList.remove("popup_is-opened");
+//    document.removeEventListener("keydown", handleEscKey);
+
+//    // Проверяем, если закрываемый попап — это portraitsList
+//    if (popup === portraitsList) {
+//       saveStartHeroesToLocalStorage(); // Сохраняем массив startHeroes в localStorage
+//    }
+// }
 
 // Закрытие попапа по нажатию на клавишу Esc
 function handleEscKey(event) {
