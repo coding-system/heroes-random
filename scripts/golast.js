@@ -22,8 +22,8 @@ export function updateRange() {
     rangeInput.setAttribute('noValue', noValue);
 
     // Обновляем значения в элементах
-    yesBox.textContent = yesValue;
-    noBox.textContent = noValue;
+    yesBox.textContent = `${yesValue / 10}%`;
+    noBox.textContent = `${noValue / 10}%`;
 }
 
 rangeInput.addEventListener('input', updateRange);

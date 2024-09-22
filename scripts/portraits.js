@@ -28,7 +28,8 @@ function updateHeroDisplay(hero, cardBanned, cardLine, videoBanned) {
       videoBanned.style.opacity = "0";
    } else {
       cardBanned.style.opacity = "1";
-      cardBanned.style["boxShadow"] = "inset 0 0 15px rgb(255, 0, 0), inset 0 0 5px rgb(0, 0, 0)";
+      cardBanned.style["boxShadow"] =
+         "inset 0 0 15px rgb(255, 0, 0), inset 0 0 5px rgb(0, 0, 0)";
       cardLine.style.opacity = "0";
       videoBanned.style.opacity = "1";
    }
@@ -45,23 +46,36 @@ function updateAllHeroes(heroes, selectAll = true) {
       let cardPortraitItem;
       switch (hero.attribute) {
          case "strength":
-            cardPortraitItem = Array.from(portraitsstrengthList.children).find((item) =>
-               item.querySelector(".card-portrait-video-name").textContent.includes(hero.name)
+            cardPortraitItem = Array.from(portraitsstrengthList.children).find(
+               (item) =>
+                  item
+                     .querySelector(".card-portrait-video-name")
+                     .textContent.includes(hero.name)
             );
             break;
          case "agility":
-            cardPortraitItem = Array.from(portraitsagilityList.children).find((item) =>
-               item.querySelector(".card-portrait-video-name").textContent.includes(hero.name)
+            cardPortraitItem = Array.from(portraitsagilityList.children).find(
+               (item) =>
+                  item
+                     .querySelector(".card-portrait-video-name")
+                     .textContent.includes(hero.name)
             );
             break;
          case "intelligence":
-            cardPortraitItem = Array.from(portraitsintelligenceList.children).find((item) =>
-               item.querySelector(".card-portrait-video-name").textContent.includes(hero.name)
+            cardPortraitItem = Array.from(
+               portraitsintelligenceList.children
+            ).find((item) =>
+               item
+                  .querySelector(".card-portrait-video-name")
+                  .textContent.includes(hero.name)
             );
             break;
          case "universal":
-            cardPortraitItem = Array.from(portraitsuniversalList.children).find((item) =>
-               item.querySelector(".card-portrait-video-name").textContent.includes(hero.name)
+            cardPortraitItem = Array.from(portraitsuniversalList.children).find(
+               (item) =>
+                  item
+                     .querySelector(".card-portrait-video-name")
+                     .textContent.includes(hero.name)
             );
             break;
       }
@@ -69,7 +83,9 @@ function updateAllHeroes(heroes, selectAll = true) {
       if (cardPortraitItem) {
          const cardBanned = cardPortraitItem.querySelector(".banned-overlay");
          const cardLine = cardPortraitItem.querySelector(".line");
-         const videoBanned = cardPortraitItem.querySelector(".video-banned-overlay");
+         const videoBanned = cardPortraitItem.querySelector(
+            ".video-banned-overlay"
+         );
          updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
       }
    });
@@ -84,12 +100,22 @@ function renderPortraits(heroes) {
 
    heroes.forEach((hero) => {
       const cardPortraitItem = cardPortraitTemplate.cloneNode(true); // Клонируем шаблон для каждого героя
-      const cardPortraitImage = cardPortraitItem.querySelector(".card-portrait-image-content");
-      const cardPortraitHoverVideo = cardPortraitItem.querySelector(".card-portrait-video-content");
-      const cardPortraitButton = cardPortraitItem.querySelector(".card-portrait-item");
-      const cardPortraitHoverName = cardPortraitItem.querySelector(".card-portrait-video-name");
+      const cardPortraitImage = cardPortraitItem.querySelector(
+         ".card-portrait-image-content"
+      );
+      const cardPortraitHoverVideo = cardPortraitItem.querySelector(
+         ".card-portrait-video-content"
+      );
+      const cardPortraitButton = cardPortraitItem.querySelector(
+         ".card-portrait-item"
+      );
+      const cardPortraitHoverName = cardPortraitItem.querySelector(
+         ".card-portrait-video-name"
+      );
       const cardBanned = cardPortraitItem.querySelector(".banned-overlay");
-      const videoBanned = cardPortraitItem.querySelector(".video-banned-overlay");
+      const videoBanned = cardPortraitItem.querySelector(
+         ".video-banned-overlay"
+      );
       const cardLine = cardPortraitItem.querySelector(".line");
 
       const heroName = hero.image.replace(".jpg", "");
@@ -136,21 +162,27 @@ function renderPortraits(heroes) {
 
    const selectAllButton = portraitsList.querySelector(".select-all");
    const banAllButton = portraitsList.querySelector(".ban-all");
-   const greenLight = portraitsList.querySelector(".light-spark");
+   const saveMyBansButton = portraitsList.querySelector(".save-bans");
+   const loadMyBansButton = portraitsList.querySelector(".load-bans");
+   const lightSpark = portraitsList.querySelector(".light-spark");
 
    // Выбор всех героев
    selectAllButton.addEventListener("click", () => {
       updateAllHeroes(heroes, true);
-      greenLight.classList.add("green-light-spark");
-      setTimeout(() => greenLight.classList.remove("green-light-spark"), 500);
+      lightSpark.classList.add("green-light-spark");
+      setTimeout(() => lightSpark.classList.remove("green-light-spark"), 500);
    });
 
    // Бан всех героев
    banAllButton.addEventListener("click", () => {
       updateAllHeroes(heroes, false);
-      greenLight.classList.add("red-light-spark");
-      setTimeout(() => greenLight.classList.remove("red-light-spark"), 500);
+      lightSpark.classList.add("red-light-spark");
+      setTimeout(() => lightSpark.classList.remove("red-light-spark"), 500);
    });
+
+   // saveMyBansButton.addEventListener('click', () => {
+
+   // })
 }
 
 export { renderPortraits, updateHeroDisplay, updateAllHeroes };

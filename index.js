@@ -97,6 +97,24 @@ const chooseButton = document.querySelector(".choose-button");
 const resetButton = document.querySelector(".reset-button");
 
 const heroАlgorithmChanger = document.querySelector(".changer-checkbox");
+const heroAlgorithmInfo = document.querySelector('.remove-heroes__answer');
+
+if (heroАlgorithmChanger.checked) {
+   heroAlgorithmInfo.textContent = 'Герой будет удаляться из списка после каждого нажатия'; // Изменяем текст
+} else {
+   heroAlgorithmInfo.textContent = 'Список героев остается неизменным'; // Изменяем текст, если unchecked
+}
+
+// Добавляем обработчик события на изменение состояния чекбокса
+heroАlgorithmChanger.addEventListener('change', () => {
+   if (heroАlgorithmChanger.checked) {
+      // Если чекбокс отмечен
+      heroAlgorithmInfo.textContent = 'Герой будет удаляться из списка после каждого нажатия';
+   } else {
+      // Если чекбокс не отмечен
+      heroAlgorithmInfo.textContent = 'Список героев остается неизменным';
+   }
+});
 
 // Обработчики
 chooseButton.addEventListener("click", () => getRandomElement(startHeroes));
