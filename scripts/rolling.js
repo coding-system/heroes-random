@@ -9,18 +9,17 @@ import {
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup } from "./modal.js";
-import { lastHeroes } from "./lastheroes.js";
 
 export let lastHeroesArray = Array(16).fill({ link: "" }); // Инициализация массива с 16 пустыми объектами
 
 // Функция регистрации информации для отладки
-export function yo(displayedHeroes, currentSelectableHeroes) {
-   console.log(currentSelectableHeroes.length);
-   console.log(currentSelectableHeroes[chosenIndex]);
-   console.log(displayedHeroes);
-   console.log(`Выбранный герой в рулетке - ${displayedHeroes[15]}`);
-   console.log(`Длина начального массива - ${currentSelectableHeroes.length}`);
-}
+// export function yo(displayedHeroes, currentSelectableHeroes) {
+//    console.log(currentSelectableHeroes.length);
+//    console.log(currentSelectableHeroes[chosenIndex]);
+//    console.log(displayedHeroes);
+//    console.log(`Выбранный герой в рулетке - ${displayedHeroes[25]}`);
+//    console.log(`Длина начального массива - ${currentSelectableHeroes.length}`);
+// }
 
 // Функция для вычисления ширины последнего элемента
 function calculateLastItemWidth() {
@@ -246,7 +245,7 @@ export function showHeroes() {
    itemWidth = windowItemsWidth;
 
    showHeroWindow();
-   yo(displayedHeroes, currentSelectableHeroes);
+   // yo(displayedHeroes, currentSelectableHeroes);
 }
 
 function showHeroWindow() {

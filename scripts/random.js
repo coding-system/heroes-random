@@ -37,7 +37,7 @@ function getRandomElement(heroesArray) {
    console.log(`Номер героя — ${randomIndex}`);
    console.log(`Имя героя — ${randomHero.name}`);
 
-   saveChosenIndexToLocalStorage(randomHero.name);
+   saveChosenIndexToLocalStorage(randomHero);
 
    // If heroАlgorithmChanger is checked, set the selected property of the chosen hero to false
    if (heroАlgorithmChanger.checked) {
@@ -57,11 +57,11 @@ function getRandomElement(heroesArray) {
    setTimeout(() => renderPortraits(heroesArray), 8000);
    // renderPortraits(heroesArray)
    showHeroes();
-   addShowHeroData();
+   setTimeout(() => addShowHeroData(), 5750);
+   // addShowHeroData();
    playAudio();
-   console.log(startHeroes);
-   console.log(currentLastHeroes);
-   // saveLastHeroesToLocalStorage();
+   // console.log(startHeroes);
+   // console.log(currentLastHeroes);
    setTimeout(() => saveLastHeroesToLocalStorage(), 7500);
    setTimeout(() => saveStartHeroesToLocalStorage(), 7500);
 }

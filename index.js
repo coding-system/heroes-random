@@ -234,17 +234,39 @@ Promise.all(promises)
 ////////////////////  LOCAL STOREGE  ////////////////////////
 /////////////////////////////////////////////////////////////
 // Функция для сохранения выбранного индекса в localStorage
-function saveChosenIndexToLocalStorage(heroName) {
-   localStorage.setItem("chosenHeroName", heroName);
+
+function saveChosenIndexToLocalStorage(hero) {
+   localStorage.setItem("chosenHero", JSON.stringify(hero)); // Сохраняем весь объект героя в виде строки JSON
 }
 
 // Функция для загрузки выбранного индекса из localStorage
 function loadChosenIndexFromLocalStorage() {
-   const savedHeroName = localStorage.getItem("chosenHeroName");
-   if (savedHeroName !== null) {
-      console.log(`Последний выбранный герой — ${savedHeroName}`);
+   const savedHero = localStorage.getItem("chosenHero");
+   
+   if (savedHero !== null) {
+      const hero = JSON.parse(savedHero); // Преобразуем JSON-строку обратно в объект героя
+      console.log(`Последний выбранный герой — ${hero.name}`);
+      
+      // Здесь можно использовать свойства героя, например:
+      const chosenHeroImage = hero.image.replace(".jpg", "");
+      const showHeroTitle = showHeroBox.querySelector(".show-hero__title");
+      const showHeroVideo = showHeroBox.querySelector(".show-hero__video");
+
+      // Обновление заголовка с именем героя
+      showHeroTitle.textContent = hero.name;
+
+      // Обновление постера и источников видео
+      showHeroVideo.poster = `https://cdn.akamai.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${chosenHeroImage}.png`;
+
+      const sources = showHeroVideo.querySelectorAll("source");
+      sources[0].src = `https://cdn.akamai.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${chosenHeroImage}.mov`;
+      sources[1].src = `https://cdn.akamai.steamstatic.com/apps/dota2/videos/dota_react/heroes/renders/${chosenHeroImage}.webm`;
+
+      // Перезагрузка видео
+      showHeroVideo.load();
+
    } else {
-      console.log("Нет сохраненного имени героя.");
+      console.log("Нет сохраненного героя.");
    }
 }
 
