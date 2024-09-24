@@ -5,7 +5,7 @@ import {
    lastHeroesList,
    lastHeroTemplate,
    helpBox,
-   currentLastHeroes
+   currentLastHeroes,
 } from "../index.js";
 import { showHeroBox } from "../index.js";
 import { openPopup } from "./modal.js";
@@ -22,8 +22,8 @@ export let lastHeroesArray = Array(16).fill({ link: "" }); // Инициализ
 // }
 
 // Функция для вычисления ширины последнего элемента
-function calculateLastItemWidth() {
-   return Math.floor(Math.random() * 344);
+function calculateLastItemWidth(width) {
+   return Math.floor(Math.random() * width);
 }
 
 // Функция для генерации случайного изображения героя
@@ -120,32 +120,35 @@ function renderLastHero(displayedHero) {
    const isDeleted = !currentSelectableHeroes[chosenIndex].selected;
 
    // Добавляем нового героя в начало массива currentLastHeroes с параметром deleted
-   // currentLastHeroes.unshift({
-   //    image: displayedHero,
-   //    deleted: isDeleted
-   // });
    setTimeout(() => {
       currentLastHeroes.unshift({
          image: displayedHero,
-         deleted: isDeleted
+         deleted: isDeleted,
       });
+
+      // Если длина массива больше 16, удаляем самого старого героя
+      if (currentLastHeroes.length > 16) {
+         currentLastHeroes.pop();
+      }
    }, 6000); // 6000 миллисекунд = 6 секунд
 
-   // Если длина массива больше 16, удаляем последнего героя
-   if (currentLastHeroes.length > 16) {
-      currentLastHeroes.pop();
-   }
-
    // Добавляем на страницу нового героя с задержкой
-   setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
+   setTimeout(() => {
+      lastHeroesList.prepend(lastHeroItem);
 
-   // Если герой удален (не выбран), добавляем метку "DEL"
-   if (isDeleted) {
-      const deletedLabel = document.createElement("div");
-      deletedLabel.classList.add("deleted-label");
-      deletedLabel.textContent = "DEL";
-      lastHeroUl.appendChild(deletedLabel);
-   }
+      // Если на странице больше 16 элементов, удаляем последний (старый) элемент
+      if (lastHeroesList.children.length > 16) {
+         lastHeroesList.removeChild(lastHeroesList.lastElementChild);
+      }
+
+      // Если герой удален (не выбран), добавляем метку "DEL"
+      if (isDeleted) {
+         const deletedLabel = document.createElement("div");
+         deletedLabel.classList.add("deleted-label");
+         deletedLabel.textContent = "DEL";
+         lastHeroUl.appendChild(deletedLabel);
+      }
+   }, 7500); // 7500 миллисекунд = 7.5 секунд
 }
 /////////////////////////////////////
 ///Старая версия без массива, работает
@@ -211,11 +214,14 @@ function animateWindowList(
 }
 
 export function showHeroes() {
+   const rootStyles = getComputedStyle(document.documentElement);
+   const extraWidth = parseInt(rootStyles.getPropertyValue("--extra-width"));
    const displayedHeroIndex = 25;
    const totalArrayNumber = displayedHeroIndex * 2 + 1;
+   const windowItemsWidth = document.querySelector(".window__box").offsetWidth;
 
    // Generate a new width only after the previous animation is complete
-   currentWindowItemsLastWidth = calculateLastItemWidth();
+   currentWindowItemsLastWidth = calculateLastItemWidth(windowItemsWidth);
 
    const displayedHeroes = generateDisplayedHeroes(
       totalArrayNumber,
@@ -227,11 +233,8 @@ export function showHeroes() {
    renderHeroesList(displayedHeroes, currentWindowItemsLastWidth);
    renderLastHero(displayedHeroes[displayedHeroIndex]);
 
-   const windowItemsWidth = document.querySelector(".window__box").offsetWidth;
    const totalWidth =
-      windowItemsWidth * (displayedHeroIndex - 2) +
-      43 +
-      currentWindowItemsLastWidth;
+      windowItemsWidth * (displayedHeroIndex - 2) + extraWidth + windowItemsWidth;
 
    // Pass the current and previous values to the animation
    animateWindowList(

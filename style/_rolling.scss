@@ -1,13 +1,16 @@
 .box {
+   font-size: 10px;
    position: relative;
    padding: 8px;
+   height: 300px;
    // background-color: #727272;
-   background-image: linear-gradient(#343b46, #353535);
+   background-image: linear-gradient(#a0a0a0, #8589a1);
    border-radius: 22px;
    box-shadow: inset 0 0 15px #000;
 }
 
 .roulette {
+   height: 100%;
    overflow: hidden;
    position: relative;
    color: #fff;
@@ -29,17 +32,19 @@
 
 .window {
    width: fit-content;
-   height: 284px;
+   height: 100%;
    &__pointer {
+      opacity: 0.8;
+      font-size: 10px;
       z-index: 5;
       position: absolute;
-      left: calc(50% - 30px);
+      left: calc(50% - 3em);
       width: 0;
       height: 0;
-      width: 60px; /* Ширина треугольника */
-      height: 80px; /* Высота треугольника */
+      width: 6em; /* Ширина треугольника */
+      height: 8em; /* Высота треугольника */
       background-color: #d10d0d; /* Цвет треугольника */
-      box-shadow: inset 0 -10px 25px #000, inset 0 0 25px #30161d;
+      box-shadow: inset 0 -1em 2.5em #000, inset 0 0 2.5em #30161d;
       // border: 1px solid #6d1010;
       &-top {
          top: 0px;
@@ -71,9 +76,9 @@
       background: repeating-linear-gradient(
          90deg,
          rgba(0, 0, 0, 0.115),
-         rgba(0, 0, 0, 0.115) 27px,
-         rgba(255, 0, 0, 0.115) 27px,
-         rgba(255, 0, 0, 0.115) 54px
+         rgba(0, 0, 0, 0.115) 6.25%,
+         rgba(255, 0, 0, 0.115) 6.25%,
+         rgba(255, 0, 0, 0.115) 12.5%
       );
       // &-odd {
       //    transition: all 3s ease;

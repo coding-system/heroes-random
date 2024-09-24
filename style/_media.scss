@@ -1,0 +1,73 @@
+@media (2560px <= width) {
+   :root {
+      --extra-width: 36px;
+    }
+   .wrapper {
+      // margin: 0 auto;
+      &:has(.main) {
+         width: 1920px;
+      }
+   }
+   .main-logo {
+      &__content {
+         font-size: 364px;
+      }
+   }
+   .nav {
+      &__item {
+         font-size: 26px;
+      }
+   }
+   .main {
+      gap: 23px;
+   }
+   .last-box {
+      min-height: 67.5px;
+   }
+   .last-heroes {
+      &__item {
+         width: 120px;
+      }
+   }
+   .box {
+      height: 400px;
+      padding: 12px;
+   }
+   .window {
+      &__item {
+         width: 458px;
+      }
+      &__pointer {
+         font-size: 13px;
+      }
+   }
+   .whats-new {
+      &__main-title {
+         font-size: 120px;
+      }
+      &__item {
+         font-size: 24px;
+      }
+      &__title {
+         font-size: 1.7em;
+      }
+      &__text {
+         font-size: 1em;
+      }
+   }
+   .help {
+      height: 67.5px;
+   }
+   .remove-heroes {
+      font-size: 22px;
+   }
+   .reset-button {
+      font-size: 22px;
+   }
+   .portraits-list {
+      font-size: 14px;
+   }
+   .card-portrait-item {
+      font-size: 80px;
+   }
+}

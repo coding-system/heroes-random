@@ -1,4 +1,5 @@
 .portraits-list {
+   font-size: 10px;
    padding: 15px;
    position: relative;
    width: fit-content;
@@ -18,39 +19,39 @@
    &__main-title {
       color: #fff;
       font-family: "Open Sans";
-      font-size: 24px;
+      font-size: 1.5em;
    }
 
    &__box {
-      padding-top: 10px;
+      padding-top: 1em;
       height: 100%;
       width: 100%;
       display: grid;
       grid-template-rows: repeat(2, 1fr);
       grid-template-columns: repeat(2, 1fr);
-      row-gap: 40px;
-      column-gap: 35px;
+      row-gap: 4em;
+      column-gap: 3.5em;
    }
    &__attribute {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 0.8em;
    }
    &__title {
       // border-radius: 3px;
       // padding: 4px;
       // background-color: #0000007c;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 1.4em;
       text-transform: uppercase;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 0.4em;
       color: rgb(255, 255, 255);
       &__image {
          user-select: none;
          pointer-events: none;
-         max-width: 25px;
+         max-width: 1.8em;
       }
    }
    &__group {
@@ -64,16 +65,16 @@
       align-items: center;
       justify-content: center;
       display: grid;
-      gap: 8px;
+      gap: 0.8em;
       grid-template-columns: repeat(11, 1fr);
       grid-template-rows: repeat(auto, 1fr);
       // background-color: #464646;
    }
    .buttons-bar {
-      font-size: 16px;
-      box-shadow: inset 0 0 8px #00000079;
-      border-radius: 16px;
-      padding: 10px;
+      font-size: 1.6em;
+      box-shadow: inset 0 0 0.5em #00000079;
+      border-radius: 1em;
+      padding: 0.625em;
       background-color: #00000054;
       width: 100%;
       // margin-bottom: 20px;
@@ -82,7 +83,7 @@
       // gap: 30px;
       &__group {
          display: flex;
-         gap: 30px;
+         gap: 2em;
       }
 
       .button {
@@ -91,16 +92,16 @@
          transition: all 0.1s;
          font-family: "Open Sans";
          font-weight: 500;
-         border-radius: 8px;
-         padding: 4px 8px;
-         box-shadow: 0 2px 3px #000000, inset 0 0 5px #000000a8;
+         border-radius: 0.5em;
+         padding: 0.25em 0.5em;
+         box-shadow: 0 0.125em 0.2em #000000, inset 0 0 0.3em #000000a8;
          cursor: pointer;
          &:hover {
             color: #ffffff;
          }
          &:active {
-            transform: translateY(2px);
-            box-shadow: 0 0px 0px #000000, inset 0 0 5px #000000a8;
+            transform: translateY(0.125em);
+            box-shadow: 0 0px 0px #000000, inset 0 0 0.3em #000000a8;
          }
       }
       .select-all {
@@ -175,8 +176,9 @@
 
 //// Template
 .card-portrait-item {
+   font-size: 6em;
    // background-color: #fff;
-   border-radius: 3px;
+   border-radius: 0.05em;
    position: relative;
    transform-origin: center;
    // transition: all 0.01s;
@@ -185,7 +187,7 @@
    justify-content: center;
    align-items: center;
    cursor: pointer;
-   width: 60px;
+   width: 1em;
    aspect-ratio: 0.588;
    &:hover .card-portrait-video-box {
       transition: transform 0.1s ease, opacity 0.1s ease;
@@ -267,7 +269,7 @@
    position: absolute;
    top: -50%;
    left: -73%;
-   width: 150px;
+   width: 2.5em;
    aspect-ratio: 0.75;
    background-color: #fff;
    overflow: hidden;

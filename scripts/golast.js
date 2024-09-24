@@ -54,7 +54,7 @@ export function showGoLastResult(randIndex, yesValue) {
 
             lastDigit = currentDigit; // Обновляем последнюю цифру
             resultElement.textContent = currentDigit; // Показываем эту цифру
-        }, 1); // Интервал смены цифр (0.1 сек)
+        }, 10); // Интервал смены цифр (0.1 сек)
 
         // Остановка на целевом числе через заданную задержку
         setTimeout(() => {
@@ -62,6 +62,7 @@ export function showGoLastResult(randIndex, yesValue) {
             resultElement.textContent = targetDigit; // Устанавливаем финальное значение
         }, delay);
     }
+
 
     // Запускаем анимацию для каждой цифры с разной задержкой
     animateDigit(resultThree, randIndexStr[2], 1000); // Третий элемент останавливается через 1 секунду
@@ -72,11 +73,11 @@ export function showGoLastResult(randIndex, yesValue) {
     if (randIndex <= yesValue) {
       //   goLastResult.style.color = 'green';
         setTimeout(() => {
-         goLastResult.style.color = 'green'}, 2800);
+         goLastResult.style.color = 'green'}, 3000);
     } else {
       //   goLastResult.style.color = 'red';
         setTimeout(() => {
-         goLastResult.style.color = 'red'}, 2800);
+         goLastResult.style.color = 'red'}, 3000);
     }
 }
 
