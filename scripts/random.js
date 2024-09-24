@@ -10,6 +10,7 @@ import {
    saveLastHeroesToLocalStorage,
    saveStartHeroesToLocalStorage,
    currentLastHeroes,
+   songChangerStatus
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -70,8 +71,10 @@ function playAudio() {
    const audio = document.querySelector(".song");
    if (songChanger.checked) {
       rouletteSong.volume = 1;
+      // songChangerStatus = true;
    } else {
       rouletteSong.volume = 0;
+      // songChangerStatus = false;
    }
    rouletteSong.play();
 }

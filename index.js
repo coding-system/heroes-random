@@ -16,6 +16,7 @@ huy()
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
+let songChangerStatus
 // let startHeroes;
 
 // Help
@@ -234,6 +235,48 @@ Promise.all(promises)
 ////////////////////  LOCAL STOREGE  ////////////////////////
 /////////////////////////////////////////////////////////////
 // Функция для сохранения выбранного индекса в localStorage
+
+// Save status function
+function saveSongChangerStatusToLocalStorage(status) {
+   localStorage.setItem('songChangerStatus', JSON.stringify(status));
+ }
+ 
+ // Load and apply status function
+ function loadSongChangerStatusFromLocalStorage() {
+   const savedStatus = localStorage.getItem('songChangerStatus');
+   const status = savedStatus ? JSON.parse(savedStatus) : false;
+ 
+   // Apply the loaded status
+   if (status) {
+     songChanger.checked = true;
+     rouletteSong.volume = 1;
+   } else {
+     songChanger.checked = false;
+     rouletteSong.volume = 0;
+   }
+ 
+   return status;
+ }
+ 
+ // Set up event listener for the checkbox
+ songChanger.addEventListener('change', () => {
+   if (songChanger.checked) {
+     rouletteSong.volume = 1;
+     songChangerStatus = true;
+   } else {
+     rouletteSong.volume = 0;
+     songChangerStatus = false;
+   }
+ 
+   // Save the status
+   saveSongChangerStatusToLocalStorage(songChangerStatus);
+ });
+ 
+ // Load the status on page load
+ document.addEventListener('DOMContentLoaded', () => {
+   songChangerStatus = loadSongChangerStatusFromLocalStorage();
+ });
+
 
 function saveChosenIndexToLocalStorage(hero) {
    localStorage.setItem("chosenHero", JSON.stringify(hero)); // Сохраняем весь объект героя в виде строки JSON
@@ -471,4 +514,5 @@ export {
    saveMyBansToLocalStorage,
    loadMyBansFromLocalStorage,
    currentLastHeroes,
+   songChangerStatus
 };
