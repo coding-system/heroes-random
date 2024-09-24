@@ -21,10 +21,11 @@
    .main {
       gap: 23px;
    }
-   .last-box {
-      min-height: 67.5px;
-   }
+   // .last-box {
+   //    min-height: 67.5px;
+   // }
    .last-heroes {
+      min-height: 67.5px;
       &__item {
          width: 120px;
       }
@@ -56,18 +57,24 @@
       }
    }
    .help {
-      height: 67.5px;
-   }
-   .remove-heroes {
-      font-size: 22px;
-   }
-   .reset-button {
-      font-size: 22px;
+      font-size: 13px;
    }
    .portraits-list {
       font-size: 14px;
    }
-   .card-portrait-item {
-      font-size: 80px;
+   .card-portrait-video-name {
+      font-size: 22px;
+   }
+   .video-banned-overlay {
+
+   }
+   .loading {
+      font-size: 18px;
+   }
+   .close__button {
+      font-size: 12px;
+   }
+   .custom-border {
+      font-size: 14px;
    }
 }

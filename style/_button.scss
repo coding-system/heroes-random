@@ -108,11 +108,12 @@
 }
 
 .close__button {
+   font-size: 10px;
    position: absolute;
-   top: -20px;
-   right: -20px;
-   width: 24px;
-   height: 24px;
+   top: -2em;
+   right: -2em;
+   width: 2.4em;
+   height: 2.4em;
    background-color: #ff0000;
    border-radius: 50%;
    color: rgb(255, 255, 255);
@@ -124,7 +125,7 @@
       transition: opacity 0.2s, box-shadow 0.4s ease;
       cursor: pointer;
       opacity: 0.6;
-      box-shadow: 0 0 10px rgb(255, 255, 255, 0.5);
+      box-shadow: 0 0 1em rgb(255, 255, 255, 0.5);
       & .close__button-cross::before {
          transition: all 0.2s ease;
          transform: rotate(90deg);
@@ -157,20 +158,20 @@
       justify-content: center;
       align-items: center;
       &::before {
-         border-radius: 2px;
+         border-radius: 0.2em;
          content: '';
          position: absolute;
-         width: 2px;
-         height: 14px;
+         width: 0.2em;
+         height: 1.4em;
          background-color: currentColor;
          
       }
       &::after {
-         border-radius: 2px;
+         border-radius: 0.2em;
          content: '';
          position: absolute;
-         width: 14px;
-         height: 2px;
+         width: 1.4em;
+         height: 0.2em;
          background-color: currentColor;
       }
    }

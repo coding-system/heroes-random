@@ -177,10 +177,11 @@ let itemWidth;
 function animateWindowList(
    totalWidth,
    currentWindowItemsLastWidth,
+   extraWidth,
    previousWindowItemsLastWidth
 ) {
    windowList.classList.remove("default-animation");
-   const wer = 4 * itemWidth + 43 + previousWindowItemsLastWidth;
+   const wer = 4 * itemWidth + extraWidth + previousWindowItemsLastWidth;
 
    // Log both values for debugging
    console.log("Current windowItemsLastWidth:", currentWindowItemsLastWidth);
@@ -234,12 +235,13 @@ export function showHeroes() {
    renderLastHero(displayedHeroes[displayedHeroIndex]);
 
    const totalWidth =
-      windowItemsWidth * (displayedHeroIndex - 2) + extraWidth + windowItemsWidth;
+      windowItemsWidth * (displayedHeroIndex - 2) + extraWidth + currentWindowItemsLastWidth;
 
    // Pass the current and previous values to the animation
    animateWindowList(
       totalWidth,
       currentWindowItemsLastWidth,
+      extraWidth,
       previousWindowItemsLastWidth
    );
 

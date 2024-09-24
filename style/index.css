@@ -483,11 +483,12 @@ ol {
 }
 
 .close__button {
+  font-size: 10px;
   position: absolute;
-  top: -20px;
-  right: -20px;
-  width: 24px;
-  height: 24px;
+  top: -2em;
+  right: -2em;
+  width: 2.4em;
+  height: 2.4em;
   background-color: #ff0000;
   border-radius: 50%;
   color: rgb(255, 255, 255);
@@ -500,7 +501,7 @@ ol {
   transition: opacity 0.2s, box-shadow 0.4s ease;
   cursor: pointer;
   opacity: 0.6;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 1em rgba(255, 255, 255, 0.5);
 }
 .close__button:hover .close__button-cross::before {
   transition: all 0.2s ease;
@@ -532,19 +533,19 @@ ol {
   align-items: center;
 }
 .close__button-cross::before {
-  border-radius: 2px;
+  border-radius: 0.2em;
   content: "";
   position: absolute;
-  width: 2px;
-  height: 14px;
+  width: 0.2em;
+  height: 1.4em;
   background-color: currentColor;
 }
 .close__button-cross::after {
-  border-radius: 2px;
+  border-radius: 0.2em;
   content: "";
   position: absolute;
-  width: 14px;
-  height: 2px;
+  width: 1.4em;
+  height: 0.2em;
   background-color: currentColor;
 }
 
@@ -657,9 +658,10 @@ ol {
 }
 
 .custom-border {
+  font-size: 10px;
+  padding: 1em;
+  border-radius: 2.6em;
   position: relative;
-  padding: 10px;
-  border-radius: 26px;
 }
 .custom-border:has(.portraits-list) {
   background-image: none;
@@ -678,11 +680,10 @@ ol {
 .box {
   font-size: 10px;
   position: relative;
-  padding: 8px;
+  padding: 0.8em;
   height: 300px;
-  background-image: linear-gradient(#a0a0a0, #8589a1);
-  border-radius: 22px;
-  box-shadow: inset 0 0 15px #000;
+  background-image: linear-gradient(rgba(160, 160, 160, 0.0392156863), rgba(133, 137, 161, 0.0901960784));
+  border-radius: 1.6em;
 }
 
 .roulette {
@@ -692,7 +693,7 @@ ol {
   color: #fff;
   box-shadow: inset 0 0 60px #000, 0 0 60px #000000;
   background-color: #1a1a3d;
-  border-radius: 14px;
+  border-radius: 0.8em;
 }
 .roulette::before {
   content: "";
@@ -797,6 +798,8 @@ ol {
 }
 
 .show-hero {
+  font-size: 10px;
+  border-radius: 1.6em;
   overflow: hidden;
   width: -moz-fit-content;
   width: fit-content;
@@ -806,7 +809,6 @@ ol {
   font-family: "Open Sans";
   height: fit-content;
   width: fit-content;
-  border-radius: 16px;
   background-image: url("../assets/images/herobg.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -911,21 +913,19 @@ ol {
 }
 
 .last-box {
-  min-height: 51px;
-  max-width: 100%;
   overflow: hidden;
 }
 
 .last-heroes {
-  font-size: 16px;
+  font-size: 10px;
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 1em;
+  border-radius: 1.6em;
   overflow: hidden;
   display: flex;
   align-items: center;
+  min-height: 50.63px;
   height: 100%;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
 }
 .last-heroes__list {
   height: 100%;
@@ -933,10 +933,6 @@ ol {
   align-items: center;
   justify-content: center;
   transition: transform 0.6s ease;
-}
-.last-heroes__list-animated {
-  transition: transform 0.6s ease;
-  transform: translateX(90px);
 }
 .last-heroes__item {
   overflow: hidden;
@@ -1138,13 +1134,14 @@ ol {
 }
 
 .whats-new {
+  font-size: 10px;
+  border-radius: 1.6em;
   position: relative;
   display: flex;
   flex-direction: column;
   max-height: 80vh;
   width: -moz-fit-content;
   width: fit-content;
-  border-radius: 16px;
   background-color: #161616;
   max-width: 41vw;
   overflow: auto;
@@ -1282,14 +1279,14 @@ ol {
 }
 .portraits-list {
   font-size: 10px;
-  padding: 15px;
+  padding: 1.6em;
   position: relative;
   width: -moz-fit-content;
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
   max-width: 90vw;
-  border-radius: 16px;
+  border-radius: 1.6em;
   flex-direction: column;
   font-family: "Open Sans";
   font-weight: 700;
@@ -1346,7 +1343,7 @@ ol {
   grid-template-rows: repeat(auto, 1fr);
 }
 .portraits-list .buttons-bar {
-  font-size: 1.6em;
+  font-size: 1.8em;
   box-shadow: inset 0 0 0.5em rgba(0, 0, 0, 0.4745098039);
   border-radius: 1em;
   padding: 0.625em;
@@ -1365,7 +1362,7 @@ ol {
   font-family: "Open Sans";
   font-weight: 500;
   border-radius: 0.5em;
-  padding: 0.25em 0.5em;
+  padding: 0.2em 0.5em;
   box-shadow: 0 0.125em 0.2em #000000, inset 0 0 0.3em rgba(0, 0, 0, 0.6588235294);
   cursor: pointer;
 }
@@ -1419,8 +1416,7 @@ ol {
 }
 
 .card-portrait-item {
-  font-size: 6em;
-  border-radius: 0.05em;
+  border-radius: 0.2em;
   position: relative;
   transform-origin: center;
   position: relative;
@@ -1428,7 +1424,7 @@ ol {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 1em;
+  width: 6em;
   aspect-ratio: 0.588;
 }
 .card-portrait-item:hover .card-portrait-video-box {
@@ -1466,7 +1462,7 @@ ol {
   top: 0;
   left: 0;
   background-color: rgba(255, 0, 0, 0.3);
-  box-shadow: inset 0 0 25px #000;
+  box-shadow: inset 0 0 2.5em #ffffff;
   width: 100%;
   height: 100%;
   transition: opacity 0.3s ease;
@@ -1505,7 +1501,7 @@ ol {
   position: absolute;
   top: -50%;
   left: -73%;
-  width: 2.5em;
+  width: 15em;
   aspect-ratio: 0.75;
   background-color: #fff;
   overflow: hidden;
@@ -1534,7 +1530,7 @@ ol {
   justify-content: center;
   align-items: center;
   letter-spacing: 0.08em;
-  padding: 2px;
+  padding: 0.15em;
   font-size: 15px;
   text-transform: uppercase;
   font-family: "Fira Sans";
@@ -1746,6 +1742,7 @@ ol {
 }
 
 .loading {
+  font-size: 10px;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3019607843);
@@ -1760,10 +1757,10 @@ ol {
 
 .loader {
   z-index: 555;
-  width: 45px;
-  height: 40px;
+  width: 4.5em;
+  height: 4em;
   background: linear-gradient(rgba(0, 0, 0, 0) 16.6666666667%, #ffffff 0 50%, rgba(0, 0, 0, 0) 0), linear-gradient(rgba(0, 0, 0, 0) 33.3333333333%, #ffffff 0 66.6666666667%, rgba(0, 0, 0, 0) 0), linear-gradient(rgba(0, 0, 0, 0) 50%, #ffffff 0 83.3333333333%, rgba(0, 0, 0, 0) 0);
-  background-size: 10px 400%;
+  background-size: 1em 400%;
   background-repeat: no-repeat;
   animation: matrix 1s infinite linear;
 }
@@ -2009,13 +2006,13 @@ ol {
 
 .help {
   box-shadow: 0 0 20px #000000, inset 0 0 20px rgba(255, 255, 255, 0.0901960784);
-  padding: 0.625em;
+  padding: 1em 1.5em;
   overflow: hidden;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
-  border-radius: 1em;
+  border-radius: 1.6em;
   width: 100%;
-  font-size: 16px;
+  font-size: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2023,13 +2020,13 @@ ol {
 }
 
 .remove-heroes {
-  font-size: 18px;
+  font-size: 1.8em;
   position: relative;
   color: #b0b0b0;
   align-items: center;
   justify-content: start;
   display: flex;
-  gap: 20px;
+  gap: 1.1em;
 }
 
 .remove-heroes__info {
@@ -2059,12 +2056,12 @@ ol {
 }
 
 .reset-button {
-  padding: 4px 12px;
+  padding: 0.2em 1.2em;
   transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
   background-color: #fff;
   color: #313131;
   border-radius: 1em;
-  font-size: 18px;
+  font-size: 1.8em;
   font-weight: bold;
   height: 2em;
   cursor: pointer;
@@ -2175,7 +2172,7 @@ ol {
   .main {
     gap: 23px;
   }
-  .last-box {
+  .last-heroes {
     min-height: 67.5px;
   }
   .last-heroes__item {
@@ -2204,18 +2201,21 @@ ol {
     font-size: 1em;
   }
   .help {
-    height: 67.5px;
-  }
-  .remove-heroes {
-    font-size: 22px;
-  }
-  .reset-button {
-    font-size: 22px;
+    font-size: 13px;
   }
   .portraits-list {
     font-size: 14px;
   }
-  .card-portrait-item {
-    font-size: 80px;
+  .card-portrait-video-name {
+    font-size: 22px;
+  }
+  .loading {
+    font-size: 18px;
+  }
+  .close__button {
+    font-size: 12px;
+  }
+  .custom-border {
+    font-size: 14px;
   }
 }

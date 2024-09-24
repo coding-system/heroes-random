@@ -277,13 +277,13 @@
    // transform: translateY(66px);
    box-shadow: 0 0 20px #000000, inset 0 0 20px #ffffff17;
    // border: 2px solid #2f2f2f;
-   padding: 0.625em;
+   padding: 1em 1.5em;
    overflow: hidden;
    // background-color: #181818;
    backdrop-filter: blur(10px);
-   border-radius: 1em;
+   border-radius: 1.6em;
    width: 100%;
-   font-size: 16px;
+   font-size: 10px;
    // min-height: 51px;
    display: flex;
    justify-content: space-between;
@@ -292,14 +292,14 @@
 }
 
 .remove-heroes {
-   font-size: 18px;
+   font-size: 1.8em;
    position: relative;
    color: $major-text;
    // width: 100%;
    align-items: center;
    justify-content: start;
    display: flex;
-   gap: 20px;
+   gap: 1.1em;
 }
 
 .remove-heroes__info {
@@ -332,12 +332,12 @@
 
 
 .reset-button {
-   padding: 4px 12px;
+   padding: 0.2em 1.2em;
    transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
    background-color: #fff;
    color: $minor-text;
    border-radius: 1em;
-   font-size: 18px;
+   font-size: 1.8em;
    font-weight: bold;
    // width: 9em;
    height: 2em;
