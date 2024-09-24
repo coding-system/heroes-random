@@ -13,8 +13,11 @@
    // height: fit-content;
    width: fit-content;
    // border: 2px solid #fff;
-   background: rgb(255,80,45);
-background: linear-gradient(71deg, rgba(255,80,45,1) 0%, rgba(255,136,45,1) 29%, rgba(0,129,255,1) 72%, rgba(145,0,255,1) 94%);
+   background: rgb(36,36,36);
+   background: -moz-linear-gradient(73deg, rgba(36,36,36,1) 0%, rgba(236,61,6,1) 33%, rgba(38,224,48,1) 66%, rgba(4,210,228,1) 100%);
+   background: -webkit-linear-gradient(73deg, rgba(36,36,36,1) 0%, rgba(236,61,6,1) 33%, rgba(38,224,48,1) 66%, rgba(4,210,228,1) 100%);
+   background: linear-gradient(73deg, rgba(36,36,36,1) 0%, rgba(236,61,6,1) 33%, rgba(38,224,48,1) 66%, rgba(4,210,228,1) 100%);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#242424",endColorstr="#04d2e4",GradientType=1);
 
    background-color: #161616;
    max-width: 41vw;
@@ -31,6 +34,7 @@ background: linear-gradient(71deg, rgba(255,80,45,1) 0%, rgba(255,136,45,1) 29%,
       border-radius: 20px; /* закругления плашки */
    }
    &__main-title {
+      user-select: none;
       font-family: "Roboto";
       letter-spacing: 0.001em;
       padding: 0.22em 0;
@@ -38,10 +42,11 @@ background: linear-gradient(71deg, rgba(255,80,45,1) 0%, rgba(255,136,45,1) 29%,
       text-align: center;
       font-size: 88px;
       color: rebeccapurple;
-      background-image: linear-gradient(45deg, #11df6e 30%, #2ad3e9 70%);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
+      // background-image: linear-gradient(45deg, #11df6e 30%, #2ad3e9 70%);
+      color: #414141;
+      mix-blend-mode: difference;
+      // -webkit-background-clip: text;
+      // background-clip: text;
    }
    &__subtitle {
       padding: 0.12em 0;
@@ -70,10 +75,10 @@ background: linear-gradient(71deg, rgba(255,80,45,1) 0%, rgba(255,136,45,1) 29%,
       flex-direction: column;
       gap: 15px;
       &:nth-child(even) {
-         background-color: rgba(36, 36, 36, 0.8);
+         background-color: rgba(39, 39, 39, 0.8);
       }
       &:nth-child(odd) {
-         background-color: rgba(0, 0, 0, 0.8);
+         background-color: rgba(26, 26, 26, 0.8);
       }
    }
    &__title {
