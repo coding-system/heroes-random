@@ -1171,7 +1171,7 @@ ol {
   padding: 0.22em 0;
   font-weight: 700;
   text-align: center;
-  font-size: 88px;
+  font-size: 8.8em;
   color: rebeccapurple;
   color: #414141;
   mix-blend-mode: difference;
@@ -1189,7 +1189,6 @@ ol {
 }
 .whats-new__content {
   font-weight: 300;
-  font-size: 18px;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -1197,7 +1196,7 @@ ol {
 }
 .whats-new__item {
   width: 100%;
-  font-size: 16px;
+  font-size: 1.6em;
   padding: 1.4em;
   display: flex;
   flex-direction: column;
@@ -1211,35 +1210,33 @@ ol {
 }
 .whats-new__title {
   color: #fff;
-  font-size: 26px;
+  font-size: 1.625em;
   font-weight: 600;
 }
 .whats-new__text {
   color: #d4d4d4;
-  padding: 0 20px;
+  padding: 0 1.25em;
   line-height: 1.6em;
-  font-size: 16px;
+  font-size: 1em;
 }
 .whats-new__text-heroes {
   letter-spacing: 0.03em;
-  font-size: 14px;
   font-weight: bold;
   border-radius: 0.4em;
   border: #2e2e2e 2px solid;
   transition: 0.2s ease;
-  padding: 2px 15px;
+  padding: 2px 1em;
   font-weight: 400;
   color: #353535;
   background-color: #cecece;
   border: #8f8f8f 2px solid;
 }
 .whats-new__text-reset {
-  padding: 4px 12px;
+  padding: 2px 12px;
   transition: color 0.1s, box-shadow 0.2s, background-color 0.2s ease;
   background-color: #fff;
   color: #313131;
-  border-radius: 16px;
-  font-size: 14px;
+  border-radius: 1em;
   font-weight: bold;
 }
 
@@ -1435,7 +1432,7 @@ ol {
 }
 
 .card-portrait-item {
-  border-radius: 0.2em;
+  border-radius: 0.3em;
   position: relative;
   transform-origin: center;
   position: relative;
@@ -2229,17 +2226,8 @@ ol {
   .window__pointer {
     font-size: 13px;
   }
-  .whats-new__main-title {
-    font-size: 120px;
-  }
-  .whats-new__item {
-    font-size: 24px;
-  }
-  .whats-new__title {
-    font-size: 1.7em;
-  }
-  .whats-new__text {
-    font-size: 1em;
+  .whats-new {
+    font-size: 14px;
   }
   .help {
     font-size: 13px;
