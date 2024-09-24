@@ -356,6 +356,33 @@ function loadStartHeroesFromLocalStorage() {
       console.log("Нет сохраненных данных для startHeroes в localStorage.");
    }
 }
+
+// Функция для сохранения массива startHeroes как "мои баны" в localStorage
+function saveMyBansToLocalStorage() {
+   const myBansString = JSON.stringify(startHeroes);
+   localStorage.setItem("myBans", myBansString);
+   console.log("Массив startHeroes сохранен как 'мои баны' в localStorage.");
+}
+
+// Функция для загрузки массива "мои баны" из localStorage
+function loadMyBansFromLocalStorage() {
+   const myBansString = localStorage.getItem("myBans");
+
+   // Проверяем, есть ли сохраненные данные
+   if (myBansString) {
+      const loadedMyBans = JSON.parse(myBansString);
+
+      // Очищаем массив startHeroes и добавляем данные из загруженного массива
+      startHeroes.length = 0;
+      startHeroes.push(...loadedMyBans);
+
+      console.log("Массив startHeroes обновлен с данными из 'моих банов' из localStorage.");
+      console.log(startHeroes);
+   } else {
+      console.log("Нет сохраненных данных для 'моих банов' в localStorage.");
+   }
+}
+
 ////////////////////////////////////////////////////////////////////////
 /////////////////Показ ЧТО НОВОГО новому пользователю///////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -441,5 +468,7 @@ export {
    saveChosenIndexToLocalStorage,
    saveLastHeroesToLocalStorage,
    saveStartHeroesToLocalStorage,
+   saveMyBansToLocalStorage,
+   loadMyBansFromLocalStorage,
    currentLastHeroes,
 };
