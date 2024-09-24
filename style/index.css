@@ -806,7 +806,7 @@ ol {
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  max-width: 550px;
+  max-width: 30vw;
   font-family: "Open Sans";
   height: fit-content;
   width: fit-content;
@@ -834,14 +834,14 @@ ol {
      -moz-user-select: none;
           user-select: none;
   opacity: 1;
-  margin-top: 20px;
-  font-size: 26px;
+  margin-top: 1em;
+  font-size: 3em;
 }
 .show-hero__title {
-  margin-top: 20px;
+  margin-top: 0.2em;
   opacity: 0;
   transform: scale(1.2);
-  padding: 0 5px;
+  padding: 0 0.5em;
   mix-blend-mode: difference;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -851,12 +851,12 @@ ol {
   color: #ffffff;
   text-shadow: 4px 2px 2px #bebebe;
   white-space: wrap;
-  font-size: 75px;
+  font-size: 7.5em;
 }
 .show-hero__video {
   transform: scale(1.2);
   opacity: 0;
-  filter: drop-shadow(15px 10px 15px #000000);
+  filter: drop-shadow(1.5em 1em 1.5em #000000);
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -868,32 +868,23 @@ ol {
   pointer-events: none;
   position: relative;
 }
-.show-hero__video::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  background-color: #fff;
-}
 .show-hero .buttons-bar {
-  margin-bottom: 20px;
+  font-size: 1em;
+  margin-bottom: 2em;
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 0;
   opacity: 0;
-  transform: translateY(70px);
+  transform: translateY(7em);
 }
 .show-hero .buttons-bar .button {
   cursor: pointer;
-  height: 50px;
-  font-size: 24px;
+  height: 2em;
+  font-size: 2.4em;
   font-weight: 600;
 }
 .show-hero .buttons-bar .button-accept {
-  border-bottom-left-radius: 16px;
   width: 50%;
   background-color: #808080;
   color: rgb(0, 0, 0);
@@ -901,7 +892,7 @@ ol {
 .show-hero .buttons-bar .button-retry {
   transition: 0.3s ease;
   width: 75%;
-  border-radius: 16px;
+  border-radius: 0.65em;
   border: 3px solid #000;
   background-color: transparent;
   color: rgb(0, 0, 0);
@@ -1310,7 +1301,7 @@ ol {
   background-color: rgba(94, 94, 94, 0.5);
 }
 .portraits-list__main-title {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.5);
   font-family: "Open Sans";
   font-size: 1.5em;
 }
@@ -2225,6 +2216,9 @@ ol {
   }
   .window__pointer {
     font-size: 13px;
+  }
+  .show-hero {
+    font-size: 16px;
   }
   .whats-new {
     font-size: 14px;

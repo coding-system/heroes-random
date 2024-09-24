@@ -261,7 +261,7 @@ function renderPortraits(heroes) {
 
    loadMyBansButton.addEventListener('click', () => {
       loadMyBansFromLocalStorage()
-      updatePortraits(startHeroes)
+      updatePortraits(heroes)
       lightSpark.classList.add("yellow-light-spark");
       setTimeout(() => lightSpark.classList.remove("yellow-light-spark"), 500);
    })
