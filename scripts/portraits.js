@@ -95,74 +95,31 @@ function updateAllHeroes(heroes, selectAll = true) {
 }
 
 function updatePortraits(heroes) {
-   // Очищаем списки перед добавлением новых элементов
-   portraitsstrengthList.innerHTML = "";
-   portraitsagilityList.innerHTML = "";
-   portraitsintelligenceList.innerHTML = "";
-   portraitsuniversalList.innerHTML = "";
-
+   // Проходимся по массиву героев и обновляем только отображение
    heroes.forEach((hero) => {
-      const cardPortraitItem = cardPortraitTemplate.cloneNode(true); // Клонируем шаблон для каждого героя
-      const cardPortraitImage = cardPortraitItem.querySelector(
-         ".card-portrait-image-content"
-      );
-      const cardPortraitHoverVideo = cardPortraitItem.querySelector(
-         ".card-portrait-video-content"
-      );
-      const cardPortraitButton = cardPortraitItem.querySelector(
-         ".card-portrait-item"
-      );
-      const cardPortraitHoverName = cardPortraitItem.querySelector(
-         ".card-portrait-video-name"
-      );
-      const cardBanned = cardPortraitItem.querySelector(".banned-overlay");
-      const videoBanned = cardPortraitItem.querySelector(
-         ".video-banned-overlay"
-      );
-      const cardLine = cardPortraitItem.querySelector(".line");
-
-      const heroName = hero.image.replace(".jpg", "");
-
-      const videoSrc = `./assets/heroes/portraits/npc_dota_hero_${heroName}.webm`;
-
-      cardPortraitImage.src = `./assets/heroes/pictures/npc_dota_hero_${heroName}.jpg`;
-      cardPortraitHoverVideo.src = videoSrc;
-      cardPortraitHoverName.textContent = hero.name;
-
-      cardPortraitButton.addEventListener("mouseenter", () => {
-         cardPortraitHoverVideo.play();
-      });
-
-      cardPortraitButton.addEventListener("mouseleave", () => {
-         cardPortraitHoverVideo.pause();
-      });
-
-      // Обновляем отображение стилей в зависимости от состояния hero.selected
-      updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
-
-      // Обработчик клика на элемент видео для переключения состояния героя
-      cardPortraitButton.addEventListener("click", () => {
+     // Ищем элемент карточки по уникальному идентификатору героя, например по имени
+     const heroCard = document.querySelector(`.card-portrait-item[data-hero-name="${hero.name}"]`);
+ 
+     if (heroCard) {
+       const cardBanned = heroCard.querySelector(".banned-overlay");
+       const videoBanned = heroCard.querySelector(".video-banned-overlay");
+       const cardLine = heroCard.querySelector(".line");
+ 
+       // Обновляем отображение стилей в зависимости от состояния hero.selected
+       updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
+ 
+       // Удаляем существующий обработчик и добавляем новый для обновления selected
+       heroCard.removeEventListener("click", heroCard._clickHandler); // Удаление старого обработчика
+       heroCard._clickHandler = () => {
+         // Обработчик клика на элемент для переключения состояния selected
          hero.selected = !hero.selected;
          updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
          console.log(`${hero.name} => ${hero.selected}`);
-      });
-
-      switch (hero.attribute) {
-         case "strength":
-            portraitsstrengthList.appendChild(cardPortraitItem);
-            break;
-         case "agility":
-            portraitsagilityList.appendChild(cardPortraitItem);
-            break;
-         case "intelligence":
-            portraitsintelligenceList.appendChild(cardPortraitItem);
-            break;
-         case "universal":
-            portraitsuniversalList.appendChild(cardPortraitItem);
-            break;
-      }
+       };
+       heroCard.addEventListener("click", heroCard._clickHandler); // Назначение нового обработчика
+     }
    });
-}
+ }
 
 function renderPortraits(heroes) {
    // Очищаем списки перед добавлением новых элементов
@@ -198,6 +155,7 @@ function renderPortraits(heroes) {
       cardPortraitImage.src = `./assets/heroes/pictures/npc_dota_hero_${heroName}.jpg`;
       cardPortraitHoverVideo.src = videoSrc;
       cardPortraitHoverName.textContent = hero.name;
+      cardPortraitButton.setAttribute('data-hero-name', hero.name);
 
       cardPortraitButton.addEventListener("mouseenter", () => {
          cardPortraitHoverVideo.play();
