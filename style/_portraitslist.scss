@@ -71,6 +71,7 @@
       // background-color: #464646;
    }
    &__search {
+      z-index: 0;
       min-height: 100%;
       padding-left: 0.25em;
       width: 700px;
@@ -88,7 +89,7 @@
    }
    &__search-data {
       text-transform: uppercase;
-      opacity: 0;
+      opacity: 1;
       pointer-events: none;
       display: block;
       position: absolute;
@@ -98,13 +99,15 @@
       font-size: 12em;
       z-index: 4;
       &_animated {
-         opacity: 1;
          animation-name: goes-out;
          animation-duration: 3s;
          animation-iteration-count: 1;
          animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
          animation-direction: normal;
          transform-origin: center; /* Определяем точку трансформации */
+      }
+      &_visible {
+         opacity: 1;
       }
    }
    .buttons-bar {
@@ -119,6 +122,7 @@
       justify-content: space-between;
       // gap: 30px;
       &__group {
+         
          display: flex;
          gap: 1em;
       }
@@ -434,7 +438,7 @@
    transform-origin: center; /* Определяем точку трансформации */
 }
 .unserched {
-   filter: grayscale(1);
+   filter: contrast(0.8) grayscale(1) brightness(0.5);
 }
 
 .serched {

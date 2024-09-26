@@ -168,7 +168,7 @@ function addHeroAlternativeNames(heroName) {
          secondName = "Salo";
          break;
       case "Antimage":
-         secondName = "AM";
+         secondName = "AM Magina";
          break;
       case "Morphling":
          secondName = "Morf Morfling";
@@ -191,6 +191,9 @@ function addHeroAlternativeNames(heroName) {
       case "Winter Wyvern":
          secondName = "Wiwern Wivern";
          break;
+      case "Abaddon":
+         secondName = "Abbadon Abbaddon Abadon";
+         break;
       // Добавьте другие альтернативные имена по необходимости
       default:
          secondName = ""; // Если нет альтернативного имени
@@ -200,12 +203,17 @@ function addHeroAlternativeNames(heroName) {
 }
 
 function runAnimation() {
-   inputElementData.classList.add("portraits-list__search-data_animated");
+   inputElementData.classList.add("portraits-list__search-data_visible");
    console.log("Класс анимации добавлен");
    setTimeout(() => {
-      inputElementData.classList.remove("portraits-list__search-data_animated");
+      inputElementData.classList.add("portraits-list__search-data_animated");
       console.log("Класс анимации удален");
-   }, 3000);
+   }, 1000);
+}
+
+function stopAnimation() {
+   inputElementData.classList.remove("portraits-list__search-data_visible");
+   inputElementData.classList.remove("portraits-list__search-data_animated");
 }
 
 function renderPortraits(heroes) {
@@ -394,8 +402,6 @@ function searchHeroes() {
    console.log("Найденные герои:", foundHeroes);
    console.log("SearchTerm", searchTerm);
 }
-
-
 
 // Функция для обработки нажатия клавиш
 function handleKeydown(event) {
