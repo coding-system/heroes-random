@@ -373,6 +373,7 @@
    height: 100%;
    overflow: hidden;
    border-radius: inherit;
+   filter: grayscale(0.2);
 }
 .card-portrait-image-content {
    transform: scaleX(1.33);
@@ -442,5 +443,9 @@
 }
 
 .serched {
+   filter: grayscale(0);
+}
+
+.card-portrait-item.serched > .card-portrait-image-box {
    filter: grayscale(0);
 }
