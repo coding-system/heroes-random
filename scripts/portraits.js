@@ -97,29 +97,31 @@ function updateAllHeroes(heroes, selectAll = true) {
 function updatePortraits(heroes) {
    // Проходимся по массиву героев и обновляем только отображение
    heroes.forEach((hero) => {
-     // Ищем элемент карточки по уникальному идентификатору героя, например по имени
-     const heroCard = document.querySelector(`.card-portrait-item[data-hero-name="${hero.name}"]`);
- 
-     if (heroCard) {
-       const cardBanned = heroCard.querySelector(".banned-overlay");
-       const videoBanned = heroCard.querySelector(".video-banned-overlay");
-       const cardLine = heroCard.querySelector(".line");
- 
-       // Обновляем отображение стилей в зависимости от состояния hero.selected
-       updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
- 
-       // Удаляем существующий обработчик и добавляем новый для обновления selected
-       heroCard.removeEventListener("click", heroCard._clickHandler); // Удаление старого обработчика
-       heroCard._clickHandler = () => {
-         // Обработчик клика на элемент для переключения состояния selected
-         hero.selected = !hero.selected;
+      // Ищем элемент карточки по уникальному идентификатору героя, например по имени
+      const heroCard = document.querySelector(
+         `.card-portrait-item[data-hero-name="${hero.name}"]`
+      );
+
+      if (heroCard) {
+         const cardBanned = heroCard.querySelector(".banned-overlay");
+         const videoBanned = heroCard.querySelector(".video-banned-overlay");
+         const cardLine = heroCard.querySelector(".line");
+
+         // Обновляем отображение стилей в зависимости от состояния hero.selected
          updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
-         console.log(`${hero.name} => ${hero.selected}`);
-       };
-       heroCard.addEventListener("click", heroCard._clickHandler); // Назначение нового обработчика
-     }
+
+         // Удаляем существующий обработчик и добавляем новый для обновления selected
+         heroCard.removeEventListener("click", heroCard._clickHandler); // Удаление старого обработчика
+         heroCard._clickHandler = () => {
+            // Обработчик клика на элемент для переключения состояния selected
+            hero.selected = !hero.selected;
+            updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
+            console.log(`${hero.name} => ${hero.selected}`);
+         };
+         heroCard.addEventListener("click", heroCard._clickHandler); // Назначение нового обработчика
+      }
    });
- }
+}
 
 function renderPortraits(heroes) {
    // Очищаем списки перед добавлением новых элементов
@@ -155,7 +157,7 @@ function renderPortraits(heroes) {
       cardPortraitImage.src = `./assets/heroes/pictures/npc_dota_hero_${heroName}.jpg`;
       cardPortraitHoverVideo.src = videoSrc;
       cardPortraitHoverName.textContent = hero.name;
-      cardPortraitButton.setAttribute('data-hero-name', hero.name);
+      cardPortraitButton.setAttribute("data-hero-name", hero.name);
 
       cardPortraitButton.addEventListener("mouseenter", () => {
          cardPortraitHoverVideo.play();
@@ -211,18 +213,99 @@ function renderPortraits(heroes) {
       setTimeout(() => lightSpark.classList.remove("red-light-spark"), 500);
    });
 
-   saveMyBansButton.addEventListener('click', () => {
-      saveMyBansToLocalStorage()
+   saveMyBansButton.addEventListener("click", () => {
+      saveMyBansToLocalStorage();
       lightSpark.classList.add("blue-light-spark");
       setTimeout(() => lightSpark.classList.remove("blue-light-spark"), 500);
-   })
+   });
 
-   loadMyBansButton.addEventListener('click', () => {
-      loadMyBansFromLocalStorage()
-      updatePortraits(heroes)
+   loadMyBansButton.addEventListener("click", () => {
+      loadMyBansFromLocalStorage();
+      updatePortraits(heroes);
       lightSpark.classList.add("yellow-light-spark");
       setTimeout(() => lightSpark.classList.remove("yellow-light-spark"), 500);
-   })
+   });
 }
 
-export { renderPortraits, updateHeroDisplay, updateAllHeroes };
+const inputElement = document.querySelector(".portraits-list__search");
+const overlayElement = document.querySelector(".overlayz");
+
+// Функция для поиска героев
+function searchHeroes() {
+   const searchTerm = inputElement.value.trim().toLowerCase();
+
+   // Если введен хотя бы один символ, показываем overlayz
+   if (searchTerm.length > 0) {
+      overlayElement.style.opacity = "1";
+      overlayElement.style.display = "block";
+   } else {
+      overlayElement.style.opacity = "0";
+      overlayElement.style.display = "none";
+   }
+
+   // Получаем все элементы .card-portrait-item
+   const heroItems = document.querySelectorAll(".card-portrait-item");
+
+   // Переменная для хранения найденных героев
+   let foundHeroes = [];
+
+   // Проходим по всем карточкам героев
+   heroItems.forEach((item) => {
+      // Получаем имя героя из атрибута data-hero-name
+      const heroName = item.getAttribute("data-hero-name")?.trim().toLowerCase() || "";
+
+      // Проверяем на соответствие фрагменту имени
+      const matchesName = heroName.includes(searchTerm);
+
+      // Проверяем на соответствие первым буквам каждого слова
+      const initialsMatch = heroName.split(" ")
+         .map(word => word.charAt(0).toLowerCase()) // Получаем первую букву каждого слова
+         .join("") // Объединяем их в строку
+         .includes(searchTerm); // Проверяем, содержится ли искомая строка
+
+      // Если имя героя содержит введенный фрагмент
+      if (matchesName || initialsMatch) {
+         item.classList.add("serched");
+         item.classList.remove("unserched");
+         foundHeroes.push(heroName); // Добавляем найденного героя в массив
+      } else {
+         item.classList.add("unserched");
+         item.classList.remove("serched");
+      }
+
+      // if (heroName.includes(searchTerm)) {
+      //    item.classList.add("serched");
+      //    item.classList.remove("unserched");
+      //    foundHeroes.push(heroName); // Добавляем найденного героя в массив
+      // } else {
+      //    item.classList.add("unserched");
+      //    item.classList.remove("serched");
+      // }
+   });
+
+   // Выводим в консоль список найденных героев
+   console.log("Найденные герои:", foundHeroes);
+   console.log("SearchTerm", searchTerm);
+}
+
+// Функция для обработки нажатия клавиш
+function handleKeydown(event) {
+   // Проверяем, является ли нажатая клавиша буквой (a-z, A-Z) или Backspace
+   if (event.key.length === 1 && event.key.match(/[a-zA-Zа-яА-Я]/)) {
+     event.preventDefault(); // Останавливаем стандартное поведение ввода
+     inputElement.value += event.key; // Добавляем символ в инпут
+     inputElement.dispatchEvent(new Event('input')); // Принудительно вызываем событие 'input'
+   } else if (event.key === 'Backspace') {
+     event.preventDefault(); // Останавливаем стандартное поведение
+     inputElement.value = inputElement.value.slice(0, -1); // Удаляем последний символ из инпута
+     inputElement.dispatchEvent(new Event('input')); // Принудительно вызываем событие 'input'
+   }
+ }
+ 
+ // Навешиваем обработчик нажатия клавиш на документ
+ document.addEventListener('keydown', handleKeydown);
+
+// Навешиваем событие на инпут для отслеживания изменений
+inputElement.addEventListener("input", searchHeroes);
+
+export { renderPortraits, updateHeroDisplay, updateAllHeroes, inputElement, searchHeroes  };

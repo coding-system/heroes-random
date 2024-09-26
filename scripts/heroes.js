@@ -196,7 +196,7 @@ export const initialHeroes = [
       selected: true,
    },
    {
-      name: "Drow Danger",
+      name: "Drow Ranger",
       image: "drow_ranger.jpg",
       id: 29,
       attribute: "agility",

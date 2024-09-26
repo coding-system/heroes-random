@@ -1,4 +1,5 @@
 import { portraitsList, saveStartHeroesToLocalStorage } from "../index.js";
+import { inputElement, searchHeroes } from "./portraits.js";
 
 // Функция для открытия попапа
 function openPopup(popup) {
@@ -14,6 +15,13 @@ function closePopup(popup) {
    // Проверяем, если закрываемый попап — это portraitsList
    if (popup === portraitsList) {
       saveStartHeroesToLocalStorage(); // Сохраняем массив startHeroes в localStorage
+
+      // Очищаем инпут
+      inputElement.value = ""; // Очищаем значение инпута
+
+      // Вызываем searchHeroes для обновления состояния
+      setTimeout(() => searchHeroes(), 300);
+      // searchHeroes(); // Обновляем состояния overlayz
    }
 }
 

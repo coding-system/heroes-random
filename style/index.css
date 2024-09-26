@@ -1350,17 +1350,33 @@ ol {
   grid-template-rows: repeat(auto, 1fr);
 }
 .portraits-list__search {
+  padding-left: 0.25em;
   width: 700px;
-  background: none;
-  border: 0.1em solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.3294117647);
   border-radius: 0.5em;
   outline: none;
+  font-size: 1em;
+  letter-spacing: 0;
+  text-transform: uppercase;
 }
 .portraits-list__search::-moz-placeholder {
+  text-align: center;
   color: rgba(255, 255, 255, 0.5);
 }
 .portraits-list__search::placeholder {
+  text-align: center;
   color: rgba(255, 255, 255, 0.5);
+}
+.portraits-list__search-data {
+  opacity: 1;
+  pointer-events: none;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10em;
+  z-index: 4;
 }
 .portraits-list .buttons-bar {
   font-size: 1.8em;
@@ -1374,7 +1390,7 @@ ol {
 }
 .portraits-list .buttons-bar__group {
   display: flex;
-  gap: 2em;
+  gap: 1em;
 }
 .portraits-list .buttons-bar .button {
   color: #c5c5c5;
@@ -1434,6 +1450,20 @@ ol {
   border: 2px solid #ff0000;
 }
 
+.overlayz {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: inherit;
+  z-index: 3;
+}
+
 .card-portrait-item {
   border-radius: 0.3em;
   position: relative;
@@ -1446,9 +1476,12 @@ ol {
   width: 6em;
   aspect-ratio: 0.588;
 }
+.card-portrait-item:hover {
+  filter: grayscale(0); /* Убираем фильтр при наведении */
+  z-index: 3; /* Увеличиваем z-index при наведении */
+}
 .card-portrait-item:hover .card-portrait-video-box {
   transition: transform 0.1s ease, opacity 0.1s ease;
-  pointer-events: all;
   z-index: 3;
   opacity: 1;
   transform: scale(1);
@@ -1625,6 +1658,14 @@ ol {
   animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
   animation-direction: normal;
   transform-origin: center; /* Определяем точку трансформации */
+}
+
+.unserched {
+  filter: grayscale(1);
+}
+
+.serched {
+  filter: grayscale(0);
 }
 
 .go-last {
