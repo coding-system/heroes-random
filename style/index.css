@@ -1284,6 +1284,20 @@ ol {
     opacity: 1;
   }
 }
+@keyframes goes-out {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  33% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(0.2em);
+  }
+}
 .portraits-list {
   font-size: 10px;
   padding: 1.6em;
@@ -1350,6 +1364,7 @@ ol {
   grid-template-rows: repeat(auto, 1fr);
 }
 .portraits-list__search {
+  min-height: 100%;
   padding-left: 0.25em;
   width: 700px;
   background-color: rgba(0, 0, 0, 0.3294117647);
@@ -1368,15 +1383,25 @@ ol {
   color: rgba(255, 255, 255, 0.5);
 }
 .portraits-list__search-data {
-  opacity: 1;
+  text-transform: uppercase;
+  opacity: 0;
   pointer-events: none;
   display: block;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10em;
+  font-size: 12em;
   z-index: 4;
+}
+.portraits-list__search-data_animated {
+  opacity: 1;
+  animation-name: goes-out;
+  animation-duration: 3s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  animation-direction: normal;
+  transform-origin: center; /* Определяем точку трансформации */
 }
 .portraits-list .buttons-bar {
   font-size: 1.8em;
@@ -1461,10 +1486,14 @@ ol {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: inherit;
-  z-index: 3;
+  z-index: 0;
+  transition: 0.3s ease;
 }
 
 .card-portrait-item {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   border-radius: 0.3em;
   position: relative;
   transform-origin: center;

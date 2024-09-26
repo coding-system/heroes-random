@@ -57,3 +57,18 @@
        opacity: 1;
    }
 }
+
+@keyframes goes-out {
+   0% {
+       opacity: 1;
+       filter: blur(0);
+   }
+   33% {
+      opacity: 1;
+      filter: blur(0);
+  }
+   100% {
+       opacity: 0;
+       filter: blur(0.2em);
+   }
+}
