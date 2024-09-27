@@ -1,5 +1,5 @@
 import { portraitsList, saveStartHeroesToLocalStorage } from "../index.js";
-import { inputElement, searchHeroes } from "./portraits.js";
+import { inputElement, searchHeroes, resetSearch, overlayElement } from "./portraits.js";
 
 // Функция для открытия попапа
 function openPopup(popup) {
@@ -20,7 +20,7 @@ function closePopup(popup) {
       inputElement.value = ""; // Очищаем значение инпута
 
       // Вызываем searchHeroes для обновления состояния
-      setTimeout(() => searchHeroes(), 300);
+      setTimeout(() => resetSearch(), 300);
       // searchHeroes(); // Обновляем состояния overlayz
    }
 }
@@ -36,11 +36,19 @@ function closePopup(popup) {
 // }
 
 // Закрытие попапа по нажатию на клавишу Esc
+// Обработчик нажатия клавиши Esc
 function handleEscKey(event) {
    if (event.key === "Escape") {
-      const openedPopup = document.querySelector(".popup_is-opened");
-      if (openedPopup) {
-         closePopup(openedPopup);
+      // Проверяем, активен ли оверлей
+      if (overlayElement.style.display === "block") {
+         // Если активен, сбрасываем поиск, но не закрываем попап
+         resetSearch();
+      } else {
+         // Если оверлей не активен, закрываем попап
+         const openedPopup = document.querySelector(".popup_is-opened");
+         if (openedPopup) {
+            closePopup(openedPopup);
+         }
       }
    }
 }
