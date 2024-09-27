@@ -84,7 +84,7 @@ export function showGoLastResult(randIndex, yesValue) {
 
    // Устанавливаем цвет результата
    if (randIndex <= yesValue) {
-      resultText.textContent = "YES";
+      resultText.textContent = "ДА";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
          resultText.style.opacity = "1";
@@ -97,7 +97,7 @@ export function showGoLastResult(randIndex, yesValue) {
       }, 3000);
          
    } else {
-      resultText.textContent = "NO";
+      resultText.textContent = "НЕТ";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
          resultText.style.opacity = "1";

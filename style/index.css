@@ -1793,7 +1793,7 @@ ol {
 }
 .go-last__result {
   z-index: 3;
-  max-height: 1em;
+  max-height: 1.1em;
   text-align: center;
   display: flex;
   flex-direction: column;
