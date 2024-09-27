@@ -1314,6 +1314,26 @@ ol {
     transform: translatex(0);
   }
 }
+@keyframes go-last-change-text {
+  0% {
+    opacity: 0;
+    transform: translateY(1em);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes go-last-change-number {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(1em);
+  }
+}
 .portraits-list {
   font-size: 10px;
   padding: 1.6em;
@@ -1776,17 +1796,47 @@ ol {
   transition: 0.1s ease;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
-  font-size: 180px;
   font-weight: 700;
   font-family: "Roboto";
   color: rgb(0, 0, 0);
+  font-size: 18em;
 }
-.go-last__result span {
-  display: inline-block;
-  transition: 1s ease;
+.go-last__result_text {
+  transition: 0.5s ease;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(89, 0, 255);
+}
+.go-last__result_text_animated {
+  color: red;
+  animation-name: go-last-change-text;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  animation-direction: normal;
+  transform-origin: center; /* Определяем точку трансформации */
+}
+.go-last__result_number {
+  text-align: center;
+  transition: 0.5s ease;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(174, 152, 214);
+}
+.go-last__result_number_animated {
+  animation-name: go-last-change-number;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+  animation-direction: normal;
+  transform-origin: center; /* Определяем точку трансформации */
 }
 .go-last__button {
   padding: 0.2em;
