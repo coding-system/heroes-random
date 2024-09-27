@@ -12,7 +12,9 @@ import {
    currentLastHeroes,
    songChangerStatus,
    chooseButton,
-   chooseButtonText
+   chooseButtonText,
+   btnTop,
+   btnBottom
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -24,9 +26,34 @@ import { lastHeroes } from "./lastheroes.js";
 export let currentSelectableHeroes = []; // Глобальная переменная
 export let chosenIndex;
 
+function disableChooseButton() {
+   chooseButton.disabled = true;
+   chooseButtonText.textContent = "ROLLING";
+
+   btnTop.style.setProperty("--color1", "#919191"); // Новый первый цвет
+   btnTop.style.setProperty("--color2", "#707070"); // Новый второй цвет
+   btnBottom.style.setProperty("--color3", "#3c3c3c"); // Новый второй цвет
+}
+
+function enableChooseButton() {
+   chooseButton.disabled = false;
+   chooseButtonText.textContent = "ROLL";
+
+   btnTop.style.setProperty("--color1", "#cd3f64"); // Новый первый цвет
+   btnTop.style.setProperty("--color2", "#9d3656"); // Новый второй цвет
+   btnBottom.style.setProperty("--color3", "#803"); // Новый второй цвет
+}
+
 function getRandomElement(heroesArray) {
-   chooseButton.disabled = true
-   chooseButtonText.textContent = "ROLLING"
+   disableChooseButton()
+   // chooseButton.disabled = true;
+   // chooseButtonText.textContent = "ROLLING";
+   // // Находим элемент, у которого нужно изменить псевдоэлемент ::after
+   // const btnTop = document.querySelector(".btn-top");
+
+   // // Изменяем значения переменных
+   // btnTop.style.setProperty("--color1", "#919191"); // Новый первый цвет
+   // btnTop.style.setProperty("--color2", "#707070"); // Новый второй цвет
    stopAudio();
    const selectableHeroes = heroesArray.filter((hero) => hero.selected);
 
@@ -70,8 +97,7 @@ function getRandomElement(heroesArray) {
    setTimeout(() => saveLastHeroesToLocalStorage(), 7500);
    setTimeout(() => saveStartHeroesToLocalStorage(), 7500);
 
-   setTimeout(() => chooseButton.disabled = false, 5750);
-   setTimeout(() => chooseButtonText.textContent = "ROLL", 5750);
+   setTimeout(() => enableChooseButton(), 7000);
 }
 
 function playAudio() {

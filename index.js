@@ -19,6 +19,8 @@ const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
 let songChangerStatus
 // let startHeroes;
 
+
+
 // Help
 const helpBox = document.querySelector(".help");
 
@@ -95,6 +97,8 @@ const portraitsuniversalList = document.querySelector("#portraits-universal");
 
 // Кнопки
 const chooseButton = document.querySelector(".choose-button");
+const btnTop = document.querySelector(".btn-top");
+const btnBottom = document.querySelector(".btn-bottom");
 const chooseButtonText = document.querySelector(".btn-top-text");
 const resetButton = document.querySelector(".reset-button");
 
@@ -479,6 +483,8 @@ export {
    portraitsListBox,
    portraitsListGroup,
    chooseButton,
+   btnTop,
+   btnBottom,
    resetButton,
    heroАlgorithmChanger,
    heroesList,
