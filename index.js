@@ -95,6 +95,7 @@ const portraitsuniversalList = document.querySelector("#portraits-universal");
 
 // Кнопки
 const chooseButton = document.querySelector(".choose-button");
+const chooseButtonText = document.querySelector(".btn-top-text");
 const resetButton = document.querySelector(".reset-button");
 
 const heroАlgorithmChanger = document.querySelector(".changer-checkbox");
@@ -514,5 +515,6 @@ export {
    saveMyBansToLocalStorage,
    loadMyBansFromLocalStorage,
    currentLastHeroes,
-   songChangerStatus
+   songChangerStatus,
+   chooseButtonText
 };

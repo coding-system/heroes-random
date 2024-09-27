@@ -11,7 +11,8 @@ import {
    saveStartHeroesToLocalStorage,
    currentLastHeroes,
    songChangerStatus,
-   chooseButton
+   chooseButton,
+   chooseButtonText
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -25,6 +26,7 @@ export let chosenIndex;
 
 function getRandomElement(heroesArray) {
    chooseButton.disabled = true
+   chooseButtonText.textContent = "ROLLING"
    stopAudio();
    const selectableHeroes = heroesArray.filter((hero) => hero.selected);
 
@@ -69,6 +71,7 @@ function getRandomElement(heroesArray) {
    setTimeout(() => saveStartHeroesToLocalStorage(), 7500);
 
    setTimeout(() => chooseButton.disabled = false, 5750);
+   setTimeout(() => chooseButtonText.textContent = "ROLL", 5750);
 }
 
 function playAudio() {
