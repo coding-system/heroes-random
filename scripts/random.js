@@ -10,7 +10,8 @@ import {
    saveLastHeroesToLocalStorage,
    saveStartHeroesToLocalStorage,
    currentLastHeroes,
-   songChangerStatus
+   songChangerStatus,
+   chooseButton
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
@@ -23,6 +24,7 @@ export let currentSelectableHeroes = []; // Глобальная перемен�
 export let chosenIndex;
 
 function getRandomElement(heroesArray) {
+   chooseButton.disabled = true
    stopAudio();
    const selectableHeroes = heroesArray.filter((hero) => hero.selected);
 
@@ -65,6 +67,8 @@ function getRandomElement(heroesArray) {
    // console.log(currentLastHeroes);
    setTimeout(() => saveLastHeroesToLocalStorage(), 7500);
    setTimeout(() => saveStartHeroesToLocalStorage(), 7500);
+
+   setTimeout(() => chooseButton.disabled = false, 5750);
 }
 
 function playAudio() {

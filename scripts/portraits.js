@@ -13,6 +13,8 @@ import {
    startHeroes,
 } from "../index.js";
 
+import {keyMapping} from './keymap.js'
+
 // document.addEventListener("DOMContentLoaded", function () {
 //    heroesListButton.addEventListener("click", function () {
 //       heroesList.classList.add("popup_is-opened");
@@ -340,8 +342,8 @@ function activateSearchOverlay() {
 
    // Если введен хотя бы один символ, показываем overlay
    if (searchTerm.length > 0) {
+      // overlayElement.style.display = "block";
       overlayElement.style.opacity = "1";
-      overlayElement.style.display = "block";
    }
 
    // Выполняем поиск героев
@@ -350,8 +352,8 @@ function activateSearchOverlay() {
 
 // Функция для отключения оверлея и сброса стилей
 function deactivateSearchOverlay() {
+   // overlayElement.style.display = "none";
    overlayElement.style.opacity = "0";
-   overlayElement.style.display = "none";
    
    // Сброс всех классов героев
    const heroItems = document.querySelectorAll(".card-portrait-item");
@@ -410,17 +412,24 @@ function searchHeroes() {
    console.log("SearchTerm", searchTerm);
 }
 
+function convertToLatin(char) {
+   return keyMapping[char] || char; // Возвращаем соответствующий символ или сам символ, если нет соответствия
+}
+
 // Функция для обработки нажатия клавиш
 function handleKeydown(event) {
-   // Проверяем, является ли нажатая клавиша буквой (a-z, A-Z) или Backspace
+   const inputElement = document.querySelector('.portraits-list__search'); // Замените на свой селектор
+   // Проверяем, является ли нажатая клавиша буквой (a-z, A-Z, кириллица) или Backspace
    if (event.key.length === 1 && event.key.match(/[a-zA-Zа-яА-Я]/)) {
-      event.preventDefault(); // Останавливаем стандартное поведение ввода
-      inputElement.value += event.key; // Добавляем символ в инпут
-      inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
+       event.preventDefault(); // Останавливаем стандартное поведение ввода
+       
+       const latinChar = convertToLatin(event.key); // Заменяем символ
+       inputElement.value += latinChar; // Добавляем символ в инпут
+       inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
    } else if (event.key === "Backspace") {
-      event.preventDefault(); // Останавливаем стандартное поведение
-      inputElement.value = inputElement.value.slice(0, -1); // Удаляем последний символ из инпута
-      inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
+       event.preventDefault(); // Останавливаем стандартное поведение
+       inputElement.value = inputElement.value.slice(0, -1); // Удаляем последний символ из инпута
+       inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
    }
 }
 
@@ -436,7 +445,7 @@ function resetSearch() {
 
 // Добавляем слушатель клика на оверлей
 portraitsListZ.addEventListener("click", () => {
-   if (overlayElement.style.display === "block") {
+   if (overlayElement.style.opacity === "1") {
       deactivateSearchOverlay();
       resetSearch()
    }
@@ -449,7 +458,7 @@ document.addEventListener("keydown", (event) => {
    // Проверяем, если нажата клавиша Esc
    if (event.key === "Enter") {
       // Если overlay отображен, то сбрасываем поиск
-      if (overlayElement.style.display === "block") {
+      if (overlayElement.style.opacity === "1") {
          resetSearch();
       }
    }

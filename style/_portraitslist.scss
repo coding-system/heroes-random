@@ -89,7 +89,7 @@
    }
    &__search-data {
       text-transform: uppercase;
-      opacity: 1;
+      opacity: 0.3;
       pointer-events: none;
       display: block;
       position: absolute;
@@ -218,7 +218,7 @@
 .overlayz {
    opacity: 0;
    pointer-events: none;
-   display: none;
+   display: block;
    position: absolute;
    top: 0;
    left: 0;
@@ -227,7 +227,7 @@
    background-color: rgba(0, 0, 0, 0.5);
    border-radius: inherit;
    z-index: 0;
-   transition: 0.3s ease;
+   transition: opacity 0.3s ease;
 }
 
 //// Template
@@ -278,7 +278,7 @@
       height: 100%;
       transition: opacity 0.3s ease;
       // box-shadow: inset 0 0 15px #ff0000;
-      filter: contrast(0.9) grayscale(0.4);
+      filter: contrast(0.9) grayscale(0.4) brightness(0.7);
       // filter: saturate(0);
    }
 

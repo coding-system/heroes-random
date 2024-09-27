@@ -40,7 +40,7 @@ function closePopup(popup) {
 function handleEscKey(event) {
    if (event.key === "Escape") {
       // Проверяем, активен ли оверлей
-      if (overlayElement.style.display === "block") {
+      if (overlayElement.style.opacity === "1") {
          // Если активен, сбрасываем поиск, но не закрываем попап
          resetSearch();
       } else {

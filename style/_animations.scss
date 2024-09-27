@@ -72,3 +72,21 @@
        filter: blur(0.2em);
    }
 }
+
+@keyframes bounce {
+   0% {
+      transform: translatex(-0.5rem);
+   }
+
+   10% {
+      transform: translatex(0.5rem);
+   }
+
+   20% {
+      transform: translatex(0);
+   }
+
+   100% {
+      transform: translatex(0);
+   }
+}
