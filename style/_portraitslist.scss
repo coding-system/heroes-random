@@ -122,7 +122,6 @@
       justify-content: space-between;
       // gap: 30px;
       &__group {
-         
          display: flex;
          gap: 1em;
       }
@@ -444,7 +443,22 @@
 
 .serched {
    filter: grayscale(0);
-   border: 0.1em solid #fff;
+   // border: 0.1em solid #fff;
+   &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-image: -webkit-linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+      background-image: -moz-linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+      background-image: -o-linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+      background-image: linear-gradient(0deg, #08aeea 0%, #2af598 100%);
+      width: calc(100% + 0.5em);
+      height: calc(100% + 0.5em);
+      transform: translate(-0.25em, -0.25em);
+      // z-index: 0;
+      border-radius: inherit;
+   }
 }
 
 .card-portrait-item.serched > .card-portrait-image-box {

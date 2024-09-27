@@ -1,9 +1,14 @@
 .go-last {
-   padding: 40px 15px;
-   width: 450px;
-   height: 300px;
-   background-color: #ffffff;
-   border-radius: 16px;
+   font-size: 10px;
+   padding: 4em 4em;
+   min-width: 55em;
+   // min-height: 35em;
+   background: rgb(51,51,51);
+background: -moz-linear-gradient(180deg, rgba(51,51,51,1) 0%, rgba(37,37,37,1) 100%);
+background: -webkit-linear-gradient(180deg, rgba(51,51,51,1) 0%, rgba(37,37,37,1) 100%);
+background: linear-gradient(180deg, rgba(51,51,51,1) 0%, rgba(37,37,37,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#333333",endColorstr="#252525",GradientType=1);
+   border-radius: 1.6em;
    &__form {
       width: 100%;
       height: 100%;
@@ -19,7 +24,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 2em;
    }
    &__range {
       accent-color: red;
@@ -40,9 +45,10 @@
       justify-content: center;
       align-items: center;
       gap: 3px;
-      font-size: 80px;
+      font-size: 180px;
+      font-weight: 700;
       font-family: "Roboto";
-      color: rgb(9, 255, 0);
+      color: rgb(0, 0, 0);
       & span {
          display: inline-block;
          transition: 1s ease;
@@ -51,16 +57,23 @@
    }
    
    &__button {
+      padding: 0.2em;
+      transition: 0.2s ease;
       font-family: "Roboto";
-      font-size: 28px;
+      font-size: 4em;
       letter-spacing: 0.1em;
-      border-radius: 3px;
-      width: 300px;
+      border-radius: 0.3em;
+      min-width: 100%;
+      // width: 12em;
       // height: 30px;
       background-color: #000;
       cursor: pointer;
       &:hover {
          background-color: #474747;
+      }
+      &:active {
+         background-color: #9c9c9c;
+         color: #000;
       }
    }
 }
@@ -74,46 +87,50 @@
 }
 
 .chanses-box {
-   width: 100%;
+   // width: 100%;
    display: flex;
    justify-content: center;
 }
 
 .chanses-box-item {
-   min-width: 70px;
-   max-width: 70px;
+   padding: 1em 3em;
+   // min-width: 7em;
+   // max-width: 3em;
    height: 100%;
-   aspect-ratio: 1;
+   // aspect-ratio: 1;
    display: flex;
    justify-content: center;
    align-items: center;
    flex-direction: column;
    background-color: #e9c3c3;
-   padding: 10px;
+   
+   // padding: 10px;
 
-   &:nth-child(even) {
-      background-color: #8b2424;
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 10px;
+   &:nth-child(even) { 
+      background-color: #df4545;
+      border-top-right-radius: 2em;
+      border-bottom-right-radius: 2em;
    }
    &:nth-child(odd) {
-      background-color: #53a33a;
-      border-bottom-left-radius: 10px;
-      border-top-left-radius: 10px;
+      background-color: #57be38;
+      border-bottom-left-radius: 2em;
+      border-top-left-radius: 2em;
    }
 }
 
 .chanses-box-text {
    font-family: "Roboto";
    font-weight: 500;
-   font-size: 18px;
+   font-size: 2.2em;
    color: rgb(0, 0, 0);
 }
 
 .chanses-box-content {
+   text-align: center;
+   min-width: 3em;
    font-family: "Roboto";
    font-weight: 500;
-   font-size: 28px;
+   font-size: 3.8em;
 }
 
 .chanses-box-yes {
@@ -128,8 +145,8 @@
    appearance: none;
    -webkit-appearance: none;
    width: 100%;
-   height: 18px;
-   border-radius: 9px;
+   height: 2em;
+   border-radius: 1em;
    background: linear-gradient(to right, green 50%, red 50%);
    outline: none;
    position: relative;
@@ -138,12 +155,12 @@
 .go-last__range-slider::-webkit-slider-thumb {
    -webkit-appearance: none;
    appearance: none;
-   width: 20px;
-   height: 30px;
+   width: 2em;
+   height: 3em;
    background-color: #bebebe;
-   // border: 2px solid #000;
-   border-radius: 5px;
-   box-shadow: inset 0 0 5px #000000a2;
+   border: 0.2em solid #e4e4e42f;
+   border-radius: 0.5em;
+   box-shadow: inset 0 0 1em #000000a2;
    cursor: pointer;
    position: relative;
 }
@@ -184,11 +201,12 @@
 // }
 
 .go-last__range-slider::-moz-range-thumb {
-   width: 30px;
-   height: 30px;
-   background-color: #fff;
-   border: 2px solid #000;
-   border-radius: 50%;
+   width: 2em;
+   height: 3em;
+   background-color: #bebebe;
+   border: 0.2em solid #e4e4e42f;
+   border-radius: 0.5em;
+   box-shadow: inset 0 0 1em #000000a2;
    cursor: pointer;
    position: relative;
 }

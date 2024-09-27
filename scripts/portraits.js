@@ -13,7 +13,7 @@ import {
    startHeroes,
 } from "../index.js";
 
-import {keyMapping} from './keymap.js'
+import { keyMapping } from "./keymap.js";
 
 // document.addEventListener("DOMContentLoaded", function () {
 //    heroesListButton.addEventListener("click", function () {
@@ -198,6 +198,9 @@ function addHeroAlternativeNames(heroName) {
       case "Abaddon":
          secondName = "Abbadon Abbaddon Abadon";
          break;
+      case "Queen of pain":
+         secondName = "Akasha";
+         break;
       // Добавьте другие альтернативные имена по необходимости
       default:
          secondName = ""; // Если нет альтернативного имени
@@ -354,13 +357,13 @@ function activateSearchOverlay() {
 function deactivateSearchOverlay() {
    // overlayElement.style.display = "none";
    overlayElement.style.opacity = "0";
-   
+
    // Сброс всех классов героев
    const heroItems = document.querySelectorAll(".card-portrait-item");
    heroItems.forEach((item) => {
       item.classList.remove("serched", "unserched");
    });
-   
+
    // Очищаем содержимое инпута для поиска
    inputElementData.textContent = "";
 }
@@ -418,18 +421,18 @@ function convertToLatin(char) {
 
 // Функция для обработки нажатия клавиш
 function handleKeydown(event) {
-   const inputElement = document.querySelector('.portraits-list__search'); // Замените на свой селектор
+   const inputElement = document.querySelector(".portraits-list__search"); // Замените на свой селектор
    // Проверяем, является ли нажатая клавиша буквой (a-z, A-Z, кириллица) или Backspace
    if (event.key.length === 1 && event.key.match(/[a-zA-Zа-яА-Я]/)) {
-       event.preventDefault(); // Останавливаем стандартное поведение ввода
-       
-       const latinChar = convertToLatin(event.key); // Заменяем символ
-       inputElement.value += latinChar; // Добавляем символ в инпут
-       inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
+      event.preventDefault(); // Останавливаем стандартное поведение ввода
+
+      const latinChar = convertToLatin(event.key); // Заменяем символ
+      inputElement.value += latinChar; // Добавляем символ в инпут
+      inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
    } else if (event.key === "Backspace") {
-       event.preventDefault(); // Останавливаем стандартное поведение
-       inputElement.value = inputElement.value.slice(0, -1); // Удаляем последний символ из инпута
-       inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
+      event.preventDefault(); // Останавливаем стандартное поведение
+      inputElement.value = inputElement.value.slice(0, -1); // Удаляем последний символ из инпута
+      inputElement.dispatchEvent(new Event("input")); // Принудительно вызываем событие 'input'
    }
 }
 
@@ -447,11 +450,9 @@ function resetSearch() {
 portraitsListZ.addEventListener("click", () => {
    if (overlayElement.style.opacity === "1") {
       deactivateSearchOverlay();
-      resetSearch()
+      resetSearch();
    }
 });
-
-
 
 // Добавляем слушатель для нажатия клавиши Esc
 document.addEventListener("keydown", (event) => {
@@ -485,5 +486,5 @@ export {
    inputElement,
    searchHeroes,
    resetSearch,
-   overlayElement
+   overlayElement,
 };
