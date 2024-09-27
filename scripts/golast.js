@@ -41,9 +41,9 @@ export function getGolastResult() {
 
 export function showGoLastResult(randIndex, yesValue) {
    goLastResult.style.opacity = "1";
-   resultText.style.opacity = "1";
-   goLastResult.style.transform = "translateY(-100%)";
-   resultText.style.transform = "translateY(100%)";
+   resultText.style.opacity = "0";
+   goLastResult.style.transform = "translateY(-50%)";
+   resultText.style.transform = "translateY(50%)";
    // Преобразуем randIndex в строку с тремя символами
    const randIndexStr = randIndex.toString().padStart(3, "0");
 
@@ -81,8 +81,8 @@ export function showGoLastResult(randIndex, yesValue) {
       setTimeout(() => {
          goLastResult.style.opacity = "0";
          resultText.style.opacity = "1";
-         goLastResult.style.transform = "translateY(0)";
-         resultText.style.transform = "translateY(0)";
+         goLastResult.style.transform = "translateY(-100%)";
+         resultText.style.transform = "translateY(50%)";
          goLastResult.style.color = "green";
          resultText.style.color = "green";
          resultText.textContent = "YES";
@@ -92,8 +92,8 @@ export function showGoLastResult(randIndex, yesValue) {
       setTimeout(() => {
          goLastResult.style.opacity = "0";
          resultText.style.opacity = "1";
-         goLastResult.style.transform = "translateY(0)";
-         resultText.style.transform = "translateY(0)";
+         goLastResult.style.transform = "translateY(-100%)";
+         resultText.style.transform = "translateY(50%)";
          goLastResult.style.color = "red";
          resultText.style.color = "red";
          resultText.textContent = "NO";
