@@ -342,11 +342,13 @@ const overlayElement = document.querySelector(".overlayz");
 function activateSearchOverlay() {
    const searchTerm = inputElement.value.trim().toLowerCase();
    inputElementData.textContent = searchTerm;
+   inputElementData.classList.remove('portraits-list__search-data_animated')
 
    // Если введен хотя бы один символ, показываем overlay
    if (searchTerm.length > 0) {
       // overlayElement.style.display = "block";
       overlayElement.style.opacity = "1";
+      inputElementData.style.opacity = "1";
    }
 
    // Выполняем поиск героев
@@ -356,7 +358,9 @@ function activateSearchOverlay() {
 // Функция для отключения оверлея и сброса стилей
 function deactivateSearchOverlay() {
    // overlayElement.style.display = "none";
+   inputElementData.classList.add('portraits-list__search-data_animated')
    overlayElement.style.opacity = "0";
+   inputElementData.style.opacity = "0";
 
    // Сброс всех классов героев
    const heroItems = document.querySelectorAll(".card-portrait-item");
@@ -365,7 +369,7 @@ function deactivateSearchOverlay() {
    });
 
    // Очищаем содержимое инпута для поиска
-   inputElementData.textContent = "";
+   // inputElementData.textContent = "";
 }
 
 // Функция для поиска героев

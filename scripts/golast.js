@@ -2,12 +2,13 @@ const rangeInput = document.querySelector('#rangeInput');
 const yesBox = document.querySelector('.chanses-box-yes');
 const noBox = document.querySelector('.chanses-box-no');
 const goLastSubmit = document.querySelector('.go-last__button');
-const goLastResult = document.querySelector('.go-last__result');
+const goLastResult = document.querySelector('.go-last__result_number');
 
 // Получаем каждый span элемент для отображения цифр
 const resultOne = document.querySelector('.go-last__result-one');
 const resultTwo = document.querySelector('.go-last__result-two');
 const resultThree = document.querySelector('.go-last__result-three');
+const resultText = document.querySelector('.go-last__result-text');
 
 export function updateRange() {
     const yesValue = rangeInput.value;
@@ -29,10 +30,12 @@ export function updateRange() {
 rangeInput.addEventListener('input', updateRange);
 
 export function getGolastResult() {
+   goLastSubmit.disabled = true
    goLastResult.style.color = 'black';
     const yesValue = rangeInput.getAttribute('yesValue');
     const randIndex = Math.floor(Math.random() * rangeInput.max);
     showGoLastResult(randIndex, yesValue);
+    setTimeout(() => goLastSubmit.disabled = false, 3000);
 }
 
 export function showGoLastResult(randIndex, yesValue) {
@@ -74,10 +77,14 @@ export function showGoLastResult(randIndex, yesValue) {
       //   goLastResult.style.color = 'green';
         setTimeout(() => {
          goLastResult.style.color = 'green'}, 3000);
+         setTimeout(() => {
+            resultText.textContent = 'YES'}, 3000);
     } else {
       //   goLastResult.style.color = 'red';
         setTimeout(() => {
          goLastResult.style.color = 'red'}, 3000);
+         setTimeout(() => {
+            resultText.textContent = 'NO'}, 3000);
     }
 }
 

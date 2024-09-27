@@ -1291,15 +1291,13 @@ ol {
 @keyframes goes-out {
   0% {
     opacity: 1;
-    filter: blur(0);
-  }
-  33% {
-    opacity: 1;
+    scale: 1;
     filter: blur(0);
   }
   100% {
     opacity: 0;
-    filter: blur(0.2em);
+    scale: 1.5;
+    filter: blur(0.5em);
   }
 }
 @keyframes bounce {
@@ -1402,8 +1400,10 @@ ol {
   color: rgba(255, 255, 255, 0.5);
 }
 .portraits-list__search-data {
+  color: rgba(255, 255, 255, 0.3);
+  transition: 0.2s ease;
   text-transform: uppercase;
-  opacity: 0.3;
+  opacity: 1;
   pointer-events: none;
   display: block;
   position: absolute;
