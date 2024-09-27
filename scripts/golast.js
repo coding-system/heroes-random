@@ -11,6 +11,10 @@ const resultThree = document.querySelector(".go-last__result-three");
 const resultText = document.querySelector(".go-last__result-text");
 
 export function updateRange() {
+   goLastResult.style.transition = "1.2s ease";
+   resultText.style.transition = "0.4s ease";
+   // goLastResult.style.transform = "translateY(0)";
+   // resultText.style.transform = "translateY(0)";
    const yesValue = rangeInput.value;
    const noValue = rangeInput.max - yesValue;
    const percentage =
@@ -41,7 +45,10 @@ export function getGolastResult() {
 
 export function showGoLastResult(randIndex, yesValue) {
    goLastResult.style.opacity = "1";
+   // goLastResult.style.transition = "3s ease";
    resultText.style.opacity = "0";
+   resultText.style.scale = "2";
+   // resultText.style.transition = "3s ease";
    goLastResult.style.transform = "translateY(-50%)";
    resultText.style.transform = "translateY(50%)";
    // Преобразуем randIndex в строку с тремя символами
@@ -77,27 +84,31 @@ export function showGoLastResult(randIndex, yesValue) {
 
    // Устанавливаем цвет результата
    if (randIndex <= yesValue) {
-      //   goLastResult.style.color = 'green';
+      resultText.textContent = "YES";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
          resultText.style.opacity = "1";
          goLastResult.style.transform = "translateY(-100%)";
-         resultText.style.transform = "translateY(50%)";
+         resultText.style.transform = "translateY(0)";
+         resultText.style.scale = "1";
          goLastResult.style.color = "green";
          resultText.style.color = "green";
-         resultText.textContent = "YES";
+         // resultText.textContent = "YES";
       }, 3000);
+         
    } else {
-      //   goLastResult.style.color = 'red';
+      resultText.textContent = "NO";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
          resultText.style.opacity = "1";
          goLastResult.style.transform = "translateY(-100%)";
-         resultText.style.transform = "translateY(50%)";
+         resultText.style.transform = "translateY(0)";
+         resultText.style.scale = "1";
          goLastResult.style.color = "red";
          resultText.style.color = "red";
-         resultText.textContent = "NO";
+         // resultText.textContent = "NO";
       }, 3000);
+         
    }
 }
 

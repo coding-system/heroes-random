@@ -53,29 +53,27 @@
       z-index: 3;
       max-height: 1em;
       text-align: center;
-      // transition: 0.1s ease;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       font-weight: 700;
       font-family: "Roboto";
-      color: rgb(0, 0, 0);
+      // color: rgba(0, 0, 0, 0);
       font-size: 18em;
       &_text {
+         max-height: 100%;
+         pointer-events: none;
          transform-origin: center;
-         // opacity: 0;
-         // transform: translateY(0);
-         transition: 3s ease;
-         // overflow: hidden;
+         opacity: 1;
+         transform: translateY(50%);
+         // transition: 3s ease;
          display: flex;
          justify-content: center;
          align-items: center;
-         color: rgb(89, 0, 255);
+         color: rgba(0, 0, 0, 0);
          &_animated {
             color: red;
-            // opacity: 1;
             animation-name: go-last-change-text;
             animation-duration: 1s;
             animation-iteration-count: 1;
@@ -85,16 +83,16 @@
          }
       }
       &_number {
+         max-height: 100%;
+         pointer-events: none;
          transform-origin: center;
-         // opacity: 1;
-         // transform: translateY(-50%);
-         // text-align: center;
-         transition: 1s ease;
-         // overflow: hidden;
+         opacity: 1;
+         transform: translateY(-50%);
+         // transition: 2s ease;
          display: flex;
          justify-content: center;
          align-items: center;
-         color: rgb(174, 152, 214);
+         color: rgb(255, 255, 255);
          &_animated {
             // opacity: 0;
             animation-name: go-last-change-number;

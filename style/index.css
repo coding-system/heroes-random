@@ -1795,23 +1795,24 @@ ol {
   z-index: 3;
   max-height: 1em;
   text-align: center;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-weight: 700;
   font-family: "Roboto";
-  color: rgb(0, 0, 0);
   font-size: 18em;
 }
 .go-last__result_text {
+  max-height: 100%;
+  pointer-events: none;
   transform-origin: center;
-  transition: 3s ease;
+  opacity: 1;
+  transform: translateY(50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(89, 0, 255);
+  color: rgba(0, 0, 0, 0);
 }
 .go-last__result_text_animated {
   color: red;
@@ -1823,12 +1824,15 @@ ol {
   transform-origin: center; /* Определяем точку трансформации */
 }
 .go-last__result_number {
+  max-height: 100%;
+  pointer-events: none;
   transform-origin: center;
-  transition: 1s ease;
+  opacity: 1;
+  transform: translateY(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(174, 152, 214);
+  color: rgb(255, 255, 255);
 }
 .go-last__result_number_animated {
   animation-name: go-last-change-number;
