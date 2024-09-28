@@ -2000,6 +2000,32 @@ ol {
   --rolling-duration: 6s;
 }
 
+.hello-chat {
+  font-family: "Pacifico";
+  padding: 0 10em;
+  transform: translateY(2em) translateX(-10.4em) rotate(-25deg);
+  font-size: 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0.2em solid #140f0c;
+  box-shadow: inset 0 0 2em rgba(0, 0, 0, 0.5215686275);
+  background-image: linear-gradient(25deg, #ff1919, #ffd901);
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.hello-chat-text {
+  background-image: linear-gradient(125deg, #000000, #5c5c5c);
+  font-size: 1.8em;
+  padding: 0.3em;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  text-wrap: nowrap;
+}
+
 .body {
   width: 100vw;
   height: 100vh;
@@ -2363,6 +2389,9 @@ ol {
 @media (2560px <= width) {
   :root {
     --extra-width: 36px;
+  }
+  .hello-chat {
+    font-size: 22px;
   }
   .wrapper:has(.main) {
     width: 1920px;

@@ -32,6 +32,28 @@
    --rolling-duration: 6s;
  }
 
+.hello-chat {
+   font-family: 'Pacifico';
+   padding: 0 10em;
+   transform: translateY(2em) translateX(-10.4em) rotate(-25deg);
+   font-size: 18px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   border: 0.2em solid #140f0c;
+   box-shadow: inset 0 0 2em #00000085;
+   background-image: linear-gradient(25deg, #ff1919, #ffd901);
+   width: fit-content;
+   height: fit-content;
+   &-text {
+      background-image: linear-gradient(125deg, #000000, #5c5c5c);
+      font-size: 1.8em;
+      padding: 0.3em;
+      background-clip: text;
+      color: transparent;
+      text-wrap: nowrap;
+   }
+}
 .body {
    width: 100vw;
    height: 100vh;
