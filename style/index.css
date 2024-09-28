@@ -1334,6 +1334,14 @@ ol {
     transform: translateY(1em);
   }
 }
+@keyframes hello {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
 .portraits-list {
   font-size: 10px;
   padding: 1.6em;
@@ -2001,15 +2009,22 @@ ol {
 }
 
 .hello-chat {
-  font-family: "Pacifico";
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+  transform-origin: center; /* Определяем точку трансформации */
+  cursor: default;
+  transition: 0.3s ease;
+  opacity: 0.8;
   padding: 0 10em;
   transform: translateY(2em) translateX(-10.4em) rotate(-25deg);
   font-size: 18px;
   position: absolute;
   top: 0;
   left: 0;
-  border: 0.2em solid #140f0c;
-  box-shadow: inset 0 0 2em rgba(0, 0, 0, 0.5215686275);
+  border: 0.2em solid #1d1611;
+  box-shadow: inset 0 0 2em rgba(0, 0, 0, 0.5215686275), inset 0 0 3em rgba(255, 11, 11, 0.5215686275), inset 0 0 1em rgba(0, 0, 0, 0);
   background-image: linear-gradient(25deg, #ff1919, #ffd901);
   width: -moz-fit-content;
   width: fit-content;
@@ -2017,7 +2032,9 @@ ol {
   height: fit-content;
 }
 .hello-chat-text {
-  background-image: linear-gradient(125deg, #000000, #5c5c5c);
+  font-family: "Pacifico";
+  font-weight: 500;
+  background-image: linear-gradient(125deg, #201708, #311b1b);
   font-size: 1.8em;
   padding: 0.3em;
   -webkit-background-clip: text;
