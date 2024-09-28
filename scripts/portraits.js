@@ -267,11 +267,17 @@ function renderPortraits(heroes) {
       }
 
       cardPortraitButton.addEventListener("mouseenter", () => {
-         cardPortraitHoverVideo.play();
+         if (cardPortraitHoverVideo.paused) {
+            cardPortraitHoverVideo.play().catch(error => {
+               console.error("Failed to play video:", error);
+            });
+         }
       });
-
+      
       cardPortraitButton.addEventListener("mouseleave", () => {
-         cardPortraitHoverVideo.pause();
+         if (!cardPortraitHoverVideo.paused) {
+            cardPortraitHoverVideo.pause();
+         }
       });
 
       // Обновляем отображение стилей в зависимости от состояния hero.selected
