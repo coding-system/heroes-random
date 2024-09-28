@@ -29,10 +29,7 @@
 
 :root {
    --extra-width: 44px;
-   --btn-color-active1: #cd3f64;
-   --btn-color-active2: #9d3656;
-   --btn-color-inactive1: #919191;
-   --btn-color-inactive2: #707070;
+   --rolling-duration: 6s;
  }
 
 .body {
@@ -61,12 +58,14 @@
 }
 
 .header {
-   max-height: 5vh;
+   background-image: linear-gradient(#3a3a3a,#242424);
+   font-size: 10px;
+   // max-height: 5vh;
    display: flex;
    justify-content: center;
    align-items: center;
    background-color: $header-bg;
-   padding: 2.5vh;
+   padding: 1.5em;
 }
 
 .main-logo {
@@ -102,7 +101,7 @@
       -webkit-background-clip: text;
       background-clip: text;
       font-family: "Pacifico";
-      font-size: 264px;
+      font-size: 26.5em;
       white-space: nowrap;
       letter-spacing: -0.009em;
       word-spacing: 0.1em;
@@ -204,45 +203,24 @@
    }
 }
 
-.logo {
-   width: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   position: absolute;
-   top: 0;
-   left: 0;
-   z-index: 0;
-   color: #ff7700;
-   font-family: "Montserrat";
-   font-weight: 400;
-   font-size: 236px;
-   text-shadow: 2px 2px #000;
-   &::before {
-      content: "beta";
-      position: absolute;
-      bottom: -1em;
-      right: -1em;
-      font-size: 15px;
-      color: #65ff60;
-      transform: rotate(-20deg);
-   }
-}
-
 .nav {
+   font-size: 1em;
    color: $major-text;
    &__list {
       display: flex;
-      gap: 75px;
+      gap: 7.5em;
    }
    &__item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-weight: 400;
       font-family: "Roboto";
       letter-spacing: 0.03em;
-      font-size: 18px;
-      padding: 0.12em 0.4em;
-      border-radius: 0.4em;
-      border: #2e2e2e 2px solid;
+      font-size: 1.8em;
+      padding: 0.2em 0.8em;
+      border-radius: 0.6em;
+      border: #303030 0.15em solid;
       transition: 0.2s ease;
       &:hover {
          cursor: pointer;
@@ -252,24 +230,24 @@
       }
    }
    .portraits-list-button {
-      padding: 2px 15px;
+      padding: 0.15em 0.8em;
       font-weight: 400;
-      scale: 1.1;
+      scale: 1.2;
       color: #353535;
-      background-color: #cecece;
-      border: #8f8f8f 2px solid;
+      background-image: linear-gradient(#aaaaaa, #686868);
+      border: #8f8f8f 0.15em solid;
       &:hover {
          cursor: pointer;
          background-color: #ffffff;
          color: #000000;
-         border: #4d4949 2px solid;
-         box-shadow: 0 0 10px #ffffff94;
+         border-color: #4d4949;
+         box-shadow: 0 0 0.4em #ffffff94;
       }
    }
 }
 
 .main {
-   margin-top: 222px;
+   margin-top: 20vh;
    display: flex;
    flex-direction: column;
    gap: 15px;

@@ -200,7 +200,7 @@ function animateWindowList(
       5% {
          transform: translateX(-${wer}px);
       }
-      35% {
+      40% {
          transform: translateX(0);
       }
       100% {
@@ -254,7 +254,7 @@ export function showHeroes() {
 }
 
 function showHeroWindow() {
-   setTimeout(() => openPopup(showHeroBox), 5750);
+   setTimeout(() => openPopup(showHeroBox), 5700);
    // setTimeout(() => openPopup(showHeroBox), 6500);
    // setTimeout(() => showHeroBox.classList.remove("popup_is-opened"), 15750);
 }

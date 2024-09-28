@@ -8,16 +8,19 @@
          width: 1920px;
       }
    }
+   .header {
+      font-size: 14px;
+   }
    .main-logo {
       &__content {
-         font-size: 364px;
+         // font-size: 364px;
       }
    }
-   .nav {
-      &__item {
-         font-size: 26px;
-      }
-   }
+   // .nav {
+   //    &__item {
+   //       font-size: 26px;
+   //    }
+   // }
    .main {
       gap: 23px;
    }
