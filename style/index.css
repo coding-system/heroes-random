@@ -1012,7 +1012,7 @@ ol {
   fill: #b0b0b0;
 }
 .container:hover {
-  fill: #fff;
+  fill: #ffffff;
 }
 
 .container .mute {
@@ -1410,7 +1410,8 @@ ol {
   border-radius: 0.5em;
   outline: none;
   font-size: 1em;
-  letter-spacing: 0;
+  letter-spacing: 0.04em;
+  word-spacing: 0.3em;
   text-transform: uppercase;
 }
 .portraits-list__search::-moz-placeholder {
@@ -1431,6 +1432,7 @@ ol {
   color: rgb(255, 255, 255);
 }
 .portraits-list__search-data {
+  letter-spacing: 0.05em;
   color: rgba(255, 255, 255, 0.3);
   transition: 0.2s ease;
   text-transform: uppercase;

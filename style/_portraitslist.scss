@@ -82,7 +82,8 @@
       border-radius: 0.5em;
       outline: none;
       font-size: 1em;
-      letter-spacing: 0;
+      letter-spacing: 0.04em;
+      word-spacing: 0.3em;
       text-transform: uppercase;
       &::placeholder {
          text-align: center;
@@ -96,6 +97,7 @@
       }
    }
    &__search-data {
+      letter-spacing: 0.05em;
       color: rgba(255, 255, 255, 0.3);
       transition: 0.2s ease;
       text-transform: uppercase;

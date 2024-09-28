@@ -103,7 +103,7 @@ function getRandomElement(heroesArray) {
 function playAudio() {
    const audio = document.querySelector(".song");
    if (songChanger.checked) {
-      rouletteSong.volume = 1;
+      rouletteSong.volume = 0.5;
       // songChangerStatus = true;
    } else {
       rouletteSong.volume = 0;
