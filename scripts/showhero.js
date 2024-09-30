@@ -1,10 +1,23 @@
 import {
    showHeroBox,
+   startHeroes,
+   saveLastHeroesToLocalStorage,
+   saveStartHeroesToLocalStorage,
+   showHeroBoxButtons
 } from "../index.js";
 import {
    currentSelectableHeroes,
    chosenIndex,
+   getRandomElement,
+   randomHero,
+   deleteChosenHero
 } from "./random.js";
+
+import { closePopup } from "./modal.js";
+
+import { renderLastHero } from "./rolling.js";
+
+import { updatePortraits } from "./portraits.js";
 
 export function addShowHeroData() {
    console.log(currentSelectableHeroes[chosenIndex]);
@@ -26,4 +39,33 @@ export function addShowHeroData() {
 
    // Перезагрузка видео, чтобы изменения вступили в силу
    showHeroVideo.load();
+}
+
+export function acceptChosenHero() { // Принять
+   deleteChosenHero(randomHero)
+   renderLastHero()
+   updatePortraits(startHeroes)
+   saveLastHeroesToLocalStorage()
+   saveStartHeroesToLocalStorage()
+   closePopup(showHeroBox);
+   console.log(startHeroes)
+   
+}
+
+export function retryChosenHero() { // Reroll
+   renderLastHero()
+   updatePortraits(startHeroes)
+   saveLastHeroesToLocalStorage()
+   saveStartHeroesToLocalStorage()
+   closePopup(showHeroBox);
+   getRandomElement(startHeroes)
+}
+
+export function acceptAndDelChosenHero() { // Пропустить
+   renderLastHero();
+   updatePortraits(startHeroes);
+   saveLastHeroesToLocalStorage();
+   saveStartHeroesToLocalStorage();
+   closePopup(showHeroBox);
+   console.log(startHeroes)
 }

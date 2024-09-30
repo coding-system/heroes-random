@@ -1,8 +1,12 @@
 import { getRandomElement, resetHeroes } from "./scripts/random.js";
 import { initialHeroes } from "./scripts/heroes.js";
-// import { renderHeroes } from "./scripts/dialog.js";
+import { handleHeroClick, updateDelLabel } from "./scripts/rolling.js";
 import { renderPortraits } from "./scripts/portraits.js";
-import { showHeroes, renderDefaultHeroesList } from "./scripts/rolling.js";
+import {
+   showHeroes,
+   renderDefaultHeroesList,
+   updateOverlayVisibility,
+} from "./scripts/rolling.js";
 import {
    initializePopups,
    openPopup,
@@ -12,20 +16,25 @@ import {
 
 import { updateRange } from "./scripts/golast.js";
 import { lastHeroes } from "./scripts/lastheroes.js";
-huy()
+import {
+   acceptChosenHero,
+   retryChosenHero,
+   acceptAndDelChosenHero,
+} from "./scripts/showhero.js";
+
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
-let songChangerStatus
+let songChangerStatus;
+let songVolumeData;
 // let startHeroes;
-
-
 
 // Help
 const helpBox = document.querySelector(".help");
 
 // Other
 const songChanger = document.querySelector(".song-changer-checkbox");
+const songVolume = document.querySelector(".song-changer-volume");
 const rouletteSong = document.querySelector(".song");
 
 // Roulette
@@ -64,14 +73,22 @@ const portraitsListButton = document.querySelector(".portraits-list-button");
 
 // Show hero Popup
 const showHeroBox = document.querySelector(".popup__show-hero");
+const showHeroBoxButtons = showHeroBox.querySelector(".buttons-bar");
 const showHeroButton = document.querySelector(".show-hero-button");
-const showHerocloseButton = showHeroBox.querySelector(".close__button");
-// const showHeroAcceptButton = showHeroBox.querySelector(".button-accept");
+const showHeroAcceptButton = showHeroBox.querySelector(".button-accept");
 const showHeroRertyButton = showHeroBox.querySelector(".button-retry");
+const showHeroAcceptAndDelButton = showHeroBox.querySelector(
+   ".button-accept-and-del"
+);
 
 // Whats new Popup
 const whatsNewPopup = document.querySelector(".popup__whats-new");
 const whatsNewButton = document.querySelector(".whats-new-button");
+
+// Update Popup
+const UpdateButton = document.querySelector(".update__button");
+const UpdatePopup = document.querySelector(".popup__update");
+
 
 // Confirm Popup
 const resetConfirm = document.querySelector(".popup__confirm");
@@ -103,36 +120,39 @@ const chooseButtonText = document.querySelector(".btn-top-text");
 const resetButton = document.querySelector(".reset-button");
 
 const heroАlgorithmChanger = document.querySelector(".changer-checkbox");
-const heroAlgorithmInfo = document.querySelector('.remove-heroes__answer');
+const heroAlgorithmInfo = document.querySelector(".remove-heroes__answer");
 
-if (heroАlgorithmChanger.checked) {
-   heroAlgorithmInfo.textContent = 'Герой будет удаляться из списка после каждого нажатия'; // Изменяем текст
-} else {
-   heroAlgorithmInfo.textContent = 'Список героев остается неизменным'; // Изменяем текст, если unchecked
-}
+// if (heroАlgorithmChanger.checked) {
+//    heroAlgorithmInfo.textContent = 'Герой будет удаляться из списка после каждого нажатия'; // Изменяем текст
+// } else {
+//    heroAlgorithmInfo.textContent = 'Список героев остается неизменным'; // Изменяем текст, если unchecked
+// }
 
 // Добавляем обработчик события на изменение состояния чекбокса
-heroАlgorithmChanger.addEventListener('change', () => {
-   if (heroАlgorithmChanger.checked) {
-      // Если чекбокс отмечен
-      heroAlgorithmInfo.textContent = 'Герой будет удаляться из списка после каждого нажатия';
-   } else {
-      // Если чекбокс не отмечен
-      heroAlgorithmInfo.textContent = 'Список героев остается неизменным';
-   }
-});
+// heroАlgorithmChanger.addEventListener('change', () => {
+//    if (heroАlgorithmChanger.checked) {
+//       // Если чекбокс отмечен
+//       heroAlgorithmInfo.textContent = 'Герой будет удаляться из списка после каждого нажатия';
+//    } else {
+//       // Если чекбокс не отмечен
+//       heroAlgorithmInfo.textContent = 'Список героев остается неизменным';
+//    }
+// });
 
 // Обработчики
 chooseButton.addEventListener("click", () => getRandomElement(startHeroes));
 // confirmAccept.addEventListener("click", () => resetHeroes(startHeroes));
 // confirmCancel.addEventListener("click", () => resetHeroes(startHeroes));
-showHeroRertyButton.addEventListener("click", function () {
-   showHeroBox.classList.remove("popup_is-opened");
-   getRandomElement(startHeroes);
+
+showHeroAcceptButton.addEventListener("click", () => {
+   acceptChosenHero();
 });
-// showHeroAcceptButton.addEventListener("click", () => {
-//    closePopup(showHeroBox);
-// });
+showHeroRertyButton.addEventListener("click", () => {
+   retryChosenHero();
+});
+showHeroAcceptAndDelButton.addEventListener("click", () => {
+   acceptAndDelChosenHero();
+});
 
 // Обработчики открытия попапов
 // heroesListButton.addEventListener("click", () => {
@@ -144,11 +164,17 @@ portraitsListButton.addEventListener("click", () => {
 });
 showHeroButton.addEventListener("click", () => {
    openPopup(showHeroBox);
+   showHeroBoxButtons.style.opacity = "0";
+   showHeroBoxButtons.style.pointerEvents = "none";
 });
 
 whatsNewButton.addEventListener("click", () => {
    openPopup(whatsNewPopup);
 });
+UpdateButton.addEventListener("click", () => {
+   openPopup(UpdatePopup);
+});
+
 goLastButton.addEventListener("click", () => {
    openPopup(goLastPopup);
 });
@@ -241,47 +267,59 @@ Promise.all(promises)
 /////////////////////////////////////////////////////////////
 // Функция для сохранения выбранного индекса в localStorage
 
-// Save status function
-function saveSongChangerStatusToLocalStorage(status) {
-   localStorage.setItem('songChangerStatus', JSON.stringify(status));
- }
- 
- // Load and apply status function
- function loadSongChangerStatusFromLocalStorage() {
-   const savedStatus = localStorage.getItem('songChangerStatus');
-   const status = savedStatus ? JSON.parse(savedStatus) : false;
- 
-   // Apply the loaded status
-   if (status) {
-     songChanger.checked = true;
-     rouletteSong.volume = 1;
-   } else {
-     songChanger.checked = false;
-     rouletteSong.volume = 0;
-   }
- 
-   return status;
- }
- 
- // Set up event listener for the checkbox
- songChanger.addEventListener('change', () => {
+// Функция для сохранения громкости в локальное хранилище
+function saveVolumeToLocalStorage(volume) {
+   localStorage.setItem("songVolume", volume);
+}
+
+// Функция для загрузки громкости из локального хранилища
+function loadVolumeFromLocalStorage() {
+   const savedVolume = localStorage.getItem("songVolume");
+   return savedVolume ? parseFloat(savedVolume) : 50; // Значение по умолчанию 50
+}
+
+// Set up event listener for the checkbox
+songChanger.addEventListener("change", () => {
    if (songChanger.checked) {
-     rouletteSong.volume = 1;
-     songChangerStatus = true;
+      rouletteSong.volume = 0.5;
+      songVolume.value = 50;
+      updateHuy()
+      // songChangerStatus = true;
+      // songVolumeData = songVolume.value;
    } else {
-     rouletteSong.volume = 0;
-     songChangerStatus = false;
+      rouletteSong.volume = 0;
+      songVolume.value = 0;
+      updateHuy()
+      // songChangerStatus = false;
+      // songVolumeData = songVolume.value;
    }
- 
+
    // Save the status
    saveSongChangerStatusToLocalStorage(songChangerStatus);
- });
- 
- // Load the status on page load
- document.addEventListener('DOMContentLoaded', () => {
-   songChangerStatus = loadSongChangerStatusFromLocalStorage();
- });
+});
 
+// Слушаем событие изменения значения ползунка
+// Обработчик изменения значения ползунка
+songVolume.addEventListener("input", function () {
+   // Обновляем громкость песни
+   rouletteSong.volume = songVolume.value / 100;
+
+   // Обновляем статус чекбокса
+   songChanger.checked = rouletteSong.volume > 0;
+
+   // Сохраняем громкость в локальное хранилище
+   saveVolumeToLocalStorage(songVolume.value);
+});
+
+// Устанавливаем громкость при загрузке страницы
+const initialVolume = loadVolumeFromLocalStorage();
+songVolume.value = initialVolume;
+rouletteSong.volume = initialVolume / 100; // Устанавливаем громкость в диапазоне от 0 до 1
+
+// // Load the status on page load
+// document.addEventListener("DOMContentLoaded", () => {
+//    songChangerStatus = loadSongChangerStatusFromLocalStorage();
+// });
 
 function saveChosenIndexToLocalStorage(hero) {
    localStorage.setItem("chosenHero", JSON.stringify(hero)); // Сохраняем весь объект героя в виде строки JSON
@@ -290,11 +328,11 @@ function saveChosenIndexToLocalStorage(hero) {
 // Функция для загрузки выбранного индекса из localStorage
 function loadChosenIndexFromLocalStorage() {
    const savedHero = localStorage.getItem("chosenHero");
-   
+
    if (savedHero !== null) {
       const hero = JSON.parse(savedHero); // Преобразуем JSON-строку обратно в объект героя
       console.log(`Последний выбранный герой — ${hero.name}`);
-      
+
       // Здесь можно использовать свойства героя, например:
       const chosenHeroImage = hero.image.replace(".jpg", "");
       const showHeroTitle = showHeroBox.querySelector(".show-hero__title");
@@ -312,7 +350,6 @@ function loadChosenIndexFromLocalStorage() {
 
       // Перезагрузка видео
       showHeroVideo.load();
-
    } else {
       console.log("Нет сохраненного героя.");
    }
@@ -357,23 +394,33 @@ function renderLastHeroesFromLocalStorage() {
 
    // Перебираем каждый элемент массива currentLastHeroes
    currentLastHeroes.forEach((hero) => {
-      // Клонируем шаблон
-      const lastHeroItem = lastHeroTemplate.cloneNode(true);
-      const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
+      // Проверяем, что данные героя не равны пустым строкам
+      if (hero.name && hero.image) {
+         // Проверяем наличие имени и изображения
+         // Клонируем шаблон
+         const lastHeroItem = lastHeroTemplate.cloneNode(true);
+         const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
 
-      // Устанавливаем изображение для героя
-      lastHeroUl.style.backgroundImage = `url("./assets/heroes/${hero.image}")`;
+         // Устанавливаем изображение для героя
+         lastHeroUl.style.backgroundImage = `url("./assets/heroes/${hero.image}")`;
 
-      // Если герой удален (deleted: true), добавляем метку "DEL"
-      if (hero.deleted) {
-         const deletedLabel = document.createElement("div");
-         deletedLabel.classList.add("deleted-label");
-         deletedLabel.textContent = "DEL";
-         lastHeroUl.appendChild(deletedLabel);
+         // Добавляем атрибут data-hero-name к элементу
+         lastHeroUl.dataset.heroName = hero.name;
+
+         // Универсальная функция для добавления/удаления лейбла "DEL"
+         updateDelLabel(lastHeroUl, hero.deleted);
+
+         // Обновляем видимость оверлеев в зависимости от состояния selected
+         updateOverlayVisibility(lastHeroUl, !hero.deleted); // Если deleted = false, значит selected = true
+
+         // Добавляем обработчик клика для карточки героя
+         lastHeroUl.addEventListener("click", () => {
+            handleHeroClick(lastHeroUl);
+         });
+
+         // Вставляем героя в список lastHeroesList
+         lastHeroesList.appendChild(lastHeroItem);
       }
-
-      // Вставляем героя в список lastHeroesList
-      lastHeroesList.appendChild(lastHeroItem);
    });
 }
 
@@ -424,7 +471,9 @@ function loadMyBansFromLocalStorage() {
       startHeroes.length = 0;
       startHeroes.push(...loadedMyBans);
 
-      console.log("Массив startHeroes обновлен с данными из 'моих банов' из localStorage.");
+      console.log(
+         "Массив startHeroes обновлен с данными из 'моих банов' из localStorage."
+      );
       console.log(startHeroes);
    } else {
       console.log("Нет сохраненных данных для 'моих банов' в localStorage.");
@@ -448,6 +497,7 @@ function markPopupAsSeen() {
 function showPopupIfNeeded() {
    if (!hasSeenPopup()) {
       openPopup(whatsNewPopup);
+      openPopup(UpdatePopup);
       markPopupAsSeen();
    }
 }
@@ -455,20 +505,19 @@ function showPopupIfNeeded() {
 // Вызов функции при загрузке страницы
 showPopupIfNeeded();
 
-function huy() {
-   console.log('░▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓▓▓▓▓▓░░░░░▓▓▓▓▓▓░')
-   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓░░░░░░░░░▓▓░░░▓▓░')
-   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓▓▓▓▓▓░░░░▓▓░░░▓▓░')
-   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░▓▓░░▓▓░░░▓▓░░░░░░░░░▓▓░░░▓▓░')
-   console.log('░▓▓░░░▓▓░░░▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓░░▓▓▓▓░░░▓▓░')
-   console.log('░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░')
-   console.log('░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓░░░░░░')
-   console.log('░▓▓░░░▓▓░░░░▓▓▓▓▓░░░░▓▓░░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░░▓▓░░░')
-   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░▓▓░░░░░▓▓░░▓▓░░░░▓▓░░░▓▓░░░')
-   console.log('░▓▓▓▓▓▓▓░░░▓▓▓▓▓▓▓░░░░░░▓▓░░░░░░░░▓▓▓▓░░░░░▓▓░▓▓▓▓░░░')
-   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░▓▓░░░░░░░░▓▓░░░░░▓▓▓▓░▓▓░░░')
-   console.log('░▓▓░░░▓▓░░░▓▓░░░▓▓░░░▓▓░░░░▓▓░░░░▓▓▓▓▓░░░░░▓▓░░░▓▓░░░')
+const rangewww = document.querySelector("#rangeVolume");
+
+export function updateHuy() {
+   const percentage =
+      ((rangewww.value - rangeInput.min) / (rangewww.max - rangewww.min)) * 100;
+
+   // Обновляем градиент ползунка
+   rangewww.style.background = `linear-gradient(to right, #fff ${percentage}%, transparent ${percentage}%)`;
 }
+
+updateHuy()
+
+rangewww.addEventListener("input", updateHuy);
 
 
 // При загрузке страницы выводим сохраненный индекс героя
@@ -507,7 +556,8 @@ export {
    lastHeroesList,
    lastHeroTemplate,
    showHeroBox,
-   showHeroRertyButton,
+   showHeroBoxButtons,
+   // showHeroRertyButton,
    startHeroes,
    helpBox,
    songChanger,
@@ -522,5 +572,5 @@ export {
    loadMyBansFromLocalStorage,
    currentLastHeroes,
    songChangerStatus,
-   chooseButtonText
+   chooseButtonText,
 };

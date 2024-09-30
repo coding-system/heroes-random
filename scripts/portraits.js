@@ -98,7 +98,7 @@ function updateAllHeroes(heroes, selectAll = true) {
    });
 }
 
-function updatePortraits(heroes) {
+export function updatePortraits(heroes) {
    // Проходимся по массиву героев и обновляем только отображение
    heroes.forEach((hero) => {
       // Ищем элемент карточки по уникальному идентификатору героя, например по имени

@@ -57,7 +57,7 @@
       }
       &:has(.show-hero) {
          animation-name: opening-show-heroes;
-         animation-duration: 2s;
+         animation-duration: 1s;
          animation-iteration-count: 1;
          animation-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
          animation-direction: normal;
@@ -66,27 +66,27 @@
    }
    & .show-hero {
       & .buttons-bar {
-         transition: 1s ease;
-         transition-delay: 2s;
+         transition: opacity 0s ease, transform 0.5s ease;
+         transition-delay: 1s;
          transform: translateY(0);
          opacity: 1;
       }
       & .show-hero__title {
          transition: 0.8s ease;
-         transition-delay: 1s;
+         transition-delay: 0.8s;
          transform: scale(1);
          opacity: 1;
       }
       & .show-hero__hello {
          transition: 0.8s ease;
-         transition-delay: 0.5s;
+         transition-delay: 0.2s;
          transform: translateY(0);
          opacity: 1;
       }
       & .show-hero__video {
          transform-origin: center;
          transform: scale(1);
-         transition: 1s ease-in;
+         transition: 1.2s ease-in;
          transition-delay: 1s;
          opacity: 1;
       }
@@ -116,6 +116,9 @@
       box-shadow: inset 0 0 20px #635add65;
    }
    &:has(.whats-new) {
+      background-image: linear-gradient((-20deg), #2c493b, #503232);
+   }
+   &:has(.update) {
       background-image: linear-gradient((-20deg), #2c493b, #503232);
    }
    &:has(.show-hero) {

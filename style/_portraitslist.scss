@@ -248,7 +248,6 @@
    position: relative;
    transform-origin: center;
    // transition: all 0.01s;
-   position: relative;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -260,7 +259,7 @@
       z-index: 3; /* Увеличиваем z-index при наведении */
    }
    &:hover .card-portrait-video-box {
-      transition: transform 0.1s ease, opacity 0.1s ease;
+      transition: transform 0.03s ease, opacity 0.03s ease;
       // pointer-events: all;
       z-index: 3;
       opacity: 1;

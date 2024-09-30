@@ -15,6 +15,7 @@
 @import "animations.scss";
 @import "portraitslist.scss";
 @import "golast.scss";
+@import "update.scss";
 
 @import "loading.scss";
 
@@ -280,6 +281,11 @@
          box-shadow: 0 0 0.4em #ffffff94;
       }
    }
+}
+
+.update__button {
+   position: absolute;
+   right: 1em;
 }
 
 .main {

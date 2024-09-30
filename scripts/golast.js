@@ -36,7 +36,7 @@ rangeInput.addEventListener("input", updateRange);
 
 export function getGolastResult() {
    goLastSubmit.disabled = true;
-   goLastResult.style.color = "black";
+   goLastResult.style.color = "#fff";
    const yesValue = rangeInput.getAttribute("yesValue");
    const randIndex = Math.floor(Math.random() * rangeInput.max);
    showGoLastResult(randIndex, yesValue);

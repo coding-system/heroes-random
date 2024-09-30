@@ -68,7 +68,7 @@
       //    content: '';
       //    position: absolute;
       //    top: 0;
-      //    left: 0;         
+      //    left: 0;
       //    width: 100px;
       //    height: 100px;
       //    background-color: #fff;
@@ -76,62 +76,79 @@
    }
 
    .buttons-bar {
+      padding: 0 1em;
       font-size: 1em;
-      margin-bottom: 2em;
+      margin-bottom: 1em;
       width: 100%;
       display: flex;
-      // justify-content: space-between;
       justify-content: center;
+      align-items: center;
       gap: 0;
-      opacity: 0;
-      transform: translateY(7em);
+      transform: translateY(10em);
 
       .button {
+         
+         transition: 0.1s ease;
          cursor: pointer;
-         height: 2em;
+         // height: 2em;
          font-size: 2.4em;
          font-weight: 600;
          &-accept {
-            // border-top-left-radius: 9px;
-            // border-bottom-left-radius: 16px;
-            width: 50%;
-            // border-top: 2px solid #fff;
-            // border-bottom: 2px solid #fff;
-            // border-right: 1px solid #fff;
-            // border-left: 2px solid #fff;
-            // background-color: transparent;
-            background-color: #808080;
-            color: rgb(0, 0, 0);
-         }
-         // &-retry {
-         //    // border-top-right-radius: 9px;
-         //    border-bottom-right-radius: 16px;
-         //    width: 50%;
-         //    // border-top: 2px solid #fff;
-         //    // border-bottom: 2px solid #fff;
-         //    // border-right: 2px solid #fff;
-         //    // border-left: 1px solid #fff;
-         //    background-color: transparent;
-         //    background-color: #797979;
-         //    color: rgb(0, 0, 0);
-         // }
-         &-retry {
-            transition: 0.3s ease;
-            
-            width: 75%;
-            // border-top: 2px solid #fff;
-            // border-bottom: 2px solid #fff;
-            // border-right: 2px solid #fff;
-            // border-left: 1px solid #fff;
+            padding: 0.3em 0;
+            transform-origin: left;
+            transform: translateX(1em);
+            width: 40%;
             border-radius: 0.65em;
-            border: 3px solid #000;
-            background-color: transparent;
+            // border: 3px solid #2bff00;
+            background-color: #ffffff8c;
             color: rgb(0, 0, 0);
 
             &:hover {
-               border-color: #fff;
+               border-color: #ffffff;
                color: #ffffff;
-               transform: scale(1.1);
+               transform: scale(1.1) translateX(0);
+               background-color: #00000062;
+            }
+         }
+         &-retry {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            text-transform: uppercase;
+            // width: 40%;
+            height: 3em;
+            // aspect-ratio: 1;
+            border-radius: 0.9em;
+            border: 3px solid #000;
+            background-color: #000;
+            background-image: linear-gradient(rgba(224, 224, 224, 0.363), rgb(172, 172, 172));
+            box-shadow: inset 0 0 1.3em #0000007c;
+            color: rgb(0, 0, 0);
+            display: flex;
+            z-index: 3;
+
+            &:hover {
+               box-shadow: inset 0 0 1em #000;
+               color: #ffffff;
+               transform: scale(1.05);
+               
+            }
+         }
+         &-accept-and-del {
+            padding: 0.3em 0;
+            transform-origin: right;
+            transform: translateX(-1em);
+            width: 40%;
+            border-radius: 0.65em;
+            // border: 3px solid #2bff00;
+            background-color: #ffffff8c;
+            color: rgb(0, 0, 0);
+
+            &:hover {
+               border-color: #ffffff;
+               color: #ffffff;
+               transform: scale(1.1) translateX(0);
                background-color: #00000062;
             }
          }
@@ -147,5 +164,3 @@
    //    right: 10px;
    // }
 }
-
-

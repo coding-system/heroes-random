@@ -18,13 +18,14 @@ import {
    // getInitialHeroes,
    // reloadStartHeroes
 } from "../index.js";
-import { showHeroes, renderDefaultHeroesList } from "./rolling.js";
+import { showHeroes, showHeroWindow, renderDefaultHeroesList } from "./rolling.js";
 import { addShowHeroData } from "./showhero.js";
-import { renderPortraits } from "./portraits.js";
+import { renderPortraits, updatePortraits } from "./portraits.js";
 import { lastHeroes } from "./lastheroes.js";
 
 export let currentSelectableHeroes = []; // Глобальная переменная
 export let chosenIndex;
+export let randomHero;
 
 function disableChooseButton() {
    chooseButton.disabled = true;
@@ -44,17 +45,22 @@ function enableChooseButton() {
    btnBottom.style.setProperty("--color3", "#803"); // Новый второй цвет
 }
 
-function getRandomElement(heroesArray) {
-   disableChooseButton()
-   // chooseButton.disabled = true;
-   // chooseButtonText.textContent = "ROLLING";
-   // // Находим элемент, у которого нужно изменить псевдоэлемент ::after
-   // const btnTop = document.querySelector(".btn-top");
+export function deleteChosenHero(chosenHero) {
+   if (chosenHero) { // Проверяем, был ли выбран герой
+      const heroIndex = startHeroes.findIndex(
+         (hero) => hero.name === chosenHero.name
+      );
+      if (heroIndex !== -1) {
+         startHeroes[heroIndex].selected = false; // Меняем selected на false
+         console.log(`Герой ${chosenHero.name} удален из выборки`);
+      }
+   }
+}
 
-   // // Изменяем значения переменных
-   // btnTop.style.setProperty("--color1", "#919191"); // Новый первый цвет
-   // btnTop.style.setProperty("--color2", "#707070"); // Новый второй цвет
+function getRandomElement(heroesArray) {
+   disableChooseButton();
    stopAudio();
+
    const selectableHeroes = heroesArray.filter((hero) => hero.selected);
 
    if (selectableHeroes.length === 0) {
@@ -64,51 +70,32 @@ function getRandomElement(heroesArray) {
    }
 
    const randomIndex = Math.floor(Math.random() * selectableHeroes.length);
-   const randomHero = selectableHeroes[randomIndex];
+   randomHero = selectableHeroes[randomIndex]; // Сохраняем выбранного героя
 
    console.log(`Номер героя — ${randomIndex}`);
    console.log(`Имя героя — ${randomHero.name}`);
 
    saveChosenIndexToLocalStorage(randomHero);
 
-   // If heroАlgorithmChanger is checked, set the selected property of the chosen hero to false
-   if (heroАlgorithmChanger.checked) {
-      const heroIndex = heroesArray.findIndex(
-         (hero) => hero.name === randomHero.name
-      );
-      if (heroIndex !== -1) {
-         heroesArray[heroIndex].selected = false;
-         console.log(`Герой ${randomHero.name} удален из выборки`);
-      }
-   }
-
    currentSelectableHeroes = [...selectableHeroes];
    chosenIndex = randomIndex;
 
-   // renderHeroes(heroesArray);
-   setTimeout(() => renderPortraits(heroesArray), 8000);
-   // renderPortraits(heroesArray)
    showHeroes();
    setTimeout(() => addShowHeroData(), 5750);
-   // addShowHeroData();
+   setTimeout(() => showHeroWindow(), 5750);
    playAudio();
-   // console.log(startHeroes);
-   // console.log(currentLastHeroes);
-   setTimeout(() => saveLastHeroesToLocalStorage(), 7500);
-   setTimeout(() => saveStartHeroesToLocalStorage(), 7500);
 
    setTimeout(() => enableChooseButton(), 7000);
 }
 
 function playAudio() {
-   const audio = document.querySelector(".song");
-   if (songChanger.checked) {
-      rouletteSong.volume = 0.5;
-      // songChangerStatus = true;
-   } else {
-      rouletteSong.volume = 0;
-      // songChangerStatus = false;
-   }
+   // if (songChanger.checked) {
+   //    rouletteSong.volume = 0.5;
+   //    // songChangerStatus = true;
+   // } else {
+   //    rouletteSong.volume = 0;
+   //    // songChangerStatus = false;
+   // }
    rouletteSong.play();
 }
 
@@ -133,7 +120,7 @@ function resetHeroes(heroesArray) {
    saveStartHeroesToLocalStorage();
 
    // Сброс интерфейса
-   heroАlgorithmChanger.checked = false;
+   // heroАlgorithmChanger.checked = false;
    windowList.innerHTML = "";
    lastHeroesList.innerHTML = "";
 

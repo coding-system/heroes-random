@@ -6,9 +6,14 @@ import {
    lastHeroTemplate,
    helpBox,
    currentLastHeroes,
+   showHeroBoxButtons,
+   startHeroes,
+   saveLastHeroesToLocalStorage,
+   saveStartHeroesToLocalStorage,
 } from "../index.js";
 import { showHeroBox } from "../index.js";
-import { openPopup } from "./modal.js";
+import { openPopup, closePopup } from "./modal.js";
+import { updatePortraits } from "./portraits.js";
 
 export let lastHeroesArray = Array(16).fill({ link: "" }); // Инициализация массива с 16 пустыми объектами
 
@@ -45,7 +50,7 @@ function generateDisplayedHeroes(
 ) {
    const displayedHeroes = new Array(totalArrayNumber);
 
-   // Генерация нового массива displayedHeroes
+   // Генерация нового массива displayedHeroes для вывода их в рулетке
    for (let i = 0; i < displayedHeroes.length; i++) {
       if (i === displayedHeroIndex) {
          displayedHeroes[displayedHeroIndex] =
@@ -110,65 +115,117 @@ export function renderDefaultHeroesList(arr) {
    });
 }
 
-// Функция для отображения последнего героя в списке lastHeroesList
-function renderLastHero(displayedHero) {
+export function updateDelLabel(heroElement, isDeleted) {
+   // Проверяем, есть ли уже лейбл "DEL"
+   const existingDelLabel = heroElement.querySelector(".deleted-label");
+
+   if (isDeleted) {
+      // Если герой удален и лейбла "DEL" нет, добавляем его
+      if (!existingDelLabel) {
+         const deletedLabel = document.createElement("div");
+         deletedLabel.classList.add("deleted-label");
+         // deletedLabel.textContent = "DEL";
+         heroElement.appendChild(deletedLabel);
+      }
+   } else {
+      // Если герой не удален и лейбл существует, удаляем его
+      if (existingDelLabel) {
+         heroElement.removeChild(existingDelLabel);
+      }
+   }
+}
+
+// Функция, которая обрабатывает клик по карточке
+export function handleHeroClick(lastHeroUl) {
+   const heroName = lastHeroUl.dataset.heroName;
+
+   // Находим героя в массиве startHeroes по имени
+   const hero = startHeroes.find((h) => h.name === heroName);
+
+   // Находим героя в массиве currentLastHeroes по имени
+   const currentLastHero = currentLastHeroes.find((h) => h.name === heroName);
+
+   if (hero && currentLastHero) {
+      // Теперь переключаем состояние в массиве currentLastHeroes
+      // Если герой помечен как deleted, значит он не выбран, поэтому переключаем состояние
+      currentLastHero.deleted = !currentLastHero.deleted;
+
+      // Синхронизируем состояние selected в startHeroes с состоянием deleted
+      // Если герой не удален (deleted: false), то он выбран (selected: true)
+      hero.selected = !currentLastHero.deleted;
+
+      // Выводим новое значение selected в консоль для проверки
+      console.log("Selected в startHeroes:", hero.selected);
+      console.log("Deleted в currentLastHeroes:", currentLastHero.deleted);
+
+      // Обновляем видимость оверлеев в зависимости от состояния selected
+      updateOverlayVisibility(lastHeroUl, hero.selected);
+
+      // Универсальная функция для добавления/удаления лейбла "DEL"
+         updateDelLabel(lastHeroUl, currentLastHero.deleted);
+         updatePortraits(startHeroes);
+
+      // Сохраняем обновленный currentLastHeroes в localStorage
+      saveLastHeroesToLocalStorage();
+      saveStartHeroesToLocalStorage();
+   }
+}
+
+export function updateOverlayVisibility(lastHeroUl, selected) {
+   const deleteOverlay = lastHeroUl.querySelector('.last-heroes__delete-hero');
+   const returnOverlay = lastHeroUl.querySelector('.last-heroes__return-hero');
+
+   if (selected) {
+       deleteOverlay.style.opacity = 1; // Показываем "Удалить?"
+       returnOverlay.style.opacity = 0;  // Скрываем "Вернуть?"
+   } else {
+       deleteOverlay.style.opacity = 0;  // Скрываем "Удалить?"
+       returnOverlay.style.opacity = 1;   // Показываем "Вернуть?"
+   }
+}
+
+export function renderLastHero() {
    const lastHeroItem = lastHeroTemplate.cloneNode(true);
    const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
-   lastHeroUl.style.backgroundImage = `url("./assets/heroes/${displayedHero}")`;
+   lastHeroUl.style.backgroundImage = `url("./assets/heroes/${currentSelectableHeroes[chosenIndex].image}")`;
+
+   // Добавляем атрибут data-hero-name к элементу
+   lastHeroUl.dataset.heroName = currentSelectableHeroes[chosenIndex].name;
 
    // Проверяем, был ли герой выбран
    const isDeleted = !currentSelectableHeroes[chosenIndex].selected;
 
    // Добавляем нового героя в начало массива currentLastHeroes с параметром deleted
-   setTimeout(() => {
-      currentLastHeroes.unshift({
-         image: displayedHero,
-         deleted: isDeleted,
-      });
+   currentLastHeroes.unshift({
+      name: currentSelectableHeroes[chosenIndex].name,
+      image: currentSelectableHeroes[chosenIndex].image,
+      deleted: isDeleted,
+   });
 
-      // Если длина массива больше 16, удаляем самого старого героя
-      if (currentLastHeroes.length > 16) {
-         currentLastHeroes.pop();
-      }
-   }, 6000); // 6000 миллисекунд = 6 секунд
+   // Если длина массива больше 16, удаляем самого старого героя
+   if (currentLastHeroes.length > 16) {
+      currentLastHeroes.pop();
+   }
 
    // Добавляем на страницу нового героя с задержкой
-   setTimeout(() => {
-      lastHeroesList.prepend(lastHeroItem);
+   lastHeroesList.prepend(lastHeroItem);
 
-      // Если на странице больше 16 элементов, удаляем последний (старый) элемент
-      if (lastHeroesList.children.length > 16) {
-         lastHeroesList.removeChild(lastHeroesList.lastElementChild);
-      }
+   // Если на странице больше 16 элементов, удаляем последний (старый) элемент
+   if (lastHeroesList.children.length > 16) {
+      lastHeroesList.removeChild(lastHeroesList.lastElementChild);
+   }
 
-      // Если герой удален (не выбран), добавляем метку "DEL"
-      if (isDeleted) {
-         const deletedLabel = document.createElement("div");
-         deletedLabel.classList.add("deleted-label");
-         deletedLabel.textContent = "DEL";
-         lastHeroUl.appendChild(deletedLabel);
-      }
-   }, 7500); // 7500 миллисекунд = 7.5 секунд
+   // Устанавливаем opacity оверлеев в зависимости от значения selected
+   updateOverlayVisibility(lastHeroUl, !isDeleted); // Передаем true, если selected
+
+   // Универсальная функция для добавления/удаления лейбла "DEL"
+   updateDelLabel(lastHeroUl, isDeleted);
+
+   // Добавляем обработчик клика для карточки героя
+   lastHeroUl.addEventListener("click", () => {
+      handleHeroClick(lastHeroUl);
+   });
 }
-/////////////////////////////////////
-///Старая версия без массива, работает
-////////////////////////////////////////
-// Функция для отображения последнего героя в списке lastHeroesList
-// function renderLastHero(displayedHero) {
-//    const lastHeroItem = lastHeroTemplate.cloneNode(true);
-//    const lastHeroUl = lastHeroItem.querySelector(".last-heroes__item");
-//    lastHeroUl.style.backgroundImage = `url("./assets/heroes/${displayedHero}")`;
-//    setTimeout(() => lastHeroesList.prepend(lastHeroItem), 7500);
-//    setTimeout(() => helpBox.style.transform = `translateY(0)`, 7000);
-
-//    const deletedLabel = document.createElement("div");
-//    deletedLabel.classList.add("deleted-label");
-//    deletedLabel.textContent = "DEL";
-//    if (currentSelectableHeroes[chosenIndex].selected) return;
-//    else {
-//       lastHeroUl.appendChild(deletedLabel);
-//    }
-// }
 
 let previousWindowItemsLastWidth = 0; // Initialize with a default value
 let currentWindowItemsLastWidth = previousWindowItemsLastWidth; // Keep track of the current width during animation
@@ -232,10 +289,12 @@ export function showHeroes() {
    );
 
    renderHeroesList(displayedHeroes, currentWindowItemsLastWidth);
-   renderLastHero(displayedHeroes[displayedHeroIndex]);
+   // renderLastHero();
 
    const totalWidth =
-      windowItemsWidth * (displayedHeroIndex - 2) + extraWidth + currentWindowItemsLastWidth;
+      windowItemsWidth * (displayedHeroIndex - 2) +
+      extraWidth +
+      currentWindowItemsLastWidth;
 
    // Pass the current and previous values to the animation
    animateWindowList(
@@ -248,13 +307,13 @@ export function showHeroes() {
    // Once the animation ends, update the previous value with the current one
    previousWindowItemsLastWidth = currentWindowItemsLastWidth;
    itemWidth = windowItemsWidth;
-
-   showHeroWindow();
    // yo(displayedHeroes, currentSelectableHeroes);
 }
 
-function showHeroWindow() {
-   setTimeout(() => openPopup(showHeroBox), 5700);
+export function showHeroWindow() {
+   showHeroBoxButtons.style.opacity = "1";
+   showHeroBoxButtons.style.pointerEvents = "all";
+   openPopup(showHeroBox);
    // setTimeout(() => openPopup(showHeroBox), 6500);
    // setTimeout(() => showHeroBox.classList.remove("popup_is-opened"), 15750);
 }
