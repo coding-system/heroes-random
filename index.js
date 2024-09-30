@@ -483,27 +483,27 @@ function loadMyBansFromLocalStorage() {
 ////////////////////////////////////////////////////////////////////////
 /////////////////Показ ЧТО НОВОГО новому пользователю///////////////////
 ////////////////////////////////////////////////////////////////////////
-// Функция для проверки, видел ли пользователь попап
-function hasSeenPopup() {
-   return localStorage.getItem("popupSeen") === "true";
+// Универсальная функция для проверки, видел ли пользователь попап
+function hasSeenPopup(popupName) {
+   return localStorage.getItem(popupName + "Seen") === "true";
 }
 
-// Функция для установки флага, что пользователь видел попап
-function markPopupAsSeen() {
-   localStorage.setItem("popupSeen", "true");
+// Универсальная функция для установки флага, что пользователь видел попап
+function markPopupAsSeen(popupName) {
+   localStorage.setItem(popupName + "Seen", "true");
 }
 
-// Функция для открытия попапа и проверки, нужно ли его показывать
-function showPopupIfNeeded() {
-   if (!hasSeenPopup()) {
-      openPopup(whatsNewPopup);
-      openPopup(UpdatePopup);
-      markPopupAsSeen();
+// Универсальная функция для открытия попапа и проверки, нужно ли его показывать
+function showPopupIfNeeded(popupName, popupElement) {
+   if (!hasSeenPopup(popupName)) {
+      openPopup(popupElement);
+      markPopupAsSeen(popupName);
    }
 }
 
-// Вызов функции при загрузке страницы
-showPopupIfNeeded();
+// Использование для разных попапов
+showPopupIfNeeded("whatsNewPopup", whatsNewPopup);
+showPopupIfNeeded("UpdatePopup", UpdatePopup);
 
 const rangewww = document.querySelector("#rangeVolume");
 
