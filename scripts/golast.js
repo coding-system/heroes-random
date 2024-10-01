@@ -36,7 +36,16 @@ rangeInput.addEventListener("input", updateRange);
 
 export function getGolastResult() {
    goLastSubmit.disabled = true;
-   goLastResult.style.color = "#fff";
+   resultText.classList.remove("go-answer-yes");
+   resultText.classList.remove("go-answer-no");
+   goLastResult.classList.remove("go-answer-yes");
+   goLastResult.classList.remove("go-answer-no");
+   goLastResult.classList.add("go-answer-neutral");
+   resultText.classList.add("go-answer-neutral");
+   
+   
+
+   // goLastResult.style.color = "#fff";
    const yesValue = rangeInput.getAttribute("yesValue");
    const randIndex = Math.floor(Math.random() * rangeInput.max);
    showGoLastResult(randIndex, yesValue);
@@ -84,6 +93,8 @@ export function showGoLastResult(randIndex, yesValue) {
 
    // Устанавливаем цвет результата
    if (randIndex <= yesValue) {
+      goLastResult.classList.remove("go-answer-neutral");
+   resultText.classList.remove("go-answer-neutral");
       resultText.textContent = "ДА";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
@@ -91,12 +102,14 @@ export function showGoLastResult(randIndex, yesValue) {
          goLastResult.style.transform = "translateY(-100%)";
          resultText.style.transform = "translateY(0)";
          resultText.style.scale = "1";
-         goLastResult.style.color = "green";
-         resultText.style.color = "green";
-         // resultText.textContent = "YES";
+         // goLastResult.style.color = "green";
+         goLastResult.classList.add("go-answer-yes");
+         // resultText.style.color = "green";
+         resultText.classList.add("go-answer-yes");
       }, 3000);
-         
    } else {
+      goLastResult.classList.remove("go-answer-neutral");
+   resultText.classList.remove("go-answer-neutral");
       resultText.textContent = "НЕТ";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
@@ -104,11 +117,11 @@ export function showGoLastResult(randIndex, yesValue) {
          goLastResult.style.transform = "translateY(-100%)";
          resultText.style.transform = "translateY(0)";
          resultText.style.scale = "1";
-         goLastResult.style.color = "red";
-         resultText.style.color = "red";
-         // resultText.textContent = "NO";
+         // goLastResult.style.color = "red";
+         goLastResult.classList.add("go-answer-no");
+         // resultText.style.color = "red";
+         resultText.classList.add("go-answer-no");
       }, 3000);
-         
    }
 }
 
