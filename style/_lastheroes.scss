@@ -128,7 +128,6 @@
 }
 
 .deleted-label {
-   z-index: 4;
    pointer-events: none;
    user-select: none;
    // padding: 0px 20px;
@@ -143,12 +142,12 @@
    left: 0.4em;
    background-image: linear-gradient(45deg, #fd4646, #ff0000, #270c0c);
    border-radius: 50%;
-   border: 0.1em solid #ffffff75;
+   border: 0.1em solid rgb(255, 255, 255);
    box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4),
-      inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4),
-      0 0 1.3em rgb(255, 255, 255);
-   width: 1.3em;
-   height: 1.3em;
+      inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
+   width: 2em;
+   height: 2em;
+   z-index: 4;
    // Amination
    animation-name: lightning;
    animation-duration: 2s;
@@ -156,6 +155,45 @@
    animation-timing-function: ease-in-out;
    animation-direction: alternate;
    transform-origin: center; /* Определяем точку трансформации */
+   // &::before {
+   //    opacity: 1;
+   //    content: "";
+   //    position: absolute;
+   //    top: 50%;
+   //    left: 50%;
+   //    background-color: #fff;
+   //    width: 70%;
+   //    height: 70%;
+   //    border-radius: 50%;
+   //    transform: translate(-50%, -50%);
+   //    z-index: 2;
+   // }
+   // &::after {
+   //    content: '';
+   //    opacity: 1;
+   //    content: "";
+   //    position: absolute;
+   //    top: 50%;
+   //    left: 50%;
+   //    width: 70%;
+   //    height: 10%;
+   //    background-color: #ffffff;
+   //    transform: translate(-50%, -50%) rotate(45deg);
+   //    z-index: 3;
+   // }
+   &::before {
+      content: '';
+      opacity: 1;
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70%;
+      height: 20%;
+      background-color: #ffffff;
+      transform: translate(-50%, -50%);
+      z-index: 3;
+   }
 }
 
 // .deleted-label {

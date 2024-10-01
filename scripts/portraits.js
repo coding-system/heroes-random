@@ -113,16 +113,6 @@ export function updatePortraits(heroes) {
 
          // Обновляем отображение стилей в зависимости от состояния hero.selected
          updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
-
-         // Удаляем существующий обработчик и добавляем новый для обновления selected
-         heroCard.removeEventListener("click", heroCard._clickHandler); // Удаление старого обработчика
-         heroCard._clickHandler = () => {
-            // Обработчик клика на элемент для переключения состояния selected
-            hero.selected = !hero.selected;
-            updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
-            console.log(`${hero.name} => ${hero.selected}`);
-         };
-         heroCard.addEventListener("click", heroCard._clickHandler); // Назначение нового обработчика
       }
    });
 }
@@ -232,22 +222,12 @@ function renderPortraits(heroes) {
 
    heroes.forEach((hero) => {
       const cardPortraitItem = cardPortraitTemplate.cloneNode(true); // Клонируем шаблон для каждого героя
-      const cardPortraitImage = cardPortraitItem.querySelector(
-         ".card-portrait-image-content"
-      );
-      const cardPortraitHoverVideo = cardPortraitItem.querySelector(
-         ".card-portrait-video-content"
-      );
-      const cardPortraitButton = cardPortraitItem.querySelector(
-         ".card-portrait-item"
-      );
-      const cardPortraitHoverName = cardPortraitItem.querySelector(
-         ".card-portrait-video-name"
-      );
+      const cardPortraitImage = cardPortraitItem.querySelector(".card-portrait-image-content");
+      const cardPortraitHoverVideo = cardPortraitItem.querySelector(".card-portrait-video-content");
+      const cardPortraitButton = cardPortraitItem.querySelector(".card-portrait-item");
+      const cardPortraitHoverName = cardPortraitItem.querySelector(".card-portrait-video-name");
       const cardBanned = cardPortraitItem.querySelector(".banned-overlay");
-      const videoBanned = cardPortraitItem.querySelector(
-         ".video-banned-overlay"
-      );
+      const videoBanned = cardPortraitItem.querySelector(".video-banned-overlay");
       const cardLine = cardPortraitItem.querySelector(".line");
 
       const heroName = hero.image.replace(".jpg", "");
@@ -282,13 +262,6 @@ function renderPortraits(heroes) {
 
       // Обновляем отображение стилей в зависимости от состояния hero.selected
       updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
-
-      // Обработчик клика на элемент видео для переключения состояния героя
-      cardPortraitButton.addEventListener("click", () => {
-         hero.selected = !hero.selected;
-         updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
-         console.log(`${hero.name} => ${hero.selected}`);
-      });
 
       switch (hero.attribute) {
          case "strength":
@@ -337,6 +310,25 @@ function renderPortraits(heroes) {
       updatePortraits(heroes);
       lightSpark.classList.add("yellow-light-spark");
       setTimeout(() => lightSpark.classList.remove("yellow-light-spark"), 500);
+   });
+
+   // Добавляем делегирование событий
+   portraitsList.addEventListener("click", (event) => {
+      const card = event.target.closest(".card-portrait-item");
+      if (!card) return; // Игнорируем, если клик был не по карточке
+
+      const heroName = card.getAttribute("data-hero-name");
+      const hero = heroes.find((h) => h.name === heroName);
+
+      if (hero) {
+         hero.selected = !hero.selected; // Переключаем состояние selected
+         const cardBanned = card.querySelector(".banned-overlay");
+         const videoBanned = card.querySelector(".video-banned-overlay");
+         const cardLine = card.querySelector(".line");
+
+         updateHeroDisplay(hero, cardBanned, cardLine, videoBanned);
+         console.log(`${hero.name} => ${hero.selected}`);
+      }
    });
 }
 
