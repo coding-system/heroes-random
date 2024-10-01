@@ -2760,7 +2760,6 @@ ol {
 .help {
   box-shadow: 0 0 20px #000000, inset 0 0 20px rgba(255, 255, 255, 0.0901960784);
   padding: 1em 1.5em;
-  overflow: hidden;
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border-radius: 1.6em;
