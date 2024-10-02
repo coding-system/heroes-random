@@ -2080,7 +2080,7 @@ ol {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(255, 255, 255);
+  color: rgb(230, 255, 120);
 }
 .go-last__result_number_animated {
   animation-name: go-last-change-number;

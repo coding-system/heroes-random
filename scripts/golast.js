@@ -21,7 +21,7 @@ export function updateRange() {
       ((yesValue - rangeInput.min) / (rangeInput.max - rangeInput.min)) * 100;
 
    // Обновляем градиент ползунка
-   rangeInput.style.background = `linear-gradient(to right, green ${percentage}%, red ${percentage}%)`;
+   rangeInput.style.backgroundImage = `linear-gradient(to right, #4dda22 ${percentage}%, #e12121 ${percentage}%)`;
 
    // Обновляем значение, выводимое на ползунке
    rangeInput.setAttribute("yesValue", yesValue);
