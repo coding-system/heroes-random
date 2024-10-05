@@ -7,6 +7,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans+Hanunoo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap");
 *,
 *::after,
 *::before {
@@ -989,6 +990,40 @@ ol {
 .last-heroes__item:hover .last-heroes__delete-overlay {
   opacity: 1;
 }
+.last-heroes__item:hover .deleted-label {
+  background-image: linear-gradient(45deg, #9b9b9b, #636363, #272727);
+  height: 3.2em;
+  width: 8em;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+.last-heroes__item:hover .deleted-label::after {
+  opacity: 1;
+}
+.last-heroes__item:hover .undeleted-label {
+  background-image: linear-gradient(45deg, #9b9b9b, #636363, #272727);
+  height: 3.2em;
+  width: 8em;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+.last-heroes__item:hover .undeleted-label::after {
+  opacity: 1;
+}
+.last-heroes__item:not(.last-heroes__item:hover) .deleted-label {
+  transition: 0.2s ease;
+}
+.last-heroes__item:not(.last-heroes__item:hover) .undeleted-label {
+  transition: 0.2s ease;
+}
+.last-heroes__item:not(.last-heroes__item:hover) .deleted-label::after {
+  transition: opacity 0.1s 0s ease;
+}
+.last-heroes__item:not(.last-heroes__item:hover) .undeleted-label::after {
+  transition: opacity 0.1s 0s ease;
+}
 .last-heroes__delete-overlay {
   position: absolute;
   top: 0;
@@ -1005,7 +1040,7 @@ ol {
   left: 0;
   opacity: 0;
   transition: 0.2s ease;
-  font-size: 1em;
+  font-size: 2.5em;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1013,8 +1048,8 @@ ol {
   align-items: center;
 }
 .last-heroes__delete-hero-text {
-  font-family: "Open Sans";
-  font-size: 1.5em;
+  font-family: "Amatic SC";
+  font-weight: 700;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   z-index: 5;
@@ -1035,7 +1070,7 @@ ol {
   left: 0;
   opacity: 0;
   transition: 0.2s ease;
-  font-size: 1em;
+  font-size: 2.5em;
   width: 100%;
   height: 100%;
   display: flex;
@@ -1043,8 +1078,8 @@ ol {
   align-items: center;
 }
 .last-heroes__return-hero-text {
-  font-family: "Open Sans";
-  font-size: 1.5em;
+  font-family: "Amatic SC";
+  font-weight: 700;
   text-transform: uppercase;
   color: rgb(255, 255, 255);
   z-index: 5;
@@ -1061,6 +1096,10 @@ ol {
 }
 
 .deleted-label {
+  overflow: hidden;
+  transform: translate(0 0);
+  transform-origin: center;
+  transition: top 0.2s ease, right 0.2s ease, transform 0.2s ease, width 0.3s 0.2s ease, height 0.3s 0.2s ease, background-image 0.3s 0.2s ease;
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -1075,31 +1114,79 @@ ol {
   top: 0.4em;
   right: 0.4em;
   background-image: linear-gradient(45deg, #fd4646, #ff0000, #270c0c);
-  border-radius: 50%;
+  border-radius: 10em;
   border: 0.1em solid rgb(255, 255, 255);
   box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4), inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
   width: 2em;
   height: 2em;
   z-index: 4;
-  animation-name: lightning;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
-  transform-origin: center; /* Определяем точку трансформации */
 }
-.deleted-label::before {
-  content: "";
-  opacity: 1;
-  content: "";
+.deleted-label::after {
+  transition: opacity 0.1s 0.2s ease;
+  opacity: 0;
+  content: "ВЕРНУТЬ";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 60%;
-  height: 20%;
-  background-color: #ffffff;
   transform: translate(-50%, -50%);
-  z-index: 3;
+  font-family: "Amatic SC";
+  font-size: 2.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: #fff;
+}
+
+.undeleted-label {
+  overflow: hidden;
+  transform: translate(0 0);
+  transform-origin: right;
+  transition: top 0.2s ease, right 0.2s ease, transform 0.2s ease, width 0.3s 0.2s ease, height 0.3s 0.2s ease, background-image 0.3s 0.2s ease;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  margin: auto;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1em;
+  position: absolute;
+  top: 0.4em;
+  right: 0.4em;
+  background-image: linear-gradient(45deg, #46fdb7, #00ff95, #0c271f);
+  border-radius: 10em;
+  border: 0.1em solid rgb(255, 255, 255);
+  box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4), inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
+  width: 2em;
+  height: 2em;
+  z-index: 4;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+.undeleted-label::after {
+  transition: opacity 0.1s 0.2s ease;
+  opacity: 0;
+  content: "УДАЛИТЬ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Amatic SC";
+  font-size: 2.2em;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.03em;
+  color: #ffffff;
 }
 
 .deleted-overlay {
@@ -2220,15 +2307,14 @@ ol {
 .btn-content {
   display: flex;
   align-items: center;
-  padding: 5px 30px;
+  padding: 0.3em 4em;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: 30px;
+  font-size: 3em;
   color: var(--color-text);
   background: var(--color-background);
   transition: 1s;
-  border-radius: 100px;
+  border-radius: 3em;
   box-shadow: 0 0 0.2em 0 var(--color-background);
 }
 
@@ -2253,8 +2339,8 @@ ol {
 }
 
 .icon-arrow {
-  width: 20px;
-  margin-left: 15px;
+  width: 0.66em;
+  margin-left: 0.5em;
   position: relative;
   top: 6%;
 }
@@ -2414,10 +2500,29 @@ ol {
   font-size: 0.8em;
 }
 .update__date {
+  width: -moz-fit-content;
+  width: fit-content;
   font-weight: 100;
   text-decoration: underline;
   color: #fff;
   font-size: 0.9em;
+}
+.update__date-new {
+  position: relative;
+  background-color: red;
+  padding: 0.2em 0.4em;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.update__date-new::before {
+  content: "new";
+  font-size: 0.8em;
+  font-weight: 400;
+  position: absolute;
+  top: -1em;
+  left: -1em;
+  rotate: -22deg;
 }
 .update__title {
   color: #fff;
@@ -2456,19 +2561,19 @@ ol {
   padding: 0.4em 1em;
   border-radius: 0.6em;
   border: none;
-  color: #fff;
+  color: #742cd3;
   cursor: pointer;
-  background-color: #7d2ae8;
+  background-color: #cfb5ee;
   box-shadow: inset 0 0 0.56em rgba(0, 0, 0, 0.2196078431);
   transition: all 0.2s ease;
 }
 .buttonss:hover {
-  background-color: #cfb5ee;
-  color: #742cd3;
+  background-color: #7d2ae8;
+  color: #fff;
 }
 
 .buttonss:active {
-  transform: scale(0.96);
+  transform: scale(1);
 }
 
 .buttonss:before,
@@ -2601,6 +2706,7 @@ ol {
   height: 100vh;
   height: 100vh;
   position: relative;
+  font-size: 10px;
   background-image: linear-gradient(#2e2e2e, #111111);
   color: #fff;
   font-family: "Roboto";
@@ -2621,7 +2727,7 @@ ol {
 
 .header {
   background-image: linear-gradient(#3a3a3a, #242424);
-  font-size: 10px;
+  font-size: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2879,13 +2985,14 @@ ol {
 }
 
 .confirm {
+  font-size: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  border-radius: 4px;
-  padding: 10px;
+  gap: 1em;
+  border-radius: 0.4em;
+  padding: 2em;
   background-color: #fff;
-  width: 550px;
+  width: 30vw;
   height: -moz-fit-content;
   height: fit-content;
 }
@@ -2893,33 +3000,40 @@ ol {
   font-weight: 400;
   text-align: center;
   color: rgb(0, 0, 0);
-  font-size: 16px;
+  font-size: 1.6em;
 }
 .confirm__text-special {
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1.8em;
 }
 .confirm__buttons {
-  gap: 10px;
+  gap: 1em;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 .confirm__button {
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8em;
   transition: all 0.2s ease;
-  border-radius: 4px;
-  width: 50%;
+  border-radius: 0.4em;
+  padding: 0.5em 5em;
 }
 .confirm__button:hover {
   cursor: pointer;
 }
 .confirm__accept {
   background-color: #b8ffb5;
+  border: 0.1em solid #09ff00;
 }
 .confirm__accept:hover {
   background-color: #65ff60;
 }
 .confirm__cancel {
   background-color: #ffb5b5;
+  border: 0.1em solid #ff0000;
 }
 .confirm__cancel:hover {
   background-color: rgb(255, 99, 99);
@@ -2959,6 +3073,9 @@ ol {
   :root {
     --extra-width: 36px;
   }
+  .body {
+    font-size: 14px;
+  }
   .last-box {
     font-size: 13px;
   }
@@ -2967,9 +3084,6 @@ ol {
   }
   .wrapper:has(.main) {
     width: 1920px;
-  }
-  .header {
-    font-size: 14px;
   }
   .main {
     gap: 23px;

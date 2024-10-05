@@ -116,24 +116,53 @@ export function renderDefaultHeroesList(arr) {
 }
 
 export function updateDelLabel(heroElement, isDeleted) {
-   // Проверяем, есть ли уже лейбл "DEL"
+   // Проверяем, есть ли уже лейблы "deleted-label" и "undeleted-label"
    const existingDelLabel = heroElement.querySelector(".deleted-label");
+   const existingUndelLabel = heroElement.querySelector(".undeleted-label");
 
    if (isDeleted) {
-      // Если герой удален и лейбла "DEL" нет, добавляем его
+      // Если герой удален, добавляем лейбл "deleted-label" и удаляем "undeleted-label"
       if (!existingDelLabel) {
          const deletedLabel = document.createElement("div");
          deletedLabel.classList.add("deleted-label");
-         // deletedLabel.textContent = "DEL";
          heroElement.appendChild(deletedLabel);
       }
+      if (existingUndelLabel) {
+         heroElement.removeChild(existingUndelLabel);
+      }
    } else {
-      // Если герой не удален и лейбл существует, удаляем его
+      // Если герой не удален, добавляем лейбл "undeleted-label" и удаляем "deleted-label"
+      if (!existingUndelLabel) {
+         const undeletedLabel = document.createElement("div");
+         undeletedLabel.classList.add("undeleted-label");
+         heroElement.appendChild(undeletedLabel);
+      }
       if (existingDelLabel) {
          heroElement.removeChild(existingDelLabel);
       }
    }
 }
+
+
+// export function updateDelLabel(heroElement, isDeleted) {
+//    // Проверяем, есть ли уже лейбл "DEL"
+//    const existingDelLabel = heroElement.querySelector(".deleted-label");
+
+//    if (isDeleted) {
+//       // Если герой удален и лейбла "DEL" нет, добавляем его
+//       if (!existingDelLabel) {
+//          const deletedLabel = document.createElement("div");
+//          deletedLabel.classList.add("deleted-label");
+//          // deletedLabel.textContent = "DEL";
+//          heroElement.appendChild(deletedLabel);
+//       }
+//    } else {
+//       // Если герой не удален и лейбл существует, удаляем его
+//       if (existingDelLabel) {
+//          heroElement.removeChild(existingDelLabel);
+//       }
+//    }
+// }
 
 // Функция, которая обрабатывает клик по карточке
 export function handleHeroClick(lastHeroUl) {

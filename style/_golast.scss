@@ -314,15 +314,14 @@
 .btn-content {
    display: flex;
    align-items: center;
-   padding: 5px 30px;
+   padding: 0.3em 4em;
    text-decoration: none;
-   font-family: "Poppins", sans-serif;
    font-weight: 600;
-   font-size: 30px;
+   font-size: 3em;
    color: var(--color-text);
    background: var(--color-background);
    transition: 1s;
-   border-radius: 100px;
+   border-radius: 3em;
    box-shadow: 0 0 0.2em 0 var(--color-background);
 }
 
@@ -348,8 +347,8 @@
 }
 
 .icon-arrow {
-   width: 20px;
-   margin-left: 15px;
+   width: 0.66em;
+   margin-left: 0.5em;
    position: relative;
    top: 6%;
 }
