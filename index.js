@@ -89,7 +89,6 @@ const whatsNewButton = document.querySelector(".whats-new-button");
 const UpdateButton = document.querySelector(".update__button");
 const UpdatePopup = document.querySelector(".popup__update");
 
-
 // Confirm Popup
 const resetConfirm = document.querySelector(".popup__confirm");
 const resetAccept = resetConfirm.querySelector(".confirm__accept");
@@ -283,13 +282,13 @@ songChanger.addEventListener("change", () => {
    if (songChanger.checked) {
       rouletteSong.volume = 0.5;
       songVolume.value = 50;
-      updateHuy()
+      updateHuy();
       // songChangerStatus = true;
       // songVolumeData = songVolume.value;
    } else {
       rouletteSong.volume = 0;
       songVolume.value = 0;
-      updateHuy()
+      updateHuy();
       // songChangerStatus = false;
       // songVolumeData = songVolume.value;
    }
@@ -484,26 +483,80 @@ function loadMyBansFromLocalStorage() {
 /////////////////Показ ЧТО НОВОГО новому пользователю///////////////////
 ////////////////////////////////////////////////////////////////////////
 // Универсальная функция для проверки, видел ли пользователь попап
-function hasSeenPopup(popupName) {
-   return localStorage.getItem(popupName + "Seen") === "true";
+
+// Функция для получения содержимого первого видимого h4 (дата обновления)
+function getUpdateContent() {
+   const h4Element = UpdatePopup.querySelector("h4.update__date");
+   return h4Element ? h4Element.textContent.trim() : null;
 }
 
-// Универсальная функция для установки флага, что пользователь видел попап
-function markPopupAsSeen(popupName) {
-   localStorage.setItem(popupName + "Seen", "true");
+// Проверяем, является ли пользователь новым
+function isNewUser() {
+   return !localStorage.getItem("hasVisited");
 }
 
 // Универсальная функция для открытия попапа и проверки, нужно ли его показывать
 function showPopupIfNeeded(popupName, popupElement) {
-   if (!hasSeenPopup(popupName)) {
+   const currentContent = getUpdateContent();
+   const storedContent = localStorage.getItem("updatePopupContent");
+   if (popupName === "whatsNewPopup" && isNewUser()) {
+      console.log("Текущее содержимое h4:", currentContent); // Выводим содержимое h4 в консоль
+      // Новый пользователь - показываем только "What's New" попап
       openPopup(popupElement);
-      markPopupAsSeen(popupName);
+      saveUpdateContent(currentContent);
+      markUserAsVisited(); // Сохраняем, что пользователь заходил
+   } else if (popupName === "UpdatePopup" && !isNewUser()) {
+      if (currentContent) {
+         console.log("Текущее содержимое h4:", currentContent); // Выводим содержимое h4 в консоль
+      }
+
+      if (currentContent && currentContent !== storedContent) {
+         // Если содержимое h4 изменилось, показываем попап Update
+         openPopup(popupElement);
+         saveUpdateContent(currentContent); // Сохраняем новое содержимое h4
+      }
    }
 }
 
+// Сохраняем факт, что пользователь уже заходил
+function markUserAsVisited() {
+   localStorage.setItem("hasVisited", "true");
+}
+
+// Сохраняем текущее содержимое h4 из попапа Update
+function saveUpdateContent(content) {
+   localStorage.setItem("updatePopupContent", content);
+}
+
 // Использование для разных попапов
-showPopupIfNeeded("whatsNewPopup", whatsNewPopup);
-showPopupIfNeeded("UpdatePopup", UpdatePopup);
+if (isNewUser()) {
+   // Новый пользователь — показываем только "What's New"
+   showPopupIfNeeded("whatsNewPopup", whatsNewPopup);
+} else {
+   // Старый пользователь — проверяем и открываем UpdatePopup, если h4 изменилось
+   showPopupIfNeeded("UpdatePopup", UpdatePopup);
+}
+
+// function hasSeenPopup(popupName) {
+//    return localStorage.getItem(popupName + "Seen") === "true";
+// }
+
+// // Универсальная функция для установки флага, что пользователь видел попап
+// function markPopupAsSeen(popupName) {
+//    localStorage.setItem(popupName + "Seen", "true");
+// }
+
+// // Универсальная функция для открытия попапа и проверки, нужно ли его показывать
+// function showPopupIfNeeded(popupName, popupElement) {
+//    if (!hasSeenPopup(popupName)) {
+//       openPopup(popupElement);
+//       markPopupAsSeen(popupName);
+//    }
+// }
+
+// // Использование для разных попапов
+// showPopupIfNeeded("whatsNewPopup", whatsNewPopup);
+// showPopupIfNeeded("UpdatePopup", UpdatePopup);
 
 const rangewww = document.querySelector("#rangeVolume");
 
@@ -515,10 +568,9 @@ export function updateHuy() {
    rangewww.style.background = `linear-gradient(to right, #fff ${percentage}%, transparent ${percentage}%)`;
 }
 
-updateHuy()
+updateHuy();
 
 rangewww.addEventListener("input", updateHuy);
-
 
 // При загрузке страницы выводим сохраненный индекс героя
 // loadChosenIndexFromLocalStorage();

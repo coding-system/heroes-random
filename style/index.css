@@ -2573,7 +2573,7 @@ ol {
 }
 
 .buttonss:active {
-  transform: scale(1);
+  transform: scale(0.95);
 }
 
 .buttonss:before,
@@ -3105,7 +3105,7 @@ ol {
     font-size: 13px;
   }
   .show-hero {
-    font-size: 16px;
+    font-size: 14px;
   }
   .whats-new {
     font-size: 14px;
@@ -3132,6 +3132,9 @@ ol {
     font-size: 24px;
   }
   .go-last {
+    font-size: 14px;
+  }
+  .update {
     font-size: 14px;
   }
 }
