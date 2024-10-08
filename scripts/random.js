@@ -126,7 +126,7 @@ function resetHeroes(heroesArray) {
 
    // Перерендерим героев
    renderDefaultHeroesList(heroesArray);
-   renderPortraits(heroesArray);
+   updatePortraits(heroesArray);
 
    console.log(`———————————————————————————————————————`);
    console.log("Список героев сброшен");
