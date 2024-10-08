@@ -935,14 +935,14 @@ ol {
   transform: translateX(-1em);
   width: 40%;
   border-radius: 0.65em;
-  background-color: rgba(255, 255, 255, 0.5490196078);
-  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.3843137255);
+  color: #ffffff;
 }
 .show-hero .buttons-bar .button-accept-and-del:hover {
+  width: 45%;
   border-color: #ffffff;
-  color: #ffffff;
-  transform: scale(1.1) translateX(0);
-  background-color: rgba(0, 0, 0, 0.3843137255);
+  color: rgb(0, 0, 0);
+  transform: scale(1.05) translateX(0);
 }
 
 .last-box {
@@ -1117,8 +1117,8 @@ ol {
   border-radius: 10em;
   border: 0.1em solid rgb(255, 255, 255);
   box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4), inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
-  width: 2em;
-  height: 2em;
+  width: 1.6em;
+  height: 1.6em;
   z-index: 4;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -1164,8 +1164,8 @@ ol {
   border-radius: 10em;
   border: 0.1em solid rgb(255, 255, 255);
   box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4), inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
-  width: 2em;
-  height: 2em;
+  width: 1.6em;
+  height: 1.6em;
   z-index: 4;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -1670,11 +1670,11 @@ ol {
   flex-direction: column;
   font-family: "Open Sans";
   font-weight: 700;
-  box-shadow: inset 0 0 185px rgba(255, 255, 255, 0.3215686275);
+  box-shadow: inset 0 0 385px #2f2744;
   background-color: rgba(94, 94, 94, 0.5);
 }
 .portraits-list__main-title {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 251, 0, 0.5);
   font-family: "Open Sans";
   font-size: 1.5em;
 }
@@ -2167,7 +2167,6 @@ ol {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(230, 255, 120);
 }
 .go-last__result_number_animated {
   animation-name: go-last-change-number;
@@ -2178,20 +2177,31 @@ ol {
   transform-origin: center; /* Определяем точку трансформации */
 }
 .go-last__result-one {
-  color: currentColor;
+  transition: 0.3s ease;
+}
+.go-last__result-two {
+  transition: 0.3s ease;
+}
+.go-last__result-three {
+  transition: 0.3s ease;
 }
 .go-last .go-answer-yes {
+  color: transparent;
   background-image: linear-gradient(#00ff80, #00ccff);
   -webkit-background-clip: text;
           background-clip: text;
 }
 .go-last .go-answer-no {
+  color: transparent;
   background-image: linear-gradient(#ea00ff, #ff0040);
   -webkit-background-clip: text;
           background-clip: text;
 }
 .go-last .go-answer-neutral {
-  color: #ddcf0a;
+  color: transparent;
+  background-image: linear-gradient(#cacaca, #949494);
+  -webkit-background-clip: text;
+          background-clip: text;
 }
 
 .go-last__range-box {

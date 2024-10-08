@@ -144,14 +144,16 @@
             width: 40%;
             border-radius: 0.65em;
             // border: 3px solid #2bff00;
-            background-color: #ffffff8c;
-            color: rgb(0, 0, 0);
+            background-color: #00000062;
+            color: #ffffff;
 
             &:hover {
+               width: 45%;
                border-color: #ffffff;
-               color: #ffffff;
-               transform: scale(1.1) translateX(0);
-               background-color: #00000062;
+               color: rgb(0, 0, 0);
+               transform: scale(1.05) translateX(0);
+               // background-color: #00000062;
+               // background-color: #ffffff8c;
             }
          }
       }

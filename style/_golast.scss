@@ -98,7 +98,7 @@
          display: flex;
          justify-content: center;
          align-items: center;
-         color: rgb(230, 255, 120);
+         // color: rgb(230, 255, 120);
          &_animated {
             // opacity: 0;
             animation-name: go-last-change-number;
@@ -110,26 +110,35 @@
          }
       }
       &-one {
-         color: currentColor;
+         transition: 0.3s ease;
+      }
+      &-two {
+         transition: 0.3s ease;
+      }
+      &-three {
+         transition: 0.3s ease;
       }
    }
 
    .go-answer-yes {
       // color: #00d9ff;
+      color: transparent;
       background-image: linear-gradient(#00ff80, #00ccff);
       background-clip: text;
    }
    
    .go-answer-no {
       // color: #00d9ff;
+      color: transparent;
       background-image: linear-gradient(#ea00ff, #ff0040);
       background-clip: text;
    }
 
    .go-answer-neutral {
-      color: #ddcf0a;
-      // background-image: linear-gradient(#a5a5a5, #414141);
-      // background-clip: text;
+      color: transparent;
+      // background-image: linear-gradient(#ddcf0a, #dda50a);
+      background-image: linear-gradient(#cacaca, #949494);
+      background-clip: text;
    }
 
    // &__button {

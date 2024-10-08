@@ -62,7 +62,7 @@
       }
       &:hover .deleted-label::after {
          opacity: 1;
-      } 
+      }
       &:hover .undeleted-label {
          background-image: linear-gradient(45deg, #9b9b9b, #636363, #272727);
          height: 3.2em;
@@ -73,7 +73,7 @@
       }
       &:hover .undeleted-label::after {
          opacity: 1;
-      } 
+      }
       &:not(.last-heroes__item:hover) .deleted-label {
          transition: 0.2s ease;
       }
@@ -168,7 +168,8 @@
    transform-origin: center;
    // transition: 0.5s ease;
    transition: top 0.2s ease, right 0.2s ease, transform 0.2s ease,
-      width 0.3s 0.2s ease, height 0.3s 0.2s ease, background-image 0.3s 0.2s ease;
+      width 0.3s 0.2s ease, height 0.3s 0.2s ease,
+      background-image 0.3s 0.2s ease;
    pointer-events: none;
    user-select: none;
    // padding: 0px 20px;
@@ -186,8 +187,8 @@
    border: 0.1em solid rgb(255, 255, 255);
    box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4),
       inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
-   width: 2em;
-   height: 2em;
+   width: 1.6em;
+   height: 1.6em;
    z-index: 4;
    // Amination
    // animation-name: lightning;
@@ -238,7 +239,7 @@
       // mix-blend-mode: difference;
       transition: opacity 0.1s 0.2s ease;
       opacity: 0;
-      content: 'ВЕРНУТЬ';
+      content: "ВЕРНУТЬ";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -258,7 +259,8 @@
    transform-origin: right;
    // transition: 0.5s ease;
    transition: top 0.2s ease, right 0.2s ease, transform 0.2s ease,
-      width 0.3s 0.2s ease, height 0.3s 0.2s ease, background-image 0.3s 0.2s ease;
+      width 0.3s 0.2s ease, height 0.3s 0.2s ease,
+      background-image 0.3s 0.2s ease;
    pointer-events: none;
    user-select: none;
    // padding: 0px 20px;
@@ -276,8 +278,8 @@
    border: 0.1em solid rgb(255, 255, 255);
    box-shadow: inset 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.4),
       inset -0.1em -0.1em 2.6em rgba(0, 0, 0, 0.4), 0 0 0.5em rgb(255, 255, 255);
-   width: 2em;
-   height: 2em;
+   width: 1.6em;
+   height: 1.6em;
    z-index: 4;
    // Amination
    // animation-name: lightning;
@@ -290,7 +292,7 @@
       // mix-blend-mode: difference;
       transition: opacity 0.1s 0.2s ease;
       opacity: 0;
-      content: 'УДАЛИТЬ';
+      content: "УДАЛИТЬ";
       position: absolute;
       top: 50%;
       left: 50%;

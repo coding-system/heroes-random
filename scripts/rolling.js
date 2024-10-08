@@ -304,7 +304,7 @@ export function showHeroes() {
    const rootStyles = getComputedStyle(document.documentElement);
    const extraWidth = parseInt(rootStyles.getPropertyValue("--extra-width"));
    const displayedHeroIndex = 25;
-   const totalArrayNumber = displayedHeroIndex * 2 + 1;
+   const totalArrayNumber = displayedHeroIndex + 4;
    const windowItemsWidth = document.querySelector(".window__box").offsetWidth;
 
    // Generate a new width only after the previous animation is complete

@@ -21,7 +21,7 @@ export function updateRange() {
       ((yesValue - rangeInput.min) / (rangeInput.max - rangeInput.min)) * 100;
 
    // Обновляем градиент ползунка
-   rangeInput.style.backgroundImage = `linear-gradient(to right, #4dda22 ${percentage}%, #e12121 ${percentage}%)`;
+   rangeInput.style.backgroundImage = `linear-gradient(to bottom, rgba(255, 255, 0, 0.2), rgba(0, 0, 0, 0.6)), linear-gradient(to right, #4dda22 ${percentage}%, #e12121 ${percentage}%)`;
 
    // Обновляем значение, выводимое на ползунке
    rangeInput.setAttribute("yesValue", yesValue);
@@ -38,12 +38,19 @@ export function getGolastResult() {
    goLastSubmit.disabled = true;
    resultText.classList.remove("go-answer-yes");
    resultText.classList.remove("go-answer-no");
-   goLastResult.classList.remove("go-answer-yes");
-   goLastResult.classList.remove("go-answer-no");
-   goLastResult.classList.add("go-answer-neutral");
+   // goLastResult.classList.remove("go-answer-yes");
+   // goLastResult.classList.remove("go-answer-no");
+   // goLastResult.classList.add("go-answer-neutral");
    resultText.classList.add("go-answer-neutral");
-   
-   
+   resultOne.classList.remove("go-answer-no");
+   resultTwo.classList.remove("go-answer-no");
+   resultThree.classList.remove("go-answer-no");
+   resultOne.classList.remove("go-answer-yes");
+   resultTwo.classList.remove("go-answer-yes");
+   resultThree.classList.remove("go-answer-yes");
+   resultOne.classList.add("go-answer-neutral");
+   resultTwo.classList.add("go-answer-neutral");
+   resultThree.classList.add("go-answer-neutral");
 
    // goLastResult.style.color = "#fff";
    const yesValue = rangeInput.getAttribute("yesValue");
@@ -93,8 +100,11 @@ export function showGoLastResult(randIndex, yesValue) {
 
    // Устанавливаем цвет результата
    if (randIndex <= yesValue) {
-      goLastResult.classList.remove("go-answer-neutral");
-   resultText.classList.remove("go-answer-neutral");
+      // goLastResult.classList.remove("go-answer-neutral");
+      resultText.classList.remove("go-answer-neutral");
+      resultOne.classList.remove("go-answer-neutral");
+      resultTwo.classList.remove("go-answer-neutral");
+      resultThree.classList.remove("go-answer-neutral");
       resultText.textContent = "ДА";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
@@ -103,13 +113,19 @@ export function showGoLastResult(randIndex, yesValue) {
          resultText.style.transform = "translateY(0)";
          resultText.style.scale = "1";
          // goLastResult.style.color = "green";
-         goLastResult.classList.add("go-answer-yes");
+         // goLastResult.classList.add("go-answer-yes");
          // resultText.style.color = "green";
          resultText.classList.add("go-answer-yes");
+         resultOne.classList.add("go-answer-yes");
+         resultTwo.classList.add("go-answer-yes");
+         resultThree.classList.add("go-answer-yes");
       }, 3000);
    } else {
-      goLastResult.classList.remove("go-answer-neutral");
-   resultText.classList.remove("go-answer-neutral");
+      // goLastResult.classList.remove("go-answer-neutral");
+      resultText.classList.remove("go-answer-neutral");
+      resultOne.classList.remove("go-answer-neutral");
+      resultTwo.classList.remove("go-answer-neutral");
+      resultThree.classList.remove("go-answer-neutral");
       resultText.textContent = "НЕТ";
       setTimeout(() => {
          goLastResult.style.opacity = "0";
@@ -118,9 +134,12 @@ export function showGoLastResult(randIndex, yesValue) {
          resultText.style.transform = "translateY(0)";
          resultText.style.scale = "1";
          // goLastResult.style.color = "red";
-         goLastResult.classList.add("go-answer-no");
+         // goLastResult.classList.add("go-answer-no");
          // resultText.style.color = "red";
          resultText.classList.add("go-answer-no");
+         resultOne.classList.add("go-answer-no");
+         resultTwo.classList.add("go-answer-no");
+         resultThree.classList.add("go-answer-no");
       }, 3000);
    }
 }
