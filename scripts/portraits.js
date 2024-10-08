@@ -222,12 +222,22 @@ function renderPortraits(heroes) {
 
    heroes.forEach((hero) => {
       const cardPortraitItem = cardPortraitTemplate.cloneNode(true); // Клонируем шаблон для каждого героя
-      const cardPortraitImage = cardPortraitItem.querySelector(".card-portrait-image-content");
-      const cardPortraitHoverVideo = cardPortraitItem.querySelector(".card-portrait-video-content");
-      const cardPortraitButton = cardPortraitItem.querySelector(".card-portrait-item");
-      const cardPortraitHoverName = cardPortraitItem.querySelector(".card-portrait-video-name");
+      const cardPortraitImage = cardPortraitItem.querySelector(
+         ".card-portrait-image-content"
+      );
+      const cardPortraitHoverVideo = cardPortraitItem.querySelector(
+         ".card-portrait-video-content"
+      );
+      const cardPortraitButton = cardPortraitItem.querySelector(
+         ".card-portrait-item"
+      );
+      const cardPortraitHoverName = cardPortraitItem.querySelector(
+         ".card-portrait-video-name"
+      );
       const cardBanned = cardPortraitItem.querySelector(".banned-overlay");
-      const videoBanned = cardPortraitItem.querySelector(".video-banned-overlay");
+      const videoBanned = cardPortraitItem.querySelector(
+         ".video-banned-overlay"
+      );
       const cardLine = cardPortraitItem.querySelector(".line");
 
       const heroName = hero.image.replace(".jpg", "");
@@ -248,12 +258,12 @@ function renderPortraits(heroes) {
 
       cardPortraitButton.addEventListener("mouseenter", () => {
          if (cardPortraitHoverVideo.paused) {
-            cardPortraitHoverVideo.play().catch(error => {
+            cardPortraitHoverVideo.play().catch((error) => {
                console.error("Failed to play video:", error);
             });
          }
       });
-      
+
       cardPortraitButton.addEventListener("mouseleave", () => {
          if (!cardPortraitHoverVideo.paused) {
             cardPortraitHoverVideo.pause();
@@ -305,11 +315,13 @@ function renderPortraits(heroes) {
       setTimeout(() => lightSpark.classList.remove("blue-light-spark"), 500);
    });
 
+   // Событие для кнопки загрузки банов
    loadMyBansButton.addEventListener("click", () => {
       loadMyBansFromLocalStorage();
       updatePortraits(heroes);
       lightSpark.classList.add("yellow-light-spark");
       setTimeout(() => lightSpark.classList.remove("yellow-light-spark"), 500);
+      console.log(startHeroes);
    });
 
    // Добавляем делегирование событий
@@ -340,7 +352,7 @@ const overlayElement = document.querySelector(".overlayz");
 function activateSearchOverlay() {
    const searchTerm = inputElement.value.trim().toLowerCase();
    inputElementData.textContent = searchTerm;
-   inputElementData.classList.remove('portraits-list__search-data_animated')
+   inputElementData.classList.remove("portraits-list__search-data_animated");
 
    // Если введен хотя бы один символ, показываем overlay
    if (searchTerm.length > 0) {
@@ -356,7 +368,7 @@ function activateSearchOverlay() {
 // Функция для отключения оверлея и сброса стилей
 function deactivateSearchOverlay() {
    // overlayElement.style.display = "none";
-   inputElementData.classList.add('portraits-list__search-data_animated')
+   inputElementData.classList.add("portraits-list__search-data_animated");
    overlayElement.style.opacity = "0";
    inputElementData.style.opacity = "0";
 

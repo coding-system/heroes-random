@@ -451,14 +451,46 @@ function loadStartHeroesFromLocalStorage() {
    }
 }
 
-// Функция для сохранения массива startHeroes как "мои баны" в localStorage
+// // Функция для сохранения массива startHeroes как "мои баны" в localStorage
+// function saveMyBansToLocalStorage() {
+//    const myBansString = JSON.stringify(startHeroes);
+//    localStorage.setItem("myBans", myBansString);
+//    console.log("Массив startHeroes сохранен как 'мои баны' в localStorage.");
+// }
+
+// // Функция для загрузки массива "мои баны" из localStorage
+// function loadMyBansFromLocalStorage() {
+//    const myBansString = localStorage.getItem("myBans");
+
+//    // Проверяем, есть ли сохраненные данные
+//    if (myBansString) {
+//       const loadedMyBans = JSON.parse(myBansString);
+
+//       // Очищаем массив startHeroes и добавляем данные из загруженного массива
+//       startHeroes.length = 0;
+//       startHeroes.push(...loadedMyBans);
+
+//       console.log(
+//          "Массив startHeroes обновлен с данными из 'моих банов' из localStorage."
+//       );
+//       console.log(startHeroes);
+//    } else {
+//       console.log("Нет сохраненных данных для 'моих банов' в localStorage.");
+//    }
+// }
+
+// Функция для сохранения только тех героев, у которых selected false, в localStorage
 function saveMyBansToLocalStorage() {
-   const myBansString = JSON.stringify(startHeroes);
+   // Создаем массив с героями, у которых selected = false
+   const myBans = startHeroes.filter(hero => hero.selected === false);
+
+   // Сохраняем этот массив в localStorage
+   const myBansString = JSON.stringify(myBans);
    localStorage.setItem("myBans", myBansString);
-   console.log("Массив startHeroes сохранен как 'мои баны' в localStorage.");
+   console.log("Герои с selected = false сохранены в localStorage.");
 }
 
-// Функция для загрузки массива "мои баны" из localStorage
+// Функция для загрузки данных из localStorage и обновления selected
 function loadMyBansFromLocalStorage() {
    const myBansString = localStorage.getItem("myBans");
 
@@ -466,14 +498,18 @@ function loadMyBansFromLocalStorage() {
    if (myBansString) {
       const loadedMyBans = JSON.parse(myBansString);
 
-      // Очищаем массив startHeroes и добавляем данные из загруженного массива
-      startHeroes.length = 0;
-      startHeroes.push(...loadedMyBans);
+      // Проходим по массиву startHeroes и обновляем selected на false у героев, которые есть в загруженных данных
+      startHeroes.forEach(hero => {
+         const bannedHero = loadedMyBans.find(ban => ban.id === hero.id); // Ищем героя в массиве "банов"
+         if (bannedHero) {
+            hero.selected = false;
+         }
+      });
 
       console.log(
          "Массив startHeroes обновлен с данными из 'моих банов' из localStorage."
       );
-      console.log(startHeroes);
+      console.log(loadedMyBans);
    } else {
       console.log("Нет сохраненных данных для 'моих банов' в localStorage.");
    }
