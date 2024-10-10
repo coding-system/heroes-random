@@ -44,6 +44,15 @@ function shuffleArray(array) {
      './assets/heroes/minimap_icons/Ursa_minimap_icon.webp',
      './assets/heroes/minimap_icons/Shadow_Fiend_minimap_icon.webp',
      './assets/heroes/minimap_icons/Pudge_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Axe_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Lich_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Storm_Spirit_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Templar_Assassin_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Sven_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Invoker_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Dazzle_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Enigma_minimap_icon.webp',
+     './assets/heroes/minimap_icons/Invoker_minimap_icon.webp'
    ];
  
    // Выбираем 8 случайных уникальных героев
