@@ -132,3 +132,28 @@
       filter: brightness(2);
    }
 }
+
+@keyframes new-option {
+   0% {
+      scale: 1;
+      rotate: -15deg;
+      
+   }
+   25% {
+      scale: 1.2;
+      // rotate: 0deg;
+      
+   }
+   50% {
+      scale: 1;
+
+   }
+   75% {
+      scale: 1.2;
+
+   }
+   100% {
+      scale: 1;
+      rotate: 15deg;
+   }
+}

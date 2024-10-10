@@ -22,6 +22,8 @@ import {
    acceptAndDelChosenHero,
 } from "./scripts/showhero.js";
 
+import {generateBoard} from './scripts/minigame_pairs.js'
+
 // Create a deep copy of initialHeroes to work with
 const startHeroes = JSON.parse(JSON.stringify(initialHeroes));
 const currentLastHeroes = JSON.parse(JSON.stringify(lastHeroes));
@@ -98,6 +100,10 @@ const resetCancel = resetConfirm.querySelector(".confirm__cancel");
 const goLastPopup = document.querySelector(".popup__go-last");
 const goLastButton = document.querySelector(".go-last-button");
 
+// Minigames
+const minigamePairs = document.querySelector('.popup__minigame-pairs')
+const newOptionButton = document.querySelector('.new-option__button')
+
 // Группы атрибутов
 const strengthList = document.querySelector("#heroes-strength");
 const agilityList = document.querySelector("#heroes-agility");
@@ -157,6 +163,10 @@ showHeroAcceptAndDelButton.addEventListener("click", () => {
 // heroesListButton.addEventListener("click", () => {
 //    openPopup(heroesList);
 // });
+
+newOptionButton.addEventListener("click", () => {
+   openPopup(minigamePairs);
+});
 
 portraitsListButton.addEventListener("click", () => {
    openPopup(portraitsList);
@@ -605,6 +615,8 @@ export function updateHuy() {
 }
 
 updateHuy();
+
+generateBoard()
 
 rangewww.addEventListener("input", updateHuy);
 

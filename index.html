@@ -23,6 +23,11 @@
       <!-- <div class="hello-chat">
          <p class="hello-chat-text">Здарова, работяги!</p>
       </div> -->
+      <div class="minigames">
+         <div class="minigames__box">
+            <button class="minigames__button"></button>
+         </div>
+      </div>
       <div class="wrapper">
          <header class="header">
             <nav class="nav">
@@ -92,6 +97,9 @@
                </audio>
             </div> -->
             <div class="help">
+               <div class="new-option">
+                  <button class="new-option__button">НАЖМИ НА МЕНЯ</button>
+               </div>
                <button type="button" class="reset-button">Сбросить всё</button>
                <!-- <div class="update__button">
                   <div class="update__button-text">Patch notes</div>
@@ -616,6 +624,30 @@
             </div>
          </div>
       </div>
+      <div class="popup popup__minigame-pairs">
+         <div class="custom-border">
+            <button class="button close__button" type="button">
+               <div class="close__button-cross"></div>
+            </button>
+            <!-- <div class="custom-border opening-animation-show-heroes"> -->
+            <div class="minigame-pairs">
+               <div class="minigame-pairs__settings"></div>
+               <div class="minigame-pairs__header">
+                  <div class="minigame-pairs__title">
+                     <h2 class="minigame-pairs__title-text">Найди все пары</h2>
+                  </div>
+                  <div class="minigame-pairs__steps">
+                     <span class="minigame-pairs__steps-text">0</span>
+                  </div>
+               </div>
+               <div class="minigame-pairs__board">
+                  <ul class="minigame-pairs__board-list"></ul>
+               </div>
+
+               <button class="minigame-pairs__reset-button">RESET</button>
+            </div>
+         </div>
+      </div>
       <div class="popup popup__confirm">
          <div class="confirm">
             <!-- <div class="confirm opening-animation-heroes-list"> -->
@@ -775,6 +807,16 @@
       </template>
       <template id="logs-data">
          <li class="logs__item"></li>
+      </template>
+      <template id="minigame-pairs-board-item">
+         <li class="minigame-pairs__board-item">
+            <div class="card">
+               <div class="card__face card__face--front">
+                  <img src="" alt="Hero" class="minigame-pairs__board-image" />
+               </div>
+               <div class="card__face card__face--back"></div>
+            </div>
+         </li>
       </template>
    </body>
 </html>

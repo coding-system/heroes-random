@@ -670,6 +670,9 @@ ol {
   border-radius: 2.6em;
   position: relative;
 }
+.custom-border:has(.minigame-pairs) {
+  background-image: linear-gradient(#67679e, #a88484);
+}
 .custom-border:has(.portraits-list) {
   background-image: none;
   box-shadow: inset 0 0 20px rgba(99, 90, 221, 0.3960784314);
@@ -1681,6 +1684,25 @@ ol {
     filter: brightness(2);
   }
 }
+@keyframes new-option {
+  0% {
+    scale: 1;
+    rotate: -15deg;
+  }
+  25% {
+    scale: 1.2;
+  }
+  50% {
+    scale: 1;
+  }
+  75% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+    rotate: 15deg;
+  }
+}
 .portraits-list {
   font-size: 10px;
   padding: 1.6em;
@@ -2663,6 +2685,152 @@ ol {
     background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
+.minigame-pairs {
+  font-size: 10px;
+  border-radius: 1.6em;
+  overflow: hidden;
+  background: linear-gradient(66deg, #06522e, #0f5458, #122857);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  padding: 2em;
+}
+.minigame-pairs__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0em;
+}
+.minigame-pairs__steps-text {
+  font-size: 5em;
+}
+.minigame-pairs__title-text {
+  font-size: 3em;
+}
+.minigame-pairs__best-text {
+  font-size: 3em;
+}
+.minigame-pairs__board {
+  transition: opacity 0.3s ease;
+}
+.minigame-pairs__board-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 2em;
+}
+.minigame-pairs__board-item {
+  width: 8em;
+  height: 8em;
+  perspective: 400px;
+  display: inline-block;
+}
+.minigame-pairs__board-image {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  filter: drop-shadow(0 0.6em 0.2em #000);
+}
+.minigame-pairs__board_animated {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.minigame-pairs__reset-button {
+  font-size: 2em;
+  padding: 0.3em 0.5em;
+  background-color: #000;
+  font-family: "Tiny5";
+  transition: 0.1s ease;
+  cursor: pointer;
+  font-size: 2.6em;
+  font-weight: 600;
+  border-radius: 0.55em;
+  padding: 0.3em 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: #00b7ff;
+  box-shadow: 0 0.2em 0 #1d6781;
+  display: flex;
+  z-index: 3;
+  color: #000000;
+}
+.minigame-pairs__reset-button:hover {
+  background-color: #00a2ff;
+  color: rgb(0, 0, 0);
+}
+.minigame-pairs__reset-button:active {
+  transform: translateY(0.2em);
+  box-shadow: 0 0 0 #1d6781;
+  background-color: #00a2ff;
+  color: rgb(0, 0, 0);
+}
+
+/* Общий стиль для карточки */
+.card {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease, scale 0.1s ease;
+  cursor: pointer;
+}
+.card:hover {
+  scale: 1.1;
+}
+.card:active {
+  transform: rotateY(25deg);
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(30deg, #08aeea 0%, #2af598 100%);
+  width: calc(100% + 1em);
+  height: calc(100% + 1em);
+  transform: translate(-0.5em, -0.5em);
+  border-radius: 1em;
+}
+
+/* Добавляем класс при перевороте */
+.card.is-flipped {
+  border-radius: 0.5em;
+  transform: rotateY(180deg);
+  pointer-events: none;
+}
+
+/* Лицевая и обратная стороны */
+.card__face {
+  border-radius: 0.5em;
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Скрыть заднюю сторону при перевороте */
+  z-index: 1;
+}
+
+.card__face--back {
+  background: linear-gradient(66deg, #356c6e, #546435, #5e5435);
+}
+
+.card__face--front {
+  transform: rotateY(180deg); /* Лицевая сторона перевернута */
+}
+
 .loading {
   font-size: 10px;
   width: 100%;
@@ -2733,6 +2901,54 @@ ol {
           background-clip: text;
   color: transparent;
   text-wrap: nowrap;
+}
+
+.minigames {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+.minigames__box {
+  position: relative;
+  min-height: 50vh;
+  width: 15em;
+  background-color: #fff;
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+}
+.minigames__button {
+  aspect-ratio: 1;
+  height: 2em;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(100%, -50%);
+  transform-origin: center;
+  background: #000;
+  font-size: 2em;
+}
+
+.new-option {
+  cursor: pointer;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  animation-name: new-option;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  transform-origin: center; /* Определяем точку трансформации */
+}
+.new-option__button {
+  background: none;
+  text-wrap: nowrap;
+  text-shadow: 0.1em 0.1em 0 #000;
+  color: #fff;
+  font-size: 3em;
+  font-family: "Tiny5";
 }
 
 .body {
@@ -3147,6 +3363,9 @@ ol {
     font-size: 13px;
   }
   .portraits-list {
+    font-size: 14px;
+  }
+  .minigame-pairs {
     font-size: 14px;
   }
   .card-portrait-video-name {
