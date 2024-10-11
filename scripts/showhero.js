@@ -53,7 +53,7 @@ export function acceptChosenHero() { // Принять
 }
 
 export function retryChosenHero() { // Reroll
-   renderLastHero()
+   // renderLastHero()
    updatePortraits(startHeroes)
    saveLastHeroesToLocalStorage()
    saveStartHeroesToLocalStorage()
@@ -61,11 +61,11 @@ export function retryChosenHero() { // Reroll
    getRandomElement(startHeroes)
 }
 
-export function acceptAndDelChosenHero() { // Пропустить
-   renderLastHero();
-   updatePortraits(startHeroes);
-   saveLastHeroesToLocalStorage();
-   saveStartHeroesToLocalStorage();
-   closePopup(showHeroBox);
-   console.log(startHeroes)
-}
+// export function acceptAndDelChosenHero() { // Пропустить
+//    renderLastHero();
+//    updatePortraits(startHeroes);
+//    saveLastHeroesToLocalStorage();
+//    saveStartHeroesToLocalStorage();
+//    closePopup(showHeroBox);
+//    console.log(startHeroes)
+// }

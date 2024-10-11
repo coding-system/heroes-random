@@ -49,7 +49,6 @@ function shuffleArray(array) {
      './assets/heroes/minimap_icons/Storm_Spirit_minimap_icon.webp',
      './assets/heroes/minimap_icons/Templar_Assassin_minimap_icon.webp',
      './assets/heroes/minimap_icons/Sven_minimap_icon.webp',
-     './assets/heroes/minimap_icons/Invoker_minimap_icon.webp',
      './assets/heroes/minimap_icons/Dazzle_minimap_icon.webp',
      './assets/heroes/minimap_icons/Enigma_minimap_icon.webp',
      './assets/heroes/minimap_icons/Invoker_minimap_icon.webp'

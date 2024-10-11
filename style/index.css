@@ -893,6 +893,7 @@ ol {
   transform: translateY(10em);
 }
 .show-hero .buttons-bar .button {
+  width: 50%;
   font-family: "Tiny5";
   transition: 0.1s ease;
   cursor: pointer;
@@ -901,8 +902,7 @@ ol {
   border-radius: 0.55em;
 }
 .show-hero .buttons-bar .button-accept {
-  min-width: 35%;
-  padding: 0.3em 0;
+  padding: 0.3em 0.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -945,30 +945,6 @@ ol {
   transform: translateY(0.2em);
   box-shadow: 0 0 0 #1d6781;
   background-color: #00a2ff;
-  color: rgb(0, 0, 0);
-}
-.show-hero .buttons-bar .button-accept-and-del {
-  min-width: 35%;
-  padding: 0.3em 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  text-transform: uppercase;
-  background-color: #ff9e1f;
-  box-shadow: 0 0.2em 0 #865616;
-  display: flex;
-  z-index: 3;
-  color: #000000;
-}
-.show-hero .buttons-bar .button-accept-and-del:hover {
-  background-color: #ffae00;
-  color: rgb(0, 0, 0);
-}
-.show-hero .buttons-bar .button-accept-and-del:active {
-  transform: translateY(0.2em);
-  box-shadow: 0 0 0 #1d6781;
-  background-color: #ff9100;
   color: rgb(0, 0, 0);
 }
 

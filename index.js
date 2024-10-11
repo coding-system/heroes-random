@@ -19,7 +19,7 @@ import { lastHeroes } from "./scripts/lastheroes.js";
 import {
    acceptChosenHero,
    retryChosenHero,
-   acceptAndDelChosenHero,
+   // acceptAndDelChosenHero,
 } from "./scripts/showhero.js";
 
 import {generateBoard} from './scripts/minigame_pairs.js'
@@ -79,9 +79,9 @@ const showHeroBoxButtons = showHeroBox.querySelector(".buttons-bar");
 const showHeroButton = document.querySelector(".show-hero-button");
 const showHeroAcceptButton = showHeroBox.querySelector(".button-accept");
 const showHeroRertyButton = showHeroBox.querySelector(".button-retry");
-const showHeroAcceptAndDelButton = showHeroBox.querySelector(
-   ".button-accept-and-del"
-);
+// const showHeroAcceptAndDelButton = showHeroBox.querySelector(
+//    ".button-accept-and-del"
+// );
 
 // Whats new Popup
 const whatsNewPopup = document.querySelector(".popup__whats-new");
@@ -155,9 +155,9 @@ showHeroAcceptButton.addEventListener("click", () => {
 showHeroRertyButton.addEventListener("click", () => {
    retryChosenHero();
 });
-showHeroAcceptAndDelButton.addEventListener("click", () => {
-   acceptAndDelChosenHero();
-});
+// showHeroAcceptAndDelButton.addEventListener("click", () => {
+//    acceptAndDelChosenHero();
+// });
 
 // Обработчики открытия попапов
 // heroesListButton.addEventListener("click", () => {
